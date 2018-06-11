@@ -19,7 +19,11 @@ class UsersFactory{
     }
 
     public function getCurrentUser(){
-        $ssid = $_COOKIE[self::COOKIE_NAME];
+        if(isset($_COOKIE[self::COOKIE_NAME])){
+            $ssid = $_COOKIE[self::COOKIE_NAME];
+        }else{
+            return null;
+        }
         $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." WHERE ssid='$ssid' AND status=".User::STATUS_AUTHORIZED);
         if(count($r)){
             return new User($r[0][0]);
