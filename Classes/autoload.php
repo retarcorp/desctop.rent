@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors',1);
 spl_autoload_register(function ($class) {
     $root = $_SERVER['DOCUMENT_ROOT'];

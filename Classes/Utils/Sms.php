@@ -32,4 +32,16 @@ class Sms{
 			return false;
 		}
 	}
+
+	const LOGIN_CODE = 1;
+	public static function getMessage($type, $data){
+		switch($type){
+			case self::LOGIN_CODE:
+				return self::getLoginCodeMessage($data);
+		}
+	}
+
+	private static function getLoginCodeMessage($data){
+		return "Код для доступа на Desktop.rent: $data";
+	}
 }

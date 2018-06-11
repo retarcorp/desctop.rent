@@ -35,6 +35,14 @@ class Sql{
 		}
 		
 	}
+
+	private static $self = null;
+	public static function getInstance(){
+		if(!self::$self){
+			self::$self = new Sql();
+		}
+		return self::$self;
+	}
 	
 	public function resource(){
 		return $this->DBSource;
