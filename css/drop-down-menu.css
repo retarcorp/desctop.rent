@@ -1,0 +1,127 @@
+.header__menu{
+    position: absolute;
+    right: 0;
+    top: 65px;
+    z-index: 999999;
+    height: calc(100% - 65px - 30px);
+}
+
+.drop-down-list{
+    display: none;
+    height: 100%;
+    list-style: none;
+    position: relative;
+    background-color: #fff;
+}
+
+.drop-down-list.active{
+    display: block;
+}
+
+.block_padding{
+    padding: 20px 30px;
+}
+
+.drop-down-list__button{
+    padding: 40px;
+}
+
+.drop-down-list__button_background{
+    background-color:#fff;
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat; 
+}
+
+.button__notice{
+    background-image: url(../img/drop-down-icon/notice.png);
+}
+.button__info{
+    background-image: url(../img/drop-down-icon/information.png);
+}
+.button__support{
+    background-image: url(../img/drop-down-icon/support.png);
+}
+.button__exit{
+    background-image: url(../img/drop-down-icon/exit.png);
+}
+
+.block{
+    display: none;
+    background-color: #fff;
+}
+
+.block_shadow{
+    box-shadow: -1px 0px 5px #aaa;
+}
+
+.drop-down-list__block{
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    left: -400px;
+    top: 0;
+}
+
+.block__header-border{
+    border-bottom: 1px solid #000;
+}
+
+.balance{
+    display: flex;
+    justify-content: space-between;
+}
+
+.balance_margin,
+.services_margin{
+    margin: 10px 0;
+}
+
+.balance__link{
+    display: block;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.link-color{
+    color: #227693;
+}
+
+.money__count-color{
+    color: #227693; 
+}
+
+.money__text-position{
+    text-align: end;
+}
+
+.money__count-size{
+    font-size: 24px;
+}
+
+.block_text-size{
+    font-size: 14px;
+}
+
+.services__item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.resources__disk{
+    display: flex;
+    align-items: center;
+}
+
+.resources__disk span{
+    font-size: 30px;
+    margin-right: 5px;
+}
+
+.drop-down-list__block.active{
+    display: block;
+}
+
+.drop-down-list__button.active{
+    background-color:#E0E0E0; 
+}

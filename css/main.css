@@ -1,20 +1,131 @@
-html, body{
-    width: 100%;
+@font-face {
+    font-family: "Open Sans Light";
+    src: url("../fonts/OpenSans.ttf");
+}
+body, html{
     height: 100%;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 body{
-    min-height: 100%;
+    background: url(../img/fon-picture.png) no-repeat;
+    background-position: bottom;
+    background-size: 100% 100%;  
 }
 
-body > *{
-    margin: 0;
+body *{
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    font-family: Open Sans Light;
+    font-weight: 100;
 }
 
-h1{
-    text-align: center;
+#wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    /* justify-content: space-between;  */
+}
+
+.header_theme_sky-dark{
+    background-color: #202729;
+}
+
+.header_content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header{
+    position: relative;
+    padding: 0 60px;
+}
+
+.header_text_align{
+    align-items: center;
+}
+
+.header__link{
+    color: #227593;
+}
+
+.user-profile{
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    justify-content: space-between;
+    width: 300px; 
+}
+.user-profile__login{
+    color: #fff;
+}
+.user-profile__avatar {
+    width: 60px;
+}
+
+.user-profile__img{
+    width: 100%;
+}
+
+.user-profile__button{
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: url(../img/icon-arrow-bottom.png) no-repeat;
+    background-position: center;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+.user-profile.active{
+    background-color: #227693;
+}
+
+
+.footer{
+    padding: 5px 60px;
+    background: #818384;
+    color: #fff;
+    font-size: 14px;
+    flex: 0;
+}
+
+.main{
+    flex: 1;
+}
+.input {
+    padding: 8px 10px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.button{
+    padding: 13px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.button_text{
+    font-size: 18px;
+}
+
+.button_theme_sky-light{
+    color: #fff;
+    background: #0DBDFB;
+}
+
+.button_theme_sky-dark{
+    color: #fff;
+    background: #227693;
+}
+
+
+.text_color_grey{
+    color: #aaa;
 }
