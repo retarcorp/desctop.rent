@@ -3,7 +3,7 @@
     use Classes\Utils\JSONResponse;
     use Classes\Utils\Sms;
 
-    $res = Sms::send("375447386402","Hello from Desktop.rent!");
+    #$res = Sms::send("375447386402","Hello from Desktop.rent!");
 ?>
 
 <!DOCTYPE html>
