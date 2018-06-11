@@ -18,12 +18,13 @@
     <script src="/js/drop-down-menu.js"></script>
 
     <script src="/js/retarcore.js"></script>
+    <script src="/js/vue.js"></script>
     <script src="/js/api.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/js/index.js"></script>
     <title>Authorization</title>
 </head>
-<body>
+<body id="app">
     <div id="wrapper">
         <header class="header header_theme_sky-dark header_text_align header_content">
             <div "header__logo">
@@ -88,14 +89,14 @@
             </ul>
         </section>
         <main class="main">
-            <section class="main__section authorization">
+            <section class="main__section authorization"  v-if="Tabs.phone">
                 <header class="authorization__header header_text">Вход в систему</header>
                 <input id="phone" class="input authorization__phone" type="text" placeholder="+ 7 (    ) ___-__-__">
                 <button class="authorization__button button button_theme_sky-light">
                     <span class="button_text">Войти в кабинет</span>
                 </button>
             </section>
-            <section class="main__section sms-confirmation">
+            <section class="main__section sms-confirmation"  v-if="Tabs.sms">
                 <header class="sms-confirmation__header header_text">Вход в систему</header>
                 <label for="sms" class="sms-confirmation__help-info text_color_grey">На указанный Вами номер было отправлено
                     СМС-сообщение с кодом подтверждения. Введите этот код в поле ниже:
