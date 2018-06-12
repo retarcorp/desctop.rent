@@ -12,19 +12,12 @@
 </head>
 <body>
     <div id="wrapper">
-        <header class="header header_theme_sky-dark header_text_align header_content">
+        <header class="header header_theme_sky-dark header_text_align header_content header_font-size_head">
             <div "header__logo">
-                <a class="header__link" href="#"><h1 class="header__text">Desktop.rent</h1></a>
-            </div>
-            <div class="header__user-profile user-profile">
-                <p class="user-profile__login">Клиент 001289</p>
-                <div class="user-profile__avatar">
-                    <img class="user-profile__img" src="img/img-profile.png" alt="avatar">
-                </div>
-                <button class="user-profile__button"></button>
+                <a class="header__link" href="#"><h1 class="header__text header__text_size_head">Desktop.rent</h1></a>
             </div>
         </header>
-        <section class="header__menu drop-down-menu">
+        <!-- <section class="header__menu drop-down-menu">
             <ul class="drop-down-menu__drop-down-list drop-down-list">
                 <li class="drop-down-list__item item">
                     <button class="drop-down-list__button button button__notice drop-down-list__button_background"></button>
@@ -73,25 +66,25 @@
                     <div class="drop-down-list__block block block_shadow block_padding block_text-size"></div>
                 </li>
             </ul>
-        </section>
+        </section> -->
         <main class="main">
             <section class="main__section authorization">
-                <header class="authorization__header header_text">Вход в систему</header>
+                <header class="authorization__header header_text_align header_text-size_caption">Вход в систему</header>
                 <input id="phone" class="input authorization__phone" type="text" placeholder="+ 7 (    ) ___-__-__">
-                <button class="authorization__button button button_theme_sky-light">
-                    <span class="button_text">Войти в кабинет</span>
+                <button class="authorization__button button button_theme_sky-light text_size_button">
+                    <span class="text_size_button">Войти в кабинет</span>
                 </button>
             </section>
             <section class="main__section sms-confirmation">
-                <header class="sms-confirmation__header header_text">Вход в систему</header>
-                <label for="sms" class="sms-confirmation__help-info text_color_grey">На указанный Вами номер было отправлено
+                <header class="sms-confirmation__header header_text_align header_text-size_caption">Вход в систему</header>
+                <label for="sms" class="sms-confirmation__help-info text_color_grey text_size_small">На указанный Вами номер было отправлено
                     СМС-сообщение с кодом подтверждения. Введите этот код в поле ниже:
                 </label>
                 <input id="sms" class="input sms-confirmation__number" type="text" placeholder="Например: 003827">
                 <button class="sms-confirmation__button button button_theme_sky-light">
-                    <span class="button_text">Войти в кабинет</span>
+                    <span class="text_size_button">Войти в кабинет</span>
                 </button>
-                <p class="sms-confirmation__agreement text_color_grey">
+                <p class="sms-confirmation__agreement text_color_grey text_size_min-small">
                     Нажимая на кнопку Войти в кабинет, Вы выражаете
                     согласие с <a class="sms-confirmation__link" href="#">условиями предоставления услуг</a>
                     и <a class="sms-confirmation__link" href="#">политикой конфиденциальности</a>

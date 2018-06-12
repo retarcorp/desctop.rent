@@ -1,14 +1,25 @@
+body{
+    background: url(../img/fon-picture.png) no-repeat;
+
+    background-position: bottom;
+    background-size: cover;  
+}
+
 .main {
     background: rgba(34,118,147, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .main__section{
-    width: 40%;
+    width: 500px;
+    min-width: 300px;
     background-color: #fff;
-    padding: 40px 60px 60px;
+    padding: 30px 40px 40px;
     display: flex;
     flex-direction: column;
-    margin: 5% auto 0;
+    margin: auto;
 }
 
 
@@ -20,21 +31,21 @@
     margin-bottom: 0;
 }
 
-.header_text{
+.header_text_align{
     text-align: center;
-    font-weight: 100;
-    font-size: 36px;
+}
+
+.header_text-size_caption{
+    font-size: 30pt;
 }
 
 .sms-confirmation__help-info{
     text-align: center;
     margin-bottom: 30px;
-    font-size: 14px;
 }
 
 .sms-confirmation__agreement{
-    font-size: 14px;
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .sms-confirmation__link {
@@ -44,10 +55,10 @@
 
 
 .sms-confirmation{
-    /* display: none; */
+    display: none;
 }
 
 .authorization{
-    display: none;
+    /* display: none; */
 }
 
