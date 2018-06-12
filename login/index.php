@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,11 +23,13 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/js/index.js"></script>
     <title>Authorization</title>
+    
 </head>
 <body>
     <div id="wrapper">
         <header class="header header_theme_sky-dark header_text_align header_content">
             <div "header__logo">
+            <script>document.write(typeof Promise)</script>
                 <a class="header__link" href="#"><h1 class="header__text">Desktop.rent</h1></a>
             </div>
             <div class="header__user-profile user-profile">
@@ -116,6 +119,7 @@
         <footer class="footer">
             <p class="footer__copyright">Desktop.rent (c) 2018. Все права защищены.</p>
         </footer>
-    </div>    
+    </div>
+
 </body>
 </html>

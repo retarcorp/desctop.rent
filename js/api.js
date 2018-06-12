@@ -1,26 +1,26 @@
 const Api = {
 
-    exec: async function(method, path, data){
+    exec: function(method, path, data){
         return new Promise(function(resolve, reject){
-            const _resolve = (data) => resolve(Object.assign(data, {isOk: data.status == "OK"}));
+            const _resolve = function(data){
+                return resolve(Object.assign(data, {isOk: data.status == "OK"}));
+            };
             
             switch(method){
                 case "GET":
-                    _.get(path,data, (text) => _resolve(JSON.parse(text)));
+                    _.get(path,data, function(text){return _resolve(JSON.parse(text))});
                     break;
                 case "POST":
-                    _.post(path, data, (text) => _resolve(JSON.parse(text)));
+                    _.post(path, data, function(text){return _resolve(JSON.parse(text))});
             }
         })
     }
 
-    ,EndPoint: class {
-        constructor(method, path){
-            this.method = method;
-            this.path = path;
-        }
+    ,EndPoint: function(method, path) {
+        this.method = method;
+        this.path = path;      
 
-        exec(data){
+        this.exec = function(data){
             return Api.exec(this.method, this.path, data)
         }
     }

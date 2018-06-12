@@ -4,7 +4,7 @@ var Menu = {
             menu = this.getMenuList(),
             userProfile = this.getUserProfile();
 
-        btn.addEventListener('click', (e) => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault;
             menu.classList.toggle('active');
             userProfile.classList.toggle('active');
@@ -23,8 +23,8 @@ var Menu = {
             var btns = this.getAllItemsButton(),
                 blocks = this.getAllBlocks();
 
-            btns.forEach((item, i) => {
-                item.addEventListener('click', (e) => {
+            btns.forEach(function(item, i) {
+                item.addEventListener('click', function(e) {
                     e.preventDefault;
                     this.clearButton();
                     item.classList.add('active');
@@ -34,22 +34,22 @@ var Menu = {
             });
         }
         ,getAllItemsButton: function(){
-            return document.querySelectorAll('.drop-down-list__button');
+            return Array.prototype.slice.call(document.querySelectorAll('.drop-down-list__button'), 0);
         }
         ,getAllBlocks: function(){
-            return document.querySelectorAll('.drop-down-list__block');
+            return Array.prototype.slice.call(document.querySelectorAll('.drop-down-list__block'),0);
         }
         ,clearButton: function(){
             var btns = this.getAllItemsButton();
 
-            btns.forEach((item) => {
+            btns.forEach(function(item) {
                 item.classList.remove('active');
             });
         },
         clearBlocks: function(){
             var blocks = this.getAllBlocks();
 
-            blocks.forEach((item) => {
+            blocks.forEach(function(item) {
                 item.classList.remove('active');
             });
         }
