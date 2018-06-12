@@ -3,7 +3,8 @@ const Api = {
     exec: function(method, path, data){
         return new Promise(function(resolve, reject){
             const _resolve = function(data){
-                return resolve(Object.assign(data, {isOk: data.status == "OK"}));
+                data.isOk = data.status == "OK";
+                return resolve(data);
             };
             
             switch(method){

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/drop-down-menu.css">
     <link rel="stylesheet" href="/css/authorization.css">
-    <script src="/js/drop-down-menu.js"></script>
+
 
     <script src="/js/retarcore.js"></script>
      <script src="/js/api.js"></script>
@@ -29,16 +29,15 @@
     <div id="wrapper">
         <header class="header header_theme_sky-dark header_text_align header_content">
             <div "header__logo">
-            <script>document.write(typeof Promise)</script>
                 <a class="header__link" href="#"><h1 class="header__text">Desktop.rent</h1></a>
             </div>
-            <div class="header__user-profile user-profile">
+            <!-- <div class="header__user-profile user-profile">
                 <p class="user-profile__login">Клиент 001289</p>
                 <div class="user-profile__avatar">
                     <img class="user-profile__img" src="img/img-profile.png" alt="avatar">
                 </div>
                 <button class="user-profile__button"></button>
-            </div>
+            </div> -->
         </header>
         <section class="header__menu drop-down-menu">
             <ul class="drop-down-menu__drop-down-list drop-down-list">
@@ -93,7 +92,7 @@
         <main class="main"  id="app">
             <section class="main__section authorization"  v-if="Tabs.phone">
                 <header class="authorization__header header_text">Вход в систему</header>
-                <input id="phone" class="input authorization__phone" type="text" @input="refreshPhoneMessage" v-model="phone" placeholder="+ 7 (    ) ___-__-__">
+                <input id="phone" class="input authorization__phone" type="tel" @input="refreshPhoneMessage" v-model="phone" placeholder="+ 7 (    ) ___-__-__">
                 <button class="authorization__button button button_theme_sky-light"  @click.prevent="onPhoneEntered">
                     <span class="button_text">Войти в кабинет</span>
                 </button>

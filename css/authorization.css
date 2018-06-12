@@ -55,7 +55,7 @@ body{
 
 
 .sms-confirmation{
-    display: none;
+    /* display: none; */
 }
 
 .authorization{

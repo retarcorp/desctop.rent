@@ -23,15 +23,16 @@ _.core(function(){
                     Api.OnPhoneEntered.exec({phone: this.phone})
                         .then(function(result){
                             if(result.isOk){
-                                this.Tabs.phone = false;
-                                this.Tabs.sms = true;
+                                Vm.Tabs.phone = false;
+                                Vm.Tabs.sms = true;
                                 return;
                             }
-                            this.Messages.currentPhoneMessage = result.message;
-                            
+                            Vm.Messages.currentPhoneMessage = result.message;
+                            this.phoneIsInvalid = true;
                         })                    
+                }else{
+                    this.phoneIsInvalid = true;
                 }
-                this.phoneIsInvalid = true;
                 
             }
 
@@ -49,8 +50,8 @@ _.core(function(){
                         if(result.isOk){
                             return location.assign("/");
                         }
-                        this.smsIsInvalid = true;
-                        this.Messages.smsCodeMessage = result.message;
+                        Vm.smsIsInvalid = true;
+                        Vm.Messages.smsCodeMessage = result.message;
                     });
                 
             }
