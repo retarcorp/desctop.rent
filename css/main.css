@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Open Sans Light";
-    src: url("../fonts/OpenSans.ttf");
+    src: url("../fonts/OpenSans-Light.ttf");
 }
 body, html{
     height: 100%;
@@ -8,13 +8,8 @@ body, html{
     margin: 0;
 }
 
-body{
-    background: url(../img/fon-picture.png) no-repeat;
-    background-position: bottom;
-    background-size: 100% 100%;  
-}
-
 body *{
+    color: #47484a;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -41,8 +36,13 @@ body *{
 }
 
 .header{
+    height: 60px;
     position: relative;
     padding: 0 60px;
+}
+
+.header__text_size_head{
+    font-size: 24px;
 }
 
 .header_text_align{
@@ -50,7 +50,7 @@ body *{
 }
 
 .header__link{
-    color: #227593;
+    font-size: 24pt;
 }
 
 .user-profile{
@@ -60,11 +60,18 @@ body *{
     justify-content: space-between;
     width: 300px; 
 }
+
+
+.user-profile:hover{
+    background: #227593;
+}
+
 .user-profile__login{
     color: #fff;
 }
 .user-profile__avatar {
     width: 60px;
+    height: 60px;
 }
 
 .user-profile__img{
@@ -87,6 +94,7 @@ body *{
 
 
 .footer{
+    height: 30px;
     padding: 5px 60px;
     background: #818384;
     color: #fff;
@@ -98,21 +106,24 @@ body *{
     flex: 1;
 }
 .input {
+    height: 35px;
     padding: 8px 10px;
     border: 1px solid #000;
-    margin-bottom: 20px;
-    font-size: 18px;
+    margin-bottom: 15px;
+    font-size: 17pt;
 }
 
 .button{
-    padding: 13px;
-    border: none;
+    height: 40px;
+    padding: 0 20px;
+    border: 2px solid rgba(0,0,0,0);
     outline: none;
     cursor: pointer;
+
 }
 
 .button_text{
-    font-size: 18px;
+    color: #fff;
 }
 
 .button_theme_sky-light{
@@ -128,4 +139,32 @@ body *{
 
 .text_color_grey{
     color: #aaa;
+}
+
+.text_color_blue{
+    color: #227693;
+}
+
+.text_size_small{
+    font-size: 13pt;
+}
+.text_size_min-small{
+    font-size: 12pt;
+}
+
+.text_size_caption{
+    font-size: 16pt;
+}
+
+.text_size_button{
+    font-size: 16pt;
+}
+
+.text_size_header{
+    font-size: 30pt;
+}
+
+.main__header{
+    position: relative;
+    padding: 0 60px;
 }

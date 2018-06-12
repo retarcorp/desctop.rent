@@ -9,31 +9,32 @@ body{
 .header__nav-path{
     display: flex;
     list-style: none;
+    font-size: 14pt;
 }
 
 .header__list-item {
     margin-left: 10px; 
 }
 
-.btn-menu_padding{
-    padding: 30px 60px 60px;
+.btn-menu_margin{
+    margin: 30px 60px 45px;
 }
 
 .btn-menu__set-password_margin{
     margin-left: 10px;
 }
 
-.btn-menu__button_padding{
-    padding-left: 40px;
-    padding-right: 40px;
+.button:hover{
+    border: 2px solid #000;
 }
 
+
 .tools__header_border_bottom{
-    border-bottom: 2px solid #818384;
+    border-bottom: 1px solid #818384;
 }
 
 .tools__header_padding{
-    padding: 5px 0;
+    padding: 8px 7px;
 }
 
 .container{
@@ -88,4 +89,16 @@ body{
 
 .picture_theme_sky-dark{
     background-color: #227693;
+}
+
+.btn-menu__button_size{
+    height: 45px;
+}
+
+.item__text_head{
+    font-size: 16pt;
+}
+
+.item__text_desc{
+    font-size: 13pt;
 }
