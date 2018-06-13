@@ -1,22 +1,33 @@
 var Menu = {
     init: function(){
-        var btn = document.querySelector('.user-profile__button'),
-            menu = this.getMenuList(),
+        var showProfile = document.querySelector('.user-profile'),
+            userProfileBtn = document.querySelector('.user-profile__button'),
+            menu = this.getMenu(),
             userProfile = this.getUserProfile();
 
-        btn.addEventListener('click', (e) => {
+        showProfile.addEventListener('click', (e) => {
             e.preventDefault;
-            menu.classList.toggle('active');
+            userProfileBtn.classList.toggle('active');
+            // menu.classList.add('active');
             userProfile.classList.toggle('active');
         });
 
         this.menuList.init();
+        this.closeMenu();
     },
-    getMenuList: function(){
-        return document.querySelector('.drop-down-list');
+    getMenu: function(){
+        return document.querySelector('.drop-down-menu');
     }
     ,getUserProfile: function(){
         return document.querySelector('.user-profile');
+    }
+    ,closeMenu: function(){
+        $(document).click(function(e){
+            var elem = $(".drop-down-menu");
+            if(e.target != elem[0] && !elem.has(e.target).length){ 
+                elem.toggle('active');
+            } 
+        }) ;
     }
     ,menuList: {
         init: function(){
