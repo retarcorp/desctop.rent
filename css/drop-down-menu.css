@@ -1,9 +1,9 @@
 .header__menu{
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 60px;
     z-index: 999999;
-    height: calc(100% - 90px);
+    height: calc(100%);
 }
 
 .drop-down-list{
@@ -23,6 +23,19 @@
 
 .drop-down-list__button{
     padding: 33px;
+    position: relative;
+}
+
+.button__notification{
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #0DBDFB;
+    border-radius: 50%;
+    color: #fff;
 }
 
 .drop-down-list__button_background{
@@ -55,10 +68,10 @@
 }
 
 .drop-down-list__block{
-    width: 400px;
+    width: 320px;
     height: 100%;
     position: absolute;
-    left: -400px;
+    left: -320px;
     top: 0;
 }
 

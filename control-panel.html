@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/drop-down-menu.css">
     <link rel="stylesheet" href="css/control-panel.css">
-    <script src="js/drop-down-menu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/drop-down-menu.js"></script>
     <title>Control panel</title>
 </head>
 <body>
@@ -28,7 +28,9 @@
         <section class="header__menu drop-down-menu">
             <ul class="drop-down-menu__drop-down-list drop-down-list">
                 <li class="drop-down-list__item item">
-                    <button class="drop-down-list__button button button__notice drop-down-list__button_background"></button>
+                    <button class="drop-down-list__button button button__notice drop-down-list__button_background">
+                        <span class="button__notification">7</span>
+                    </button>
                     <div class="drop-down-list__block block block_shadow block_padding block_text-size"></div>
                 </li>
                 <li class="drop-down-list__item">
@@ -111,7 +113,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="#" class="tools__link item_margin tools_disable">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
@@ -176,7 +178,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="#" class="tools__link item_margin tools_disable">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
