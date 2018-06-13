@@ -5,11 +5,10 @@ var Menu = {
             menu = this.getMenu(),
             userProfile = this.getUserProfile();
 
-<<<<<<< HEAD
-        btn.addEventListener('click', function(e) {
-=======
-        showProfile.addEventListener('click', (e) => {
->>>>>>> Frontend
+
+        
+        showProfile.addEventListener('click', function(e){
+
             e.preventDefault;
             userProfileBtn.classList.toggle('active');
             // menu.classList.add('active');
