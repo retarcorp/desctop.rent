@@ -23,6 +23,7 @@ body *{
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    position: relative;
     /* justify-content: space-between;  */
 }
 
@@ -38,7 +39,11 @@ body *{
 .header{
     height: 60px;
     position: relative;
-    padding: 0 60px;
+    padding: 0 70px;
+}
+
+.header__text{
+    color: #202729;
 }
 
 .header__text_size_head{
@@ -50,15 +55,15 @@ body *{
 }
 
 .header__link{
-    font-size: 24pt;
+    font-size: 24px;
 }
 
 .user-profile{
     display: flex;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 25px;
     justify-content: space-between;
-    width: 300px; 
+    width: 245px; 
 }
 
 
@@ -68,28 +73,36 @@ body *{
 
 .user-profile__login{
     color: #fff;
+    font-size: 14px;
 }
 .user-profile__avatar {
     width: 60px;
     height: 60px;
+    display: flex;
 }
 
 .user-profile__img{
-    width: 100%;
+    width: 90%;
+    margin: auto;
 }
 
 .user-profile__button{
-    width: 20px;
-    height: 20px;
     border: none;
-    background: url(../img/icon-arrow-bottom.png) no-repeat;
-    background-position: center;
-    background-size: 100%;
+    background: none;
     cursor: pointer;
+    width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 8px solid#818384;
 }
 
 .user-profile.active{
     background-color: #227693;
+}
+
+.user-profile__button.active{
+    border-top: 8px solid#fff;
 }
 
 
@@ -104,13 +117,14 @@ body *{
 
 .main{
     flex: 1;
+    padding: 60px 0;
 }
 .input {
     height: 35px;
     padding: 8px 10px;
     border: 1px solid #000;
     margin-bottom: 15px;
-    font-size: 17pt;
+    font-size: 17px;
 }
 
 .button{
@@ -122,7 +136,11 @@ body *{
 
 }
 
-.button_text{
+.button:hover{
+    border: 2px solid #000;
+}
+
+.button__text_color{
     color: #fff;
 }
 
@@ -145,26 +163,38 @@ body *{
     color: #227693;
 }
 
+/* .text_colo_dark{
+    color: #202729;
+} */
+
 .text_size_small{
-    font-size: 13pt;
+    font-size: 13px;
 }
 .text_size_min-small{
-    font-size: 12pt;
+    font-size: 12px;
 }
 
 .text_size_caption{
-    font-size: 16pt;
+    font-size: 16px;
 }
 
 .text_size_button{
-    font-size: 16pt;
+    font-size: 16px;
 }
 
 .text_size_header{
-    font-size: 30pt;
+    font-size: 30px;
 }
 
 .main__header{
     position: relative;
     padding: 0 60px;
+}
+
+.tools__header_margin_bottom{
+    margin-bottom: 10px;
+}
+
+.drop-down-menu{
+    display: none;
 }

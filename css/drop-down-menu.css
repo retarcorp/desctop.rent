@@ -1,29 +1,28 @@
 .header__menu{
     position: absolute;
     right: 0;
-    top: 65px;
+    top: 60px;
     z-index: 999999;
-    height: calc(100% - 65px - 30px);
+    height: calc(100% - 90px);
 }
 
 .drop-down-list{
-    display: none;
     height: 100%;
     list-style: none;
     position: relative;
     background-color: #fff;
 }
 
-.drop-down-list.active{
+.drop-down-menu.active{
     display: block;
 }
 
 .block_padding{
-    padding: 20px 30px;
+    padding: 30px 20px;
 }
 
 .drop-down-list__button{
-    padding: 40px;
+    padding: 33px;
 }
 
 .drop-down-list__button_background{
@@ -73,8 +72,12 @@
 }
 
 .balance_margin,
+.resources_margin{
+    margin: 10px 0 20px;
+}
+
 .services_margin{
-    margin: 10px 0;
+    margin: 10px 0 35px;
 }
 
 .balance__link{
@@ -116,6 +119,8 @@
 .resources__disk span{
     font-size: 30px;
     margin-right: 5px;
+    color: #227693;
+    line-height: 0.8;
 }
 
 .drop-down-list__block.active{
@@ -124,4 +129,9 @@
 
 .drop-down-list__button.active{
     background-color:#E0E0E0; 
+}
+
+.drop-down-list__button:hover{
+    background-color:#E0E0E0;
+    border: 2px solid rgba(0,0,0,0);
 }
