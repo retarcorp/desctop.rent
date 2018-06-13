@@ -4,6 +4,8 @@ namespace Classes\Models\Users;
 
 use Classes\Utils\Sql;
 
+use Classes\Models\Rdp;
+
 class User{
     
     const TABLE_NAME = "users";
@@ -38,4 +40,7 @@ class User{
         WHERE id={$this->id}");
     }
 
+    public function getRdp() : Rdp {
+        # @TODO: get Rdp Object for this user
+    }
 }

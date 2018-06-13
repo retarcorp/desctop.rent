@@ -8,7 +8,7 @@ class AuthController{
 
     # @http GET /test/
     public function testMethod(){
-        return ["Hello"=>"World"];
+        return ["Hello" => "World"];
     }
 
     # @http GET /test/error/
