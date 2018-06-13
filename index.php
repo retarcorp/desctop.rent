@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/drop-down-menu.css">
     <link rel="stylesheet" href="/css/control-panel.css">
-    <script src="js/drop-down-menu.js"></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/drop-down-menu.js"></script>
     <title>Control panel</title>
 </head>
 <body>

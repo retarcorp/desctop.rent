@@ -11,7 +11,7 @@ var Menu = {
 
             e.preventDefault;
             userProfileBtn.classList.toggle('active');
-            // menu.classList.add('active');
+            //menu.classList.add('active');
             userProfile.classList.toggle('active');
         });
 
@@ -30,7 +30,7 @@ var Menu = {
             if(e.target != elem[0] && !elem.has(e.target).length){ 
                 elem.toggle('active');
             } 
-        }) ;
+        });
     }
     ,menuList: {
         init: function(){
