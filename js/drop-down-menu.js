@@ -1,12 +1,14 @@
 var Menu = {
     init: function(){
+        this.setMenuHeight();
         var showProfile = document.querySelector('.user-profile'),
             userProfileBtn = document.querySelector('.user-profile__button'),
             menu = this.getMenu(),
             userProfile = this.getUserProfile();
-
         showProfile.addEventListener('click', function(e) {
+            e.preventDefault;
             $(document).click(function(e){
+                e.preventDefault;
                 var btn = $('.user-profile');
                 if(e.target != btn[0] && !btn.has(e.target).length){
                     e.preventDefault;
@@ -21,14 +23,11 @@ var Menu = {
                     }
                 }
             });
-            e.preventDefault;
             userProfileBtn.classList.toggle('active');
             menu.classList.toggle('active');
             userProfile.classList.toggle('active');
         });
-        this.menuList.init();
-        this.setMenuHeight();
-        
+        this.menuList.init();        
     },
     getMenu: function(){
         return document.querySelector('.drop-down-menu');
@@ -39,14 +38,18 @@ var Menu = {
     },
     setMenuHeight: function(){
         var menu = this.getMenu();
+        var heightPage = document.body.scrollHeight;
+        var clientHeight = document.body.clientHeight;
+
+        if(clientHeight < heightPage){
+            menu.style.height = heightPage - 90 + 'px';
+        }
 
         window.onscroll = function() {
-            var heightPage = document.body.scrollHeight;
-            var clientHeight = document.body.clientHeight;
             var position = (window.pageYOffset || document.documentElement.scrollTop) + clientHeight;
 
-            if(position <= (heightPage - 60)){
-                menu.style.height = clientHeight - 60 + 'px';
+            if(position < (heightPage - 30)){
+                menu.style.height = heightPage - 60 + 'px';
             } else {
                 menu.style.height = clientHeight - 90 + 'px';
             }
@@ -92,4 +95,5 @@ var Menu = {
 
 window.onload = function(){
     Menu.init();
+    LeftMenu.init();
 };

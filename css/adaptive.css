@@ -1,0 +1,46 @@
+@media screen and (max-width: 1024px){
+    
+    
+
+}
+
+@media screen and (max-width: 768px){
+    /* AUTHORIZATION AND CONFIRMATION */
+    /* HEADER */
+    .header{
+        padding: 0 40px;
+    }
+
+    /* MAIN */
+    .main__section{
+        padding: 30px 20px 40px;
+    }
+
+    /* FOOTER */
+
+    .footer{
+        padding: 5px 40px;
+    }
+
+}
+
+@media screen and (max-width: 340px){
+
+    /* AUTHORIZATION AND CONFIRMATION */
+    /* HEADER */
+    .header{
+        padding: 0 20px;
+    }
+
+    /* MAIN */
+    .main__section{
+        padding: 30px 20px 40px;
+    }
+
+    /* FOOTER */
+
+    .footer{
+        padding: 5px 20px;
+    }
+
+}

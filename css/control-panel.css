@@ -2,15 +2,7 @@ body{
     background: none;
 }
 
-.header__nav-path{
-    display: flex;
-    list-style: none;
-    font-size: 14px;
-}
 
-.header__list-item {
-    margin-left: 5px; 
-}
 
 .btn-menu_margin{
     margin: 30px 60px 45px;
@@ -50,7 +42,7 @@ body{
 }
 
 .picture__img{
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
