@@ -5,8 +5,31 @@ namespace Classes\Utils;
 class Sms{
 
     const API_LOGIN = "192311668";
-    const API_PASSWORD = "6NNR2wGu";
+	const API_PASSWORD = "6NNR2wGu";
 	
+	const API_STREAMTELECOM_LOGIN = "DesktopRent"; //\\
+	const API_STREAMTELECOM_PASSWORD = "20VM18Capital";//\\
+	const TEST_LOGIN = "SMS Info"; //\\
+	
+	// stream-telecom sms 
+	public static function sendStreamTelecom(string $phone,string $message) {//\\
+		$curlQuery = curl_init();
+		curl_setopt($curlQuery, CURLOPT_URL, "http://gateway.api.sc/rest/Session/session.php");
+		curl_setopt($curlQuery, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curlQuery, CURLOPT_POST, true);
+		curl_setopt($curlQuery, CURLOPT_POSTFIELDS, "login=".self::API_STREAMTELECOM_LOGIN."&password=".self::API_STREAMTELECOM_PASSWORD);
+		$APIkey =  @json_decode(curl_exec($curlQuery), true); 
+		echo $APIkey;
+
+		$curlSms = curl_init(); 
+		curl_setopt($curlSms, CURLOPT_URL, "http://gateway.api.sc/rest/Send/SendSms/");
+		curl_setopt($curlSms, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curlSms, CURLOPT_POST, true);
+		curl_setopt($curlSms, CURLOPT_POSTFIELDS, "sessionId=".$APIkey."&sourceAddress=".self::TEST_LOGIN."&destinationAddress=".$phone."&data=".$message);
+		$result = @json_decode(curl_exec($curlSms), true);
+		print_r($result);
+	}
+
 	/**
 	 *  @author Denis Latushkin
 	 *  @param \string phone Phone number to send an sms
@@ -44,4 +67,5 @@ class Sms{
 	private static function getLoginCodeMessage($data){
 		return "Код для доступа на Desktop.rent: $data";
 	}
+	
 }
