@@ -26,8 +26,7 @@ var Menu = {
             userProfileBtn.classList.toggle('active');
             menu.classList.toggle('active');
             userProfile.classList.toggle('active');
-        });
-        this.menuList.init();        
+        });       
     },
     getMenu: function(){
         return document.querySelector('.drop-down-menu');
@@ -45,50 +44,16 @@ var Menu = {
             menu.style.height = heightPage - 90 + 'px';
         }
 
+
         window.onscroll = function() {
             var position = (window.pageYOffset || document.documentElement.scrollTop) + clientHeight;
-
+            console.log(position);
             if(position < (heightPage - 30)){
                 menu.style.height = heightPage - 60 + 'px';
             } else {
                 menu.style.height = clientHeight - 90 + 'px';
             }
         }        
-    }
-    ,menuList: {
-        init: function(){
-            var btns = this.getAllItemsButton(),
-                blocks = this.getAllBlocks();
-
-            btns.forEach(function(item, i) {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault;
-                    Menu.menuList.clearButton();
-                    item.classList.add('active');
-                    Menu.menuList.clearBlocks();
-                    blocks[i].classList.add('active');
-                });
-            });
-        }
-        ,getAllItemsButton: function(){
-            return document.querySelectorAll('.drop-down-list__button');
-        }
-        ,getAllBlocks: function(){
-            return document.querySelectorAll('.drop-down-list__block');
-        }
-        ,clearButton: function(){
-            var btns = this.getAllItemsButton();
-            btns.forEach(function(item){
-                item.classList.remove('active');
-            });
-        }
-        ,clearBlocks: function(){
-            var blocks = this.getAllBlocks();
-
-            blocks.forEach(function(item) {
-                item.classList.remove('active');
-            });
-        }
     }
 };
 

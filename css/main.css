@@ -44,6 +44,10 @@ body *{
     z-index: 10;
 }
 
+.header__logo{
+    display: block;
+}
+
 .header__text{
     color: #202729;
 }
@@ -60,6 +64,9 @@ body *{
     font-size: 24px;
 }
 
+.header__button-adaptive{
+    display: none;
+}
 .user-profile{
     display: flex;
     align-items: center;

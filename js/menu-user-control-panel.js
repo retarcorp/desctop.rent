@@ -24,6 +24,8 @@ var LeftMenu = {
         this.links.data.addEventListener('click', this.onDataClick.bind(LeftMenu));
         this.links.support.addEventListener('click', this.onSupportClick.bind(LeftMenu));
         this.links.services.addEventListener('click', this.onServicesClick.bind(LeftMenu));
+
+        this.onAdaptiveMenu();
         
     }
     ,onEmployeesClick: function(e){
@@ -77,5 +79,14 @@ var LeftMenu = {
         for(key in obj){
             obj[key].classList.remove('active');
         }
+    }
+    ,onAdaptiveMenu: function(){
+        var btn = document.querySelector('.header__button-adaptive');
+        var menu = document.querySelector('.left-menu');
+
+        btn.addEventListener('click', function(e) {
+            e.preventDefault;
+            menu.classList.toggle('active');
+        });
     }
 };

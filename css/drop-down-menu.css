@@ -14,11 +14,16 @@
 }
 
 .drop-down-menu.active{
-    display: block;
+    /* display: block; */
+    display: flex;
 }
 
 .block_padding{
     padding: 30px 20px;
+}
+
+.item__link{
+    display: block;
 }
 
 .drop-down-list__button{
@@ -70,9 +75,9 @@
 .drop-down-list__block{
     width: 320px;
     height: 100%;
-    position: absolute;
-    left: -320px;
-    top: 0;
+    /* position: absolute; */
+    /* left: -320px; */
+    /* top: 0; */
 }
 
 .block__header-border{
