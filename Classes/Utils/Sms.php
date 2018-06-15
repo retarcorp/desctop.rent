@@ -9,7 +9,7 @@ class Sms{
 	
 	const API_STREAMTELECOM_LOGIN = "DesktopRent"; //\\
 	const API_STREAMTELECOM_PASSWORD = "20VM18Capital";//\\
-	const TEST_LOGIN = "SMS Info"; //\\
+	const TEST_LOGIN = "SMS Info "; //\\
 	
 	// stream-telecom sms 
 	public static function sendStreamTelecom(string $phone,string $message) {//\\
@@ -19,7 +19,6 @@ class Sms{
 		curl_setopt($curlQuery, CURLOPT_POST, true);
 		curl_setopt($curlQuery, CURLOPT_POSTFIELDS, "login=".self::API_STREAMTELECOM_LOGIN."&password=".self::API_STREAMTELECOM_PASSWORD);
 		$APIkey =  @json_decode(curl_exec($curlQuery), true); 
-		echo $APIkey;
 
 		$curlSms = curl_init(); 
 		curl_setopt($curlSms, CURLOPT_URL, "http://gateway.api.sc/rest/Send/SendSms/");
@@ -27,7 +26,6 @@ class Sms{
 		curl_setopt($curlSms, CURLOPT_POST, true);
 		curl_setopt($curlSms, CURLOPT_POSTFIELDS, "sessionId=".$APIkey."&sourceAddress=".self::TEST_LOGIN."&destinationAddress=".$phone."&data=".$message);
 		$result = @json_decode(curl_exec($curlSms), true);
-		print_r($result);
 	}
 
 	/**
