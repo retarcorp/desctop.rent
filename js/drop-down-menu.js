@@ -6,7 +6,7 @@ var Menu = {
             menu = this.getMenu(),
             userProfile = this.getUserProfile();
         showProfile.addEventListener('click', function(e) {
-            e.preventDefault;
+            e.preventDefault; 
             $(document).click(function(e){
                 e.preventDefault;
                 var btn = $('.user-profile');
