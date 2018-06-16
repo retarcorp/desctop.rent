@@ -1,0 +1,106 @@
+@media screen and (max-width: 1024px){
+    
+    
+
+}
+
+@media screen and (max-width: 768px){
+    /* AUTHORIZATION AND CONFIRMATION */
+
+    .header{
+        padding: 0 40px;
+    }
+
+    .main__section{
+        padding: 30px 20px 40px;
+    }
+
+    .footer{
+        padding: 5px 40px;
+    }
+
+    /* CONTROL PANEL */
+
+    .tools__link{
+        width: 324px;
+    }
+
+
+    /* USER-CONTROL-PANEL */
+
+    .field{
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+    }
+    
+    .field__label{
+        align-self: flex-start;
+    }
+
+}
+
+@media screen and (max-width: 340px){
+
+    /* AUTHORIZATION AND CONFIRMATION */
+    .header{
+        padding: 0 0 0 20px;
+    }
+
+    .main__section{
+        padding: 30px 20px 40px;
+    }
+
+    .footer{
+        padding: 5px 20px;
+    }
+
+
+    /* CONTROL PANEL */
+
+    .main{
+        padding: 90px 0 40px;
+    }
+
+    .main__header{
+        padding: 0 20px;
+    }
+
+    .btn-menu_margin{
+        margin: 30px 20px 45px;
+    }
+
+    .container_padding{
+        padding: 0 20px;
+    }
+
+    /* DROP-DOWN-MENU and USER-PROFILE */
+
+    .drop-down-menu{
+        width: 100%;
+    }
+    .user-profile{
+        width: 120px;
+        padding: 0 20px;
+    }
+
+    .user-profile__login{
+        display: none;
+    }
+    .drop-down-list__button{
+        padding: 28px;
+    }
+
+    .btn-menu__set-password_margin{
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .block_padding{
+        padding-top: 25px;
+    }
+
+    .text_size_header{
+        font-size: 25px;
+    }
+}

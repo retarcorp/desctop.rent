@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/drop-down-menu.css">
+    <link rel="stylesheet" href="css/user-control-panel.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/menu-user-control-panel.js"></script>
+    <script src="js/drop-down-menu.js"></script>
+    <title>User control panel</title>
+</head>
+<body>
+    <div id="wrapper">
+        <header class="header header_theme_sky-dark header_text_align header_content header_padding_reset">
+            <div class="header__logo">
+                <a class="header__link text_color_blue" href="#">Desktop.rent</a>
+            </div>
+            <button class="header__button-adaptive"></button>
+            <div class="header__user-profile user-profile">
+                <p class="user-profile__login">Клиент 001289</p>
+                <div class="user-profile__avatar">
+                    <img class="user-profile__img" src="img/img-profile.png" alt="avatar">
+                </div>
+                <button class="user-profile__button"></button>
+            </div>
+        </header>
+        <section class="header__menu drop-down-menu">
+            <div class="drop-down-list__block block block_shadow block_padding block_text-size active">
+                <div class="block___balance">
+                    <h2 class="block__header block__header-border header__text ">Баланс</h2>
+                    <div class="block__balance balance balance_margin">
+                        <div class="balance__links">
+                            <a href="#" class="balance__link link-color text_size_min-small">Оплатить услуги</a>
+                            <a href="#" class="balance__link link-color text_size_min-small">Привязать карту</a>
+                        </div>
+                        <div class="balance__money money money_text-size">
+                            <p class="money__text money__text-position text_size_min-small">доступно</p>
+                            <p class="money__count money__count-color money__count-size">14 500 <span class="money__currency money__count-color">Р</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="block___services">
+                    <h2 class="block__header block__header-border header__text">Поключенные услуги</h2>
+                    <div class="block__services services services_margin">
+                        <div class="services__item">
+                            <a href="#" class="services__link link-color description_text_size">Доступ к порталу</a>
+                            <p class="services__date text_size_min-small">до 31.07.2018</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="block___resources">
+                    <h2 class="block__header block__header-border header__text">Ресурсы</h2>
+                    <div class="block__resources resources resources_margin">
+                        <p class="resources__info text_size_small">Используется 8,9 Гб из 15 ГБ (59%)</p>
+                        <a href="#" class="resources__disk link-color"><span>&plus;</span>Расширить диск</a>
+                    </div>
+                </div>
+            </div>
+            <ul class="drop-down-menu__drop-down-list drop-down-list">
+                <li class="drop-down-list__item item">
+                    <a href="#" class="item__link">
+                        <button class="drop-down-list__button button button__notice drop-down-list__button_background">
+                            <span class="button__notification">7</span>
+                        </button>
+                    </a>
+                </li>
+                <li class="drop-down-list__item">
+                    <a href="#" class="item__link">
+                        <button class="drop-down-list__button button button__info drop-down-list__button_background"></button>
+                    </a>
+                </li>
+                <li class="drop-down-list__item">
+                    <a href="#" class="item__link">
+                        <button class="drop-down-list__button button button__support drop-down-list__button_background"></button>
+                    </a>
+                </li>
+                <li class="drop-down-list__item">
+                    <a href="#" class="item__link">
+                        <button class="drop-down-list__button button button__exit drop-down-list__button_background"></button>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <main class="main main_padding_bottom">
+
+
+
+
+
+            <section class="main__left-menu left-menu left-menu_theme_dark">
+                <button class="left-menu__entrance button button_theme_sky-light left-menu__button_size left-menu__button_margin">
+                    <span class="button_text button__text_size_small button__text_color">Войти в рабочий стол</span>
+                </button>
+                <nav class="left-menu__menu">
+                    <ul class="left-menu__list list">
+                        <li class="list__item item__employees text_size_small text_color_white">Мои сотрудники</li>
+                        <li class="list__item item__folders text_size_small text_color_white">Мои папки</li>
+                        <li class="list__item item__payments text_size_small text_color_white">Мои платежи</li>
+                        <li class="list__item item__data text_size_small text_color_white active">Мои данные</li>
+                        <li class="list__item item__support text_size_small text_color_white">Моя поддержка</li>
+                        <li class="list__item item__services text_size_small text_color_white">Мои сервисы</li>
+                    </ul>
+                </nav>
+            </section>
+
+
+
+
+
+
+
+            <section class="main__right-tab right-tab">
+                <section class="right-tab__tab-data tab-data active">
+                    <header class="tab__header">
+                        <h1 class="header__text text_size_header">Ваши учетные данные</h1>
+                        <ul class="header__nav-path text_color_grey">Вы здесь:
+                            <li class="header__list-item"><a href="#" class="text_color_blue">Мои данные</a></li>
+                        </ul>
+                    </header>
+                    <div class="tab-data__content tab-data__content_margin_top">
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="name-company" class="field__label">
+                                <span class="text_size_small text_color_dark">Название компании</span>
+                            </label>
+                            <input id="name-company" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="inn" class="field__label">
+                                <span class="text_size_small text_color_dark">ИНН</span>
+                            </label>
+                            <input id="inn" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="email" class="field__label">
+                                <span class="text_size_small text_color_dark">E-mail</span>
+                            </label>
+                            <input id="email" type="email" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="phone" class="field__label">
+                                <span class="text_size_small text_color_dark">Телефон</span>
+                            </label>
+                            <input id="phone" type="phone" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="region" class="field__label">
+                                <span class="text_size_small text_color_dark">Регион</span>
+                            </label>
+                            <input id="region" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="bank-name" class="field__label">
+                                <span class="text_size_small text_color_dark">Название банка</span>
+                            </label>
+                            <input id="bank-name" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="kpp" class="field__label">
+                                <span class="text_size_small text_color_dark">КПП</span>
+                            </label>
+                            <input id="kpp" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="bik" class="field__label">
+                                <span class="text_size_small text_color_dark">БИК</span>
+                            </label>
+                            <input id="bik" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                        <div class="tab-data__field field field_margin_bottom">
+                            <label for="account" class="field__label">
+                                <span class="text_size_small text_color_dark">Расчетный счет</span>
+                            </label>
+                            <input id="account" type="text" class="field__input input input_height text_size_small text_color_dark">
+                        </div>
+                    </div>
+                    <div class="tab-data__save save save_margin">
+                        <button class="button button_theme_sky-dark save__button_size">
+                            <span class="button_text button__text_color button__text_size_small">Сохранить изменения</span>
+                        </button>
+                        <span class="save__message save__message_margin text_size_14">Изменения сохраненны!</span>
+                    </div>
+                </section>
+                <section class="right-tab__tab-employees tab-employees"></section>
+                <section class="right-tab__tab-folders tab-folders"></section>
+                <section class="right-tab__tab-payments tab-payments"></section>
+                <section class="right-tab__tab-support tab-support"></section>
+                <section class="right-tab__tab-services tab-services"></section>
+            </section>
+
+
+
+
+
+
+
+
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright text_color_white text_size_min-small">Desktop.rent (c) 2018. Все права защищены.</p>
+        </footer> 
+</body>
+</html>

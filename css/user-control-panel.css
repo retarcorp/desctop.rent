@@ -1,0 +1,194 @@
+.header_padding_reset{
+    padding: 0 70px 0 20px;
+}
+
+.main{
+    padding: 60px 0 0;
+    display: flex;
+}
+
+.main__left-menu{
+    /* flex: 1; */
+    width: 300px;
+}
+
+.main__right-tab{
+    /* flex: 4; */
+    width: calc(100% - 300px);
+}
+
+.left-menu{
+    display: flex;
+    flex-direction: column;
+}
+
+.left-menu_theme_dark{
+    background-color: #283033;
+}
+
+.left-menu__button_margin{
+    margin: 20px auto 20px;
+}
+
+.left-menu__button_size{
+    width: calc(100% - 40px);
+}
+
+.list{
+    list-style: none;
+}
+
+.list_padding{
+    padding: 0 20px;
+}
+
+.list__item{
+    padding: 15px 0px 15px 55px;
+    background-size: 20px;
+    background-position: 20px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.item__employees{
+    background-image: url(../img/icon-user-control-panel/icon-employees.png);
+}
+.item__folders{
+    background-image: url(../img/icon-user-control-panel/icon-folders.png);
+}
+.item__payments{
+    background-image: url(../img/icon-user-control-panel/icon-payments.png);
+}
+.item__data{
+    background-image: url(../img/icon-user-control-panel/icon-data.png);
+}
+.item__support{
+    background-image: url(../img/icon-user-control-panel/icon-support.png);
+}
+.item__services{
+    background-image: url(../img/icon-user-control-panel/icon-services.png);
+}
+
+.list__item:hover{
+    background-color: #227693;
+}
+
+.right-tab{
+    padding: 25px 35px 60px;
+}
+
+.tab-data__content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-data__content_margin_top{
+    margin-top: 25px;
+}
+
+.field{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.field_margin_bottom{
+    margin-bottom: 10px;
+}
+
+.field__input{
+    height: 30px;
+    width: 320px;
+    border-color: #818384;
+    margin: 0;
+}
+
+.field__label{
+    width: 200px;
+}
+
+.save_margin{
+    margin-top: 30px;
+}
+
+.save__message_margin{
+    margin-left: 15px;
+}
+
+.list__item.active{
+    background-color: #227693;
+}
+
+
+
+/* лучший селектор в мире!!!!!!! */
+
+section[class^="right-tab__"]{
+    display: none;
+}
+
+section[class^="right-tab__"].active {
+    display: block;
+}
+
+
+@media screen and (max-width: 340px){
+    /* ADAPTIVE-MENU (USER-CONTROL-PANEL)   */
+
+    .header__logo{
+        display: none;
+    }
+
+    .header__button-adaptive{
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-image: url(../img/icon-adaptive-menu.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40px;
+    }
+
+    .left-menu{
+        display: none;
+        position: fixed;
+        width: 100%;
+        top: 60px;
+    }
+    .left-menu.active{
+        display: block;
+    }
+
+    .left-menu__button_margin{
+        margin: 20px;
+    }
+
+    .right-tab{
+        padding: 0 20px;
+        width: 100%;
+    }
+    .field{
+        width: 100%;
+    }
+    .field__input{
+        width: 100%;
+    }
+
+    .tab-data__save{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .save__button_size{
+        width: 100%;
+    }
+    .save__message_margin{
+        margin: 0;
+        margin-top: 5px;
+    }
+}

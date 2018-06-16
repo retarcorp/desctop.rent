@@ -38,8 +38,14 @@ body *{
 
 .header{
     height: 60px;
-    position: relative;
-    padding: 0 70px;
+    width: 100%;
+    position: fixed;
+    padding: 0 70px 0 60px;
+    z-index: 10;
+}
+
+.header__logo{
+    display: block;
 }
 
 .header__text{
@@ -58,12 +64,16 @@ body *{
     font-size: 24px;
 }
 
+.header__button-adaptive{
+    display: none;
+}
 .user-profile{
     display: flex;
     align-items: center;
     padding: 0 25px;
     justify-content: space-between;
-    width: 245px; 
+    width: 245px;
+    cursor: pointer;
 }
 
 
@@ -108,7 +118,7 @@ body *{
 
 .footer{
     height: 30px;
-    padding: 5px 60px;
+    padding: 5px 20px;
     background: #818384;
     color: #fff;
     font-size: 14px;
@@ -117,7 +127,7 @@ body *{
 
 .main{
     flex: 1;
-    padding: 60px 0;
+    padding: 120px 0 60px;
 }
 .input {
     height: 35px;
@@ -159,14 +169,27 @@ body *{
     color: #aaa;
 }
 
+.text_color_white{
+    color: #fff;
+}
+
 .text_color_blue{
     color: #227693;
+}
+
+.text_color_dark{
+    color: #202729;
 }
 
 /* .text_colo_dark{
     color: #202729;
 } */
-
+.button__text_size_small{
+    font-size: 14px;
+}
+.text_size_14{
+    font-size: 14px;
+}
 .text_size_small{
     font-size: 13px;
 }
@@ -189,6 +212,15 @@ body *{
 .main__header{
     position: relative;
     padding: 0 60px;
+}
+.header__nav-path{
+    display: flex;
+    list-style: none;
+    font-size: 14px;
+}
+
+.header__list-item {
+    margin-left: 5px; 
 }
 
 .tools__header_margin_bottom{
