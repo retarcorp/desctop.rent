@@ -26,7 +26,7 @@
 <body>
     <div id="wrapper">
         <?php require $_SERVER['DOCUMENT_ROOT']."/modules/user-header.php"?>
-        <main>
+        <main class="main main_padding_bottom">
             <?php include $_SERVER['DOCUMENT_ROOT']."/modules/user-menu.php" ?>
 
             <section class="main__right-tab right-tab">

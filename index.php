@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/css/control-panel.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <script src="js/drop-down-menu.js"></script>
     <title>Control panel</title>
 </head>
@@ -44,7 +45,7 @@
                     <h1 class="header__text tools__header_border_bottom tools__header_padding text_size_caption">Доступные инструменты</h1>
                 </header>
                 <div class="tools__container container container_padding">
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/employees/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -60,7 +61,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/folders/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
@@ -76,7 +77,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/billing/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -93,7 +94,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/profile/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -109,7 +110,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/support/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -125,7 +126,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="#" class="tools__link item_margin">
+                    <a href="/services/" class="tools__link item_margin">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">

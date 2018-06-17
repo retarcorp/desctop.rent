@@ -90,3 +90,5 @@ var LeftMenu = {
         });
     }
 };
+
+$(LeftMenu.init)
