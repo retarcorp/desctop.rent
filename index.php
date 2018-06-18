@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <?= require $_SERVER['DOCUMENT_ROOT']."/modules/user-header.php"?>
+        <?php require $_SERVER['DOCUMENT_ROOT']."/modules/user-header.php"?>
         
         <main class="main main_padding_bottom">
             <header class="main__header">
@@ -145,7 +145,7 @@
                 </div>
             </section>
         </main>
-        <?= include $_SERVER['DOCUMENT_ROOT']."/modules/footer.php";?>
+        <?php include $_SERVER['DOCUMENT_ROOT']."/modules/footer.php";?>
     </div>    
 </body>
 </html>

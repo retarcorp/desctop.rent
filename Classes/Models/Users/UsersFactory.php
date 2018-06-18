@@ -72,6 +72,8 @@ class UsersFactory{
         $this->sql->query("INSERT INTO ".User::TABLE_NAME." (phone, status, registered_at) 
             VALUES ('$phone',".User::STATUS_PENDING_AUTH.",'".date("Y-m-d H:i:s")."')");
 
+        # @TODO create lines in ProfileData table
+        
         if($this->sql->getLastError()){
             throw new \Exception($this->sql->getLastError());
         }

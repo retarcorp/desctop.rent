@@ -4,12 +4,12 @@
     </button>
     <nav class="left-menu__menu">
         <ul class="left-menu__list list">
-            <li class="list__item item__employees text_size_small text_color_white"><a href=''>Мои сотрудники</a></li>
-            <li class="list__item item__folders text_size_small text_color_white"><a href=''>Мои папки</a></li>
-            <li class="list__item item__payments text_size_small text_color_white"><a href=''>Мои платежи</a></li>
-            <li class="list__item item__data text_size_small text_color_white active"><a href=''>Мои данные</a></li>
-            <li class="list__item item__support text_size_small text_color_white"><a href=''>Моя поддержка</a></li>
-            <li class="list__item item__services text_size_small text_color_white"><a href=''>Мои сервисы</a></li>
+            <li class="list__item item__employees text_size_small text_color_white"><a href='/employees/'>Мои сотрудники</a></li>
+            <li class="list__item item__folders text_size_small text_color_white"><a href='/folders/'>Мои папки</a></li>
+            <li class="list__item item__payments text_size_small text_color_white"><a href='/billing/'>Мои платежи</a></li>
+            <li class="list__item item__data text_size_small text_color_white active"><a href='/profile/'>Мои данные</a></li>
+            <li class="list__item item__support text_size_small text_color_white"><a href='/support/'>Моя поддержка</a></li>
+            <li class="list__item item__services text_size_small text_color_white"><a href='/services/'>Мои сервисы</a></li>
         </ul>
     </nav>
 </section>

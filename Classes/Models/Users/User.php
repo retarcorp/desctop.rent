@@ -4,7 +4,8 @@ namespace Classes\Models\Users;
 
 use Classes\Utils\Sql;
 
-use Classes\Models\Rdp;
+use Classes\Models\Rdp\Rdp;
+use Classes\Models\Users\ProfileData;
 
 class User{
     
@@ -13,7 +14,9 @@ class User{
     const STATUS_AUTHORIZED = 12;
 
     public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip;
-
+    
+    # @TODO add field INN to user class and database, set to '' when creating user 
+    
     public function __construct(int $id){
         $sql = Sql::getInstance();
         $r = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE id=$id");
@@ -36,11 +39,14 @@ class User{
             ,ssid ='{$this->ssid}'
             ,last_login = '".date("Y-m-d H:i:s")."'
             ,last_ip='".$_SERVER['REMOTE_ADDR']."'
-            
         WHERE id={$this->id}");
     }
 
     public function getRdp() : Rdp {
         # @TODO: get Rdp Object for this user
+    }
+    
+    public function getProfileData() : ProfileData {
+        # @TODO: get ProfileData object for this user
     }
 }
