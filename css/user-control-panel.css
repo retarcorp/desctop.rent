@@ -1,3 +1,7 @@
+.header{
+    padding: 0 66px 0 22px;
+}
+
 .header_padding_reset{
     padding: 0 70px 0 20px;
 }
@@ -20,6 +24,12 @@
 .left-menu{
     display: flex;
     flex-direction: column;
+    height: calc(100% - 90px);  
+}
+
+.left-menu_position{
+    position: fixed;
+    top: 60px;
 }
 
 .left-menu_theme_dark{
@@ -27,11 +37,11 @@
 }
 
 .left-menu__button_margin{
-    margin: 20px auto 20px;
+    margin: 20px auto 10px;
 }
 
 .left-menu__button_size{
-    width: calc(100% - 40px);
+    width: calc(100% - 44px);
     
 }
 
@@ -45,12 +55,12 @@
 .list__item{
     display: block;
     background-size: 20px;
-    background-position: 20px center;
+    background-position: 22px center;
     background-repeat: no-repeat;
 }
 .list__item a{
     display: block;
-    padding: 15px 0px 15px 55px;
+    padding: 10px 0px 10px 55px;
     color: #fff;
     cursor: pointer;
 }
@@ -79,7 +89,11 @@
 }
 
 .right-tab{
-    padding: 25px 35px 60px;
+    padding: 25px 35px 100px;
+}
+
+.right-tab_margin{
+    margin-left: 300px;
 }
 
 .tab-data__content{
@@ -123,6 +137,10 @@
 
 .list__item.active{
     background-color: #227693;
+}
+
+.footer{
+    padding-left: 22px;
 }
 
 
@@ -177,6 +195,9 @@ section[class^="right-tab__"].active {
         padding: 0 20px;
         width: 100%;
     }
+    .right-tab_margin{
+        margin: 0;
+    }
     .field{
         width: 100%;
     }
@@ -190,7 +211,7 @@ section[class^="right-tab__"].active {
         align-items: center;
     }
     .save__button_size{
-        width: 100%;
+        width: 100% !important;
     }
     .save__message_margin{
         margin: 0;

@@ -1,6 +1,6 @@
 var Menu = {
     init: function(){
-        this.setMenuHeight(); 
+        // this.setMenuHeight();
         var showProfile = document.querySelector('.user-profile'),
             userProfileBtn = document.querySelector('.user-profile__button'),
             menu = this.getMenu(),
@@ -34,31 +34,30 @@ var Menu = {
     }
     ,getUserProfile: function(){
         return document.querySelector('.user-profile');
-    },
-    setMenuHeight: function(){
-        var menu = this.getMenu();
-        var heightPage = document.body.scrollHeight;
-        var clientHeight = document.body.clientHeight;
-
-        if(clientHeight < heightPage){
-            menu.style.height = heightPage - 90 + 'px';
-        }
-
-
-        window.onscroll = function() {
-            var position = (window.pageYOffset || document.documentElement.scrollTop) + clientHeight;
-            console.log(position);
-            if(position < (heightPage - 30)){
-                menu.style.height = heightPage - 60 + 'px';
-            } else {
-                menu.style.height = clientHeight - 90 + 'px';
-            }
-        }        
     }
+    // setMenuHeight: function(){
+    //     var menu = this.getMenu();
+    //     var heightPage = document.body.scrollHeight;
+    //     var clientHeight = document.body.clientHeight;
+
+    //     if(clientHeight < heightPage){
+    //         menu.style.height = heightPage - 90 + 'px';
+    //     }
+
+
+    //     window.onscroll = function() {
+    //         var position = (window.pageYOffset || document.documentElement.scrollTop) + clientHeight;
+    //         console.log(position);
+    //         if(position < (heightPage - 30)){
+    //             menu.style.height = heightPage - 60 + 'px';
+    //         } else {
+    //             menu.style.height = clientHeight - 90 + 'px';
+    //         }
+    //     }        
+    // }
 };
 
 
 window.onload = function(){
     Menu.init();
-    
 };

@@ -8,57 +8,57 @@
     <div class="tab-data__content tab-data__content_margin_top">
         <div class="tab-data__field field field_margin_bottom">
             <label for="name-company" class="field__label">
-                <span class="text_size_small text_color_dark">Название компании</span>
+                <span class="text_size_small text_color_dark font-regular">Название компании</span>
             </label>
-            <input id="name-company" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="name-company" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="inn" class="field__label">
-                <span class="text_size_small text_color_dark">ИНН</span>
+                <span class="text_size_small text_color_dark font-regular">ИНН</span>
             </label>
-            <input id="inn" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="inn" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="email" class="field__label">
-                <span class="text_size_small text_color_dark">E-mail</span>
+                <span class="text_size_small text_color_dark font-regular">E-mail</span>
             </label>
-            <input id="email" type="email" class="field__input input input_height text_size_small text_color_dark">
+            <input id="email" type="email" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="phone" class="field__label">
-                <span class="text_size_small text_color_dark">Телефон</span>
-            </label>
-            <input id="phone" type="phone" class="field__input input input_height text_size_small text_color_dark">
+                <span class="text_size_small text_color_dark font-regular">Телефон</span>
+            </label> 
+            <input id="phone" type="phone" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="region" class="field__label">
-                <span class="text_size_small text_color_dark">Регион</span>
+                <span class="text_size_small text_color_dark font-regular">Регион</span>
             </label>
-            <input id="region" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="region" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="bank-name" class="field__label">
-                <span class="text_size_small text_color_dark">Название банка</span>
+                <span class="text_size_small text_color_dark font-regular">Название банка</span>
             </label>
-            <input id="bank-name" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="bank-name" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="kpp" class="field__label">
-                <span class="text_size_small text_color_dark">КПП</span>
+                <span class="text_size_small text_color_dark font-regular">КПП</span>
             </label>
-            <input id="kpp" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="kpp" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="bik" class="field__label">
-                <span class="text_size_small text_color_dark">БИК</span>
+                <span class="text_size_small text_color_dark font-regular">БИК</span>
             </label>
-            <input id="bik" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="bik" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
         <div class="tab-data__field field field_margin_bottom">
             <label for="account" class="field__label">
-                <span class="text_size_small text_color_dark">Расчетный счет</span>
+                <span class="text_size_small text_color_dark font-regular">Расчетный счет</span>
             </label>
-            <input id="account" type="text" class="field__input input input_height text_size_small text_color_dark">
+            <input id="account" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
         </div>
     </div>
     <div class="tab-data__save save save_margin">

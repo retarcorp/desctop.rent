@@ -5,6 +5,7 @@ namespace Classes\Models\Users;
 use Classes\Utils\Sql;
 use Classes\Models\Users\User;
 use Classes\Utils\Sms;
+use Classes\Models\Users\ProfileData;
 
 class UsersFactory{
 
@@ -69,11 +70,14 @@ class UsersFactory{
 
     public function createUser($phone){
         
-        $this->sql->query("INSERT INTO ".User::TABLE_NAME." (phone, status, registered_at) 
-            VALUES ('$phone',".User::STATUS_PENDING_AUTH.",'".date("Y-m-d H:i:s")."')");
-
-        # @TODO create lines in ProfileData table
+        $this->sql->query("INSERT INTO ".User::TABLE_NAME." (phone, status, registered_at,INN) 
+            VALUES ('$phone',".User::STATUS_PENDING_AUTH.",'".date("Y-m-d H:i:s")."', ' ')");
         
+        # @TODO create lines in ProfileData table
+        $pd = new ProfileData();
+        ProfileData::TABLE_NAME; //\
+        $this->sql->query("INSERT INTO ".ProfileData::TABLE_NAME." VALUES");//\
+
         if($this->sql->getLastError()){
             throw new \Exception($this->sql->getLastError());
         }

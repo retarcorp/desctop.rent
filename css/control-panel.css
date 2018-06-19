@@ -5,7 +5,7 @@ body{
 
 
 .btn-menu_margin{
-    margin: 30px 60px 45px;
+    margin: 30px 66px 45px;
 }
 
 .btn-menu__set-password_margin{
@@ -28,7 +28,7 @@ body{
 }
 
 .container_padding{
-    padding: 0 60px;
+    padding: 0 66px;
 }
 
 .item{
@@ -84,19 +84,19 @@ body{
 }
 
 .item__text_head{
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .item__text_desc{
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .tools__link{
     display: block;
-    width: 390px;
+    width: 400px;
 }
 
-.tools__link:hover  .header__text{
+.tools__link:hover .header__text{
     color: #227693;
 }
 

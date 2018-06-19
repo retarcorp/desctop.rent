@@ -8,7 +8,19 @@
     /* AUTHORIZATION AND CONFIRMATION */
 
     .header{
-        padding: 0 40px;
+        padding: 0 66px 0 30px;
+    }
+    
+    .main__header{
+        padding: 0 30px;
+    }
+    
+    .btn-menu_margin{
+        margin: 30px 30px 45px;
+    }
+    
+    .container_padding{
+        padding: 0 30px;
     }
 
     .main__section{
@@ -27,6 +39,16 @@
 
 
     /* USER-CONTROL-PANEL */
+    
+    .text_size_header{
+        font-size: 32px;
+    }
+    .header__nav-path{
+        font-size: 15px;
+    }
+    .text_size_small{
+        font-size: 14px;
+    }
 
     .field{
         display: flex;
@@ -36,6 +58,21 @@
     
     .field__label{
         align-self: flex-start;
+    }
+    .save{
+        display: flex;
+        flex-direction: column;
+    }
+    .save__button_size{
+        width: 320px;
+    }
+    .save__message{
+        width: 320px;
+        text-align: center;
+    }
+    .save__message_margin{
+        margin: 0;
+        margin-top: 10px;
     }
 
 }
@@ -59,7 +96,7 @@
     /* CONTROL PANEL */
 
     .main{
-        padding: 90px 0 40px;
+        padding: 90px 0 90px;
     }
 
     .main__header{
@@ -67,6 +104,8 @@
     }
 
     .btn-menu_margin{
+        display: flex;
+        flex-direction: column;
         margin: 30px 20px 45px;
     }
 
@@ -99,8 +138,27 @@
     .block_padding{
         padding-top: 25px;
     }
+    
+    .text_size_button{
+        font-size: 15px;
+    }
+    .item__text_head{
+        font-size: 16px;
+    }
+    .item__text_desc{
+        font-size: 13px;
+    }
 
-    .text_size_header{
-        font-size: 25px;
+    .header__nav-path{
+        font-size: 15px;
+    }
+    .text_size_small{
+        font-size: 14px;
+    }
+    /*.text_size_header{*/
+    /*    font-size: 25px;*/
+    /*}*/
+    .footer{
+        font-size: 11px;
     }
 }

@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "OpenSans LightItalic";
+    src: url("../fonts/OpenSans-LightItalic.ttf");
+}
+
+.font-italic{
+    font-family: OpenSans LightItalic;
+}
+
 body{
     background: url(../img/fon-picture.png) no-repeat;
 
@@ -55,10 +64,14 @@ body{
 
 
 .sms-confirmation{
-    /* display: none; */
+     /*display: block; */
 }
 
 .authorization{
-    /* display: none; */
+     /*display: none; */
+}
+
+.invelid_margin{
+    margin-top: 10px;
 }
 

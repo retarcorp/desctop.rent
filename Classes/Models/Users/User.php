@@ -13,7 +13,7 @@ class User{
     const STATUS_PENDING_AUTH = 3;
     const STATUS_AUTHORIZED = 12;
 
-    public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip;
+    public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn;
     
     # @TODO add field INN to user class and database, set to '' when creating user 
     
@@ -30,6 +30,7 @@ class User{
         $this->registered_at = $r['registered_at'];
         $this->last_login = $r['last_login'];
         $this->last_ip = $r['last_ip'];
+        $this->inn = $r['inn']; //\
     }
 
     public function update(){
@@ -44,9 +45,13 @@ class User{
 
     public function getRdp() : Rdp {
         # @TODO: get Rdp Object for this user
+        $rdp = new Pdp($id); //\
+        return $rdp; //\
     }
     
     public function getProfileData() : ProfileData {
         # @TODO: get ProfileData object for this user
+        $profileData = new ProfileData; //\
+        return $profileData; //\
     }
 }

@@ -21,15 +21,15 @@
     
     <script src="/js/drop-down-menu.js"></script>
     <script src="/js/menu-user-control-panel.js"></script>
-    <title>Control panel</title>
+    <title>My employees</title>
 </head>
 <body>
     <div id="wrapper">
         <?php require $_SERVER['DOCUMENT_ROOT']."/modules/user-header.php"?>
-        <main>
+        <main class="main main_padding_bottom">
             <?php include $_SERVER['DOCUMENT_ROOT']."/modules/user-menu.php" ?>
 
-            <section class="main__right-tab right-tab">
+            <section class="main__right-tab right-tab right-tab_margin">
                 <?php include "content.php"; # Main content of the tab ?>
             </section>
         </main>

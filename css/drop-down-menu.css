@@ -3,7 +3,7 @@
     right: 0;
     top: 60px;
     z-index: 999999;
-    height: calc(100%);
+    height: calc(100% - 90px);
 }
 
 .drop-down-list{
@@ -27,7 +27,7 @@
 }
 
 .drop-down-list__button{
-    padding: 33px;
+    padding: 31px;
     position: relative;
 }
 
@@ -46,7 +46,7 @@
 .drop-down-list__button_background{
     background-color:#fff;
     background-position: center;
-    background-size: 40%;
+    background-size: 50%;
     background-repeat: no-repeat; 
 }
 
@@ -81,6 +81,7 @@
 }
 
 .block__header-border{
+    padding-bottom: 5px;
     border-bottom: 1px solid #000;
 }
 
@@ -152,4 +153,20 @@
 .drop-down-list__button:hover{
     background-color:#E0E0E0;
     border: 2px solid rgba(0,0,0,0);
+}
+
+.text-caption_menu{
+    font-size: 18px;
+}
+
+.text-balance{
+    font-size: 13px;
+}
+
+.text-services{
+    font-size: 15px;
+}
+
+.text-resource{
+    font-size: 14px;
 }

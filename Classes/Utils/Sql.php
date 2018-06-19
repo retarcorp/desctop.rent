@@ -94,4 +94,8 @@ class Sql{
 		return $result;
 	}
 
+	public function getInsertId(){
+		return mysqli_insert_id($this->resource());
+	}
+
 }

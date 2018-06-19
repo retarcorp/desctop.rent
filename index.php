@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/drop-down-menu.css">
     <link rel="stylesheet" href="/css/control-panel.css">
-    
+    <link rel="stylesheet" href="/css/adaptive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <script src="js/drop-down-menu.js"></script>
@@ -28,16 +28,16 @@
         <main class="main main_padding_bottom">
             <header class="main__header">
                 <h1 class="header__text text_size_header">Добро пожаловать!</h1>
-                <ul class="header__nav-path text_color_grey">Вы здесь:
+                <ul class="header__nav-path text_color_grey text_size_small">Вы здесь:
                     <li class="header__list-item"><a href="#" class="text_color_blue">Главная</a></li>
                 </ul>
             </header>
             <section class="btn-menu main__btn-menu btn-menu_margin">
                 <button class="btn-menu__entrance button button_theme_sky-light btn-menu__button_size">
-                    <span class="button_text text_size_button button__text_color">Войти в рабочий стол</span>
+                    <span class="button_text text_size_button button__text_color font-regular">Войти в рабочий стол</span>
                 </button>
                 <button class="btn-menu__set-password button button_theme_sky-dark btn-menu__set-password_margin btn-menu__button_size">
-                    <span class="button_text text_size_button button__text_color">Установить пароль для первого входа</span>
+                    <span class="button_text text_size_button button__text_color font-regular">Установить пароль для первого входа</span>
                 </button>
             </section>
             <section class="main__tools tools">
@@ -54,14 +54,14 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Мои сотрудники</h3>
+                                    <h3 class="header__text font-regular">Мои сотрудники</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Добавляйте, удаляйте сотрудиков организации
                                         и управляйте их доступом к своим папкам.</p>
                             </div>   
                         </div>
                     </a>
-                    <a href="/folders/" class="tools__link item_margin">
+                    <a href="/folders/" class="tools__link item_margin tools_disable">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
@@ -70,7 +70,7 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Мои папки</h3>
+                                    <h3 class="header__text font-regular">Мои папки</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Управляйте содержимым корпоративных папок
                                         и доступом сотрудников к ним.</p>
@@ -86,7 +86,7 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Мои платежи</h3>
+                                    <h3 class="header__text font-regular">Мои платежи</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Просматривайте историю платежных 
                                         транзакций, получайте счета и расчетные 
@@ -103,7 +103,7 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Мои данные</h3>
+                                    <h3 class="header__text font-regular">Мои данные</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Укажите учетные данные компании, требуемые
                                         для документооборота с Desktop.rent.</p>
@@ -119,14 +119,14 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Техподдержка</h3>
+                                    <h3 class="header__text font-regular">Техподдержка</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Общайтесь с Вашим персональным менеджером
                                         по вопросам работы с платформой Desktop.rent.</p>
                             </div>   
                         </div>
                     </a>
-                    <a href="/services/" class="tools__link item_margin">
+                    <a href="/services/" class="tools__link item_margin tools_disable">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
@@ -135,7 +135,7 @@
                             <!-- </a> -->
                             <div class="item__text item__text_width">
                                 <header class="item__header item__header_line-height item__text_head">
-                                    <h3 class="header__text">Мои сервисы</h3>
+                                    <h3 class="header__text font-regular">Мои сервисы</h3>
                                 </header>
                                 <p class="item__description description description_text_size description_padding text_color_grey item__text_desc">Просматривайте и управляйте списком
                                         подключенных услуг.</p>
