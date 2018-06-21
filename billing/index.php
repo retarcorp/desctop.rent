@@ -3,7 +3,8 @@
     #$_SERVER['DOCUMENT_ROOT'] = 'C:\inetpub\wwwroot\desktop.rent';
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
-    Safety::declareProtectedZone();    
+    use Classes\Models\Users\User;
+    Safety::declareSetUpUsersAccessZone();      
 ?>
 <!DOCTYPE html>
 <html lang="en">

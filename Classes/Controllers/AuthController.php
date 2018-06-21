@@ -29,7 +29,7 @@ class AuthController{
         $factory -> insertOrUpdate($phone);
         return ["result" => "OK"];
     }
-
+    
     # @http GET /auth/phone/sms/validate/
     public function validateSms(){
         $code = $_GET['code'];

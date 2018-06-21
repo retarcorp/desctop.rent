@@ -29,3 +29,4 @@ const Api = {
 
 Api.OnPhoneEntered = new Api.EndPoint("GET","/api/auth/phone/entered/");
 Api.ValidateSms = new Api.EndPoint("GET","/api/auth/phone/sms/validate/");
+Api.ChangeProfileData = new Api.EndPoint("POST","/api/profile/data/")

@@ -62,7 +62,7 @@
             </a>
         </li>
         <li class="drop-down-list__item">
-            <a href="#" class="item__link">
+            <a href="/logout/index.php" class="item__link">
                 <button class="drop-down-list__button button button__exit drop-down-list__button_background"></button>
             </a>
         </li>

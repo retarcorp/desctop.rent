@@ -2,7 +2,7 @@ body{
     background: none;
 }
 
-
+ 
 
 .btn-menu_margin{
     margin: 30px 66px 45px;
@@ -75,7 +75,7 @@ body{
     background-color: #227693;
 }
 
-.picture_theme_disable{
+.tools__disabled .item__picture{
     background-color: #818384;
 }
 
@@ -100,10 +100,11 @@ body{
     color: #227693;
 }
 
-.tools_disable{
+.tools__disabled{
     cursor: default;
+    pointer-events: none;
 }
 
-.tools_disable:hover .header__text{
+.tools__disable:hover .header__text{
     color: #202729;
 }

@@ -155,6 +155,11 @@ body *{
     border: 2px solid rgba(0,0,0,0);
     outline: none;
     cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: top;
+    align-items: flex-start;
 
 }
 

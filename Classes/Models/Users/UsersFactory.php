@@ -25,12 +25,31 @@ class UsersFactory{
         }else{
             return null;
         }
-        $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." WHERE ssid='$ssid' AND status=".User::STATUS_AUTHORIZED);
+        $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." WHERE ssid='$ssid' AND auth=".User::AUTH_DONE);
         if(count($r)){
             return new User($r[0][0]);
         }   
         return null;
     }
+    public function logout(){
+        # Fin current user and set its auth to auth_logout and update user
+        # Delete ssid from cookie
+        $user = $this->getCurrentUser();
+        if ($user != null) {
+            
+            if (isset($_COOKIE[self::COOKIE_NAME])) {
+                unset($_COOKIE[self::COOKIE_NAME]);
+                setcookie(self::COOKIE_NAME, '', 0, '/');
+            }
+            $user->auth = User::AUTH_LOGGED_OUT; // ???
+            $user->update();
+
+            header('Location: ../login/index.php');
+        }
+        
+    }
+
+   
 
     public function generateSmsCode(){
         return rand(100000,999999);
@@ -42,17 +61,18 @@ class UsersFactory{
 
     const COOKIE_NAME = "dr_ssid";
     const COOKIE_LIFETIME = 86400;
+
     public function auth($user){
         $user->ssid = $this->generateSsid();
         setcookie(self::COOKIE_NAME,$user->ssid,time()+self::COOKIE_LIFETIME,"/");
-        $user->status = User::STATUS_AUTHORIZED;
+        $user->auth = User::AUTH_DONE;
         $user->update();
     }
 
     public function smsAuth($user){
         $user->sms_code = $this->generateSmsCode();
         Sms::send($user->phone, Sms::getMessage(Sms::LOGIN_CODE, $user->sms_code));
-        $user->status = User::STATUS_PENDING_AUTH;
+        $user->auth = User::AUTH_PENDING;
         $user->update();
     }
 
@@ -71,17 +91,24 @@ class UsersFactory{
     public function createUser($phone){
         
         $this->sql->query("INSERT INTO ".User::TABLE_NAME." (phone, status, registered_at,INN) 
-            VALUES ('$phone',".User::STATUS_PENDING_AUTH.",'".date("Y-m-d H:i:s")."', ' ')");
+            VALUES ('$phone',".User::STATUS_JUST_CREATED.",'".date("Y-m-d H:i:s")."', ' ')");
         
         # @TODO create lines in ProfileData table
-        $pd = new ProfileData();
-        ProfileData::TABLE_NAME; //\
-        $this->sql->query("INSERT INTO ".ProfileData::TABLE_NAME." VALUES");//\
+        // $pd = new ProfileData();
+        // ProfileData::TABLE_NAME; //\
+        // $this->sql->query("INSERT INTO ".ProfileData::TABLE_NAME." VALUES");//\
 
-        if($this->sql->getLastError()){
-            throw new \Exception($this->sql->getLastError());
-        }
-        return $this->getUserByPhone($phone);
+        // if($this->sql->getLastError()){
+        //     throw new \Exception($this->sql->getLastError());
+        // }
+        
+
+
+        $user = $this->getUserByPhone($phone);
+        $pd = new ProfileData($user->id);
+        $pd->update();
+
+        return $user;
     }
 
     public function getUserByPhone(string $phone){
@@ -94,7 +121,7 @@ class UsersFactory{
 
     public function getUserBySmsCode(int $code){
         $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." 
-            WHERE sms_code=$code AND status=".User::STATUS_PENDING_AUTH);
+            WHERE sms_code=$code AND auth=".User::AUTH_PENDING);
         if(count($r)){
             return new User($r[0][0]);
         }

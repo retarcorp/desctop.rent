@@ -20,7 +20,7 @@
 
 
     <script src="/js/retarcore.js"></script>
-     <script src="/js/api.js"></script>
+    <script src="/js/api.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="/js/index.js"></script>
     <title>Authorization</title>

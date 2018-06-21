@@ -11,6 +11,8 @@ use Classes\Utils\Sql;
 class ProfileData {
     
     const TABLE_NAME = "profile_data";
+    const VAL_UNDEFINED = "";
+
     static $fields = [
             0 => "Название компании" // companyName
             ,1 => "Регион" // region
@@ -20,47 +22,37 @@ class ProfileData {
             ,5 => "Расчетный счет" //paymentAccount
         ];
         
-    private $data = [];
+    public $data = [];
     public function __construct(int $uid){
         $this->uid = $uid;
         # @TODO get from database profile data object and fill fields,  instert the data to the form
         $sql = Sql::getInstance(); 
         $rows = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE uid=$uid");
         foreach ($rows as $i => $iter) {
-            $this->data[$i] = $rows[$i]["value"];
+            $this->data[intval($i)] = $rows[$i]["value"];
         }
-
-		/*foreach ($rows as $row) {
-			// $this->{$row['item']} = $row['value'];
-			if ($row['item'] == 'companyName') {
-				$this->companyName = $row['value'];
-			}
-			if ($row['item'] == 'region') {
-				$this->region = $row['value'];
-			}
-			if ($row['item'] == 'bankName') {
-				$this->bankName = $row['value'];
-			}
-			if ($row['item'] == 'kpp') {
-				$this->kpp = $row['value'];
-			}
-			if ($row['item'] == 'bik') {
-				$this->bik = $row['value'];
-			}
-			if ($row['item'] == 'paymentAccount') {
-				$this->paymentAccount = $row['value'];
-			}
-		}*/
-        /*$this->companyName = $r['companyName'];
-        $this->region = $r['region'];
-        $this->bankName = $r['bankName'];
-        $this->kpp = $r['kpp'];
-        $this->bik = $r['bik'];
-        $this->paymentAccount = $r['paymentAccount'];*/
     }
     function getData() {
         return $this->data;
     }
+
+    public function getValueFor($index){
+        if(isset($this->data[$index])){
+            return $this->data[$index];
+        }
+    }
+
+    public function update(){
+        $sql = Sql::getInstance();
+        $sql->query("DELETE FROM ".self::TABLE_NAME." WHERE uid=".$this->uid);
+        
+        foreach(self::$fields as $i=>$name){
+            
+            $value = isset($this->data[$i]) ? $this->data[$i] : self::VAL_UNDEFINED;
+            $sql->query("INSERT INTO ".self::TABLE_NAME." VALUES (default, {$this->uid}, $i, '$value')");
+        }
+    }
+
     /*public function update(transfer uid here?){ 
         # @TODO update in db all the fields for
 

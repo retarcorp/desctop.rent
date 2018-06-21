@@ -3,6 +3,7 @@
     #$_SERVER['DOCUMENT_ROOT'] = 'C:\inetpub\wwwroot\desktop.rent';
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
+    use Classes\Models\Users\User;
     Safety::declareProtectedZone();    
 ?>
 <!DOCTYPE html>
@@ -21,6 +22,11 @@
     
     <script src="/js/drop-down-menu.js"></script>
     <script src="/js/menu-user-control-panel.js"></script>
+
+    <script src="/js/retarcore.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js"></script>
     <title>My profile</title>
 </head>
 <body>

@@ -1,9 +1,15 @@
 <?php
-
+    
     #$_SERVER['DOCUMENT_ROOT'] = 'C:\inetpub\wwwroot\desktop.rent';
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
     Safety::declareProtectedZone();    
+
+    use Classes\Models\Users\UsersFactory;
+    use Classes\Models\Users\User;
+    
+    $factory = new UsersFactory();
+    $user = $factory->getCurrentUser();
 ?>
 
 <!DOCTYPE html>
@@ -33,19 +39,36 @@
                 </ul>
             </header>
             <section class="btn-menu main__btn-menu btn-menu_margin">
+                <?php if($user->status == User::STATUS_JUST_CREATED || 
+                            $user->status == User::STATUS_FILLED_PROFILE_DATA) { # @TODO paste russian text ?>
+                    <p style='margin-bottom: 10px;'>To continue work with the portal you need to set up your company data.</p>
+                    <a href='/profile/' class="btn-menu__entrance button button_theme_sky-dark btn-menu__button_size">
+                        <span class="button_text text_size_button button__text_color font-regular">Fill in profile data</span>
+                    </a>
+                    
+                <?php } ?>
+
+                <?php if($user->status == User::STATUS_SET_UP) { # @TODO paste russian text ?>
                 <button class="btn-menu__entrance button button_theme_sky-light btn-menu__button_size">
                     <span class="button_text text_size_button button__text_color font-regular">Войти в рабочий стол</span>
                 </button>
+                 <?php } ?>
+
+                <?php if($user->status == User::STATUS_ASSIGNED_LICENSE) { # @TODO paste russian text ?>
                 <button class="btn-menu__set-password button button_theme_sky-dark btn-menu__set-password_margin btn-menu__button_size">
                     <span class="button_text text_size_button button__text_color font-regular">Установить пароль для первого входа</span>
                 </button>
+                <?php } ?>
             </section>
             <section class="main__tools tools">
                 <header class="tools__header main__header tools__header_margin_bottom">
                     <h1 class="header__text tools__header_border_bottom tools__header_padding text_size_caption">Доступные инструменты</h1>
                 </header>
                 <div class="tools__container container container_padding">
-                    <a href="/employees/" class="tools__link item_margin">
+                
+                <a href="/employees/" class="tools__link item_margin 
+                <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disabled"; ?>
+                ">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -61,7 +84,8 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/folders/" class="tools__link item_margin tools_disable">
+                    
+                    <a href="/folders/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disabled"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
@@ -77,7 +101,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/billing/" class="tools__link item_margin">
+                    <a href="/billing/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -94,7 +118,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/profile/" class="tools__link item_margin">
+                    <a href="/profile/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_JUST_CREATED)) ? "" :"tools__disabled"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -110,7 +134,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/support/" class="tools__link item_margin">
+                    <a href="/support/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_sky-dark">
@@ -126,7 +150,7 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/services/" class="tools__link item_margin tools_disable">
+                    <a href="/services/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
                                 <div class="item__picture picture picture_theme_disable">
