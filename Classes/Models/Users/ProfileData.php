@@ -25,7 +25,7 @@ class ProfileData {
     public $data = [];
     public function __construct(int $uid){
         $this->uid = $uid;
-        # @TODO get from database profile data object and fill fields,  instert the data to the form
+        # @TODO get from database profile data object and fill fields,  intert the data to the form
         $sql = Sql::getInstance(); 
         $rows = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE uid=$uid");
         foreach ($rows as $i => $iter) {
@@ -48,12 +48,12 @@ class ProfileData {
         
         foreach(self::$fields as $i=>$name){
             
-            $value = isset($this->data[$i]) ? $this->data[$i] : self::VAL_UNDEFINED;
+            $value = isset($this->data[$i]) ? str_replace(["'",'"','\\'],"",$this->data[$i]) : self::VAL_UNDEFINED;
             $sql->query("INSERT INTO ".self::TABLE_NAME." VALUES (default, {$this->uid}, $i, '$value')");
         }
     }
 
-    /*public function update(transfer uid here?){ 
+    /*public function update(){ 
         # @TODO update in db all the fields for
 
         $sql = Sql::getInstance(); 

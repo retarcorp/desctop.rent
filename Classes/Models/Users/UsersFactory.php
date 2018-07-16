@@ -31,6 +31,7 @@ class UsersFactory{
         }   
         return null;
     }
+    
     public function logout(){
         # Fin current user and set its auth to auth_logout and update user
         # Delete ssid from cookie

@@ -66,4 +66,14 @@ class User{
     public function hasRightsAtLeast(int $num){
         return $this->status*1 >= $num;
     }
+    
+    public function onCompanyDataApproved(){
+        $this->status = $this->status < self::STATUS_FILLED_PROFILE_DATA ? self::STATUS_FILLED_PROFILE_DATA : $this->status;
+        $this->update();
+    }
+    
+    public function onLicenseAttached(){
+        $this->status = $this->status < self::STATUS_ASSIGNED_LICENSE ? self::STATUS_ASSIGNED_LICENSE : $this->status;
+        $this->update();
+    }
 }
