@@ -1,19 +1,21 @@
-.header{
-    padding: 0 66px 0 22px;
-}
+/*.header{*/
+/*    padding: 0 95px 0 75px;*/
+/*}*/
 
-.header_padding_reset{
-    padding: 0 70px 0 20px;
-}
+/*.header_padding_reset{*/
+/*    padding: 0 70px 0 20px;*/
+/*}*/
+
+
 
 .main{
-    padding: 60px 0 0;
+    padding: 80px 0 0;
     display: flex;
 }
 
 .main__left-menu{
     /* flex: 1; */
-    width: 300px;
+    width: 310px;
 }
 
 .main__right-tab{
@@ -29,7 +31,10 @@
 
 .left-menu_position{
     position: fixed;
-    top: 60px;
+    top: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
 }
 
 .left-menu_theme_dark{
@@ -54,15 +59,17 @@
 }
 .list__item{
     display: block;
-    background-size: 20px;
-    background-position: 22px center;
+    background-size: 18px;
+    background-position: 75px center;
     background-repeat: no-repeat;
 }
 .list__item a{
     display: block;
-    padding: 10px 0px 10px 55px;
-    color: #fff;
+    padding: 18px 0px 17px 106px;
     cursor: pointer;
+    font-size: 15px;
+    font-family: OpenSans Regular;
+
 }
 
 .item__employees{
@@ -79,27 +86,29 @@
 }
 .item__support{
     background-image: url(../img/icon-user-control-panel/icon-support.png);
+    background-size: 16px;
 }
 .item__services{
     background-image: url(../img/icon-user-control-panel/icon-services.png);
 }
 
 .list__item:hover{
-    background-color: #227693;
+    /*background-color: #227693;*/
 }
 
 .right-tab{
-    padding: 25px 35px 100px;
+    padding: 50px 70px;
 }
 
 .right-tab_margin{
-    margin-left: 300px;
+    margin-left: 310px;
 }
 
 .tab-data__content{
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    display: none;
+    /*flex-direction: column;*/
+    flex-wrap: wrap;
 }
 
 .tab-data__content_margin_top{
@@ -108,42 +117,72 @@
 
 .field{
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .field_margin_bottom{
     margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.field_margin_bottom:htn-child(2n-1){
+    margin-right: 20px;
 }
 
 .field__input{
-    height: 30px;
-    width: 320px;
-    border-color: #818384;
-    margin: 0;
+    /*height: 30px;*/
+    /*width: 320px;*/
+    /*border-color: #818384;*/
+    /*margin: 0;*/
+
+    width: 391.78px;
+    height: 50.31px;
+    border: none;
+    
+    background: #EDEDED;
+}
+
+.field__input:focus{
+
+    border: 1px solid #C0C0C0;
+    box-sizing: border-box;
+
 }
 
 .field__label{
-    width: 200px;
+    /*width: 200px;*/
+    width: 100%;
 }
-
+.save{
+    width: 100%;
+}
 .save_margin{
     margin-top: 30px;
 }
-
+.save__message{
+    line-height: 40px;
+}
 .save__message_margin{
     margin-left: 15px;
 }
 
 .list__item.active{
-    background-color: #227693;
-}
-
-.footer{
-    padding-left: 22px;
+    /*background-color: #227693;*/ 
 }
 
 
+.text_size_header{
+    font-size: 28px;
+}
+
+.header__nav-path{
+    margin-top: 8px;
+    display: flex;
+    list-style: none;
+    font-size: 14px;
+}
 
 /* лучший селектор в мире!!!!!!! */
 
@@ -155,8 +194,48 @@ section[class^="right-tab__"].active {
     display: block;
 }
 
+.left-menu__list{
+    padding-top: 35px;
+}
 
-@media screen and (max-width: 340px){
+.selection__list{
+    margin-top: 37px;
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+}
+
+.selection__list li {
+    padding: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.selection__list li:not(:last-child){
+    margin-right: 25px;
+}
+
+
+.form__associate,
+.form__company{
+    display: none;
+}
+
+.form__associate,
+.form__company{
+    /*display: none;*/
+}
+
+.form__associate.active,
+.form__company.active{
+    display: flex;
+}
+
+.button__company.active,
+.button__associate.active{
+    border-bottom: 1px solid #26BEB8;
+}
+@media screen and (max-width: 600px){
     /* ADAPTIVE-MENU (USER-CONTROL-PANEL)   */
 
     .header__logo{
@@ -185,6 +264,7 @@ section[class^="right-tab__"].active {
     }
     .left-menu.active{
         display: block;
+        z-index: 3;
     }
 
     .left-menu__button_margin{

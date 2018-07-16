@@ -15,24 +15,20 @@ class LicenseController {
     # @http POST /license/create/
     public function createLicense(){
         $login = $_POST['login'];
+        $uid = $_POST['uid'];
         $password = $_POST['password'];
-        $content = $_POST['content'];
-        $created_at = $_POST['created_at'];
-        $due_to = $_POST['due_to'];
-        $ip = $_POST['ip'];
-        
-        $uf = new UsersFactory();
-        $user = $uf->getCurrentUser();
-        
-        if (is_null($user)){
-            return JSONResponse::error('Пользователь не авторизован');
-        }
+        $content = $_POST['rdpContent'];
+        // $created_at = $_POST['created_at'];
+        $due_to = $_POST['rdpDueTo']." 12:00:00";
+        $ip = $_POST['rdpIp'];
         
         $rdpFactory = new RdpFactory();
-        $rdp = $rdpFactory->createRdp($ip, $content, $created_at, $due_to);
+        $rdp = $rdpFactory->createRdp($ip, $content, date("Y-m-d H:i:s"), $due_to);
+        #print_r($rdp);
         
         $licenseFactory = new LicenseFactory();
-        $license = $licenseFactory->createLicense($user, $rdp, $login, $password);
+        $license = $licenseFactory->createLicense($uid, $rdp, $login, $password);
+        #print_r($license);
         
         return JSONResponse::ok($license->toArray());
     } 
@@ -41,17 +37,27 @@ class LicenseController {
     public function getLicense() {
         $id = +$_GET['id'];
         $license = new License($id);
-        // $uf = new UsersFactory();
-        // $user = $uf->getCurrentUser();
+        
+        $rdp = $license->getRdp()->toArray(); 
+        $rdp['content'] = $license->getRdp()->getContent();
+        
+        return ['license' => $license->toArray(), 'rdp' => $rdp];
+    }
 
-        // if ($license->uid != $user->id){
-        //     return JSONResponse::error('У Вас недстаточно прав');
-        // }
-
-        //$rdp = new Rdp($license->rdp);
-        $rdp = new Rdp($license->getRdp()); // спросить про геттер
-
-        return JSONResponse::ok(['license' => $license->toArray(), 'rdp' => $rdp->toArray()]);
+    # @http GET /licenses/
+    public function getLicenses(){
+        $lf = new LicenseFactory;
+        $licenses = $lf->getLicenses();
+        
+        $results = array_map(function($license){
+            $rdp = $license->getRdp()->toArray();
+            $rdp['content'] = $license->getRdp()->getContent();
+            return [
+                'license' => $license->toArray(),
+                'rdp' => $rdp
+            ];
+        }, $licenses);
+        return JSONResponse::ok($results);
     }
 
     # @http POST /license/update/
@@ -61,23 +67,23 @@ class LicenseController {
 
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $rdpId = $_POST['rdp']; //\
         $uid = $_POST['uid']; //\
-        $content = $_POST['content'];
-        $created_at = $_POST['created_at'];
-        $due_to = $_POST['due_to'];
-        $ip = $_POST['ip'];
+        $content = $_POST['rdpContent'];
+        $due_to = $_POST['rdpDueTo'];
+        $ip = $_POST['rdpIp'];
 
-        //$license->login = $login;
         $license->setLogin($login);
-        $license->setPassword($password);
-        $license->setRdp($rdpId);
+        
+        if( trim($password) ){  //\ если пароль не менялся
+            $hash = License::getHash($password);
+            $license->setPassword($hash);
+        }
+        
         $license->setUid($uid);
         $license->updateLicense();
         
-        $rdp = new Rdp($license->getRdp());
+        $rdp = $license->getRdp(); //\
         $rdp->ip = $ip;
-        $rdp->created_at = $created_at; //\
         $rdp->due_to = $due_to; //\
         $rdp->updateContent($content);
         $rdp->updateRdp();
@@ -86,11 +92,11 @@ class LicenseController {
 
     }
 
-    # @http DELETE /license/
+    # @http POST /license/delete/
     public function deleteLicense(){
-        $id = +$_GET['id'];
+        $id = +$_POST['id'];
         $license = new License($id);
-        $rdp = new Rdp($license->getRdp());
+        $rdp = $license->getRdp();
         $rdpFactory = new RdpFactory(); //\
         $rdpFactory->deleteRdp($rdp); //\
         $lf = new LicenseFactory;

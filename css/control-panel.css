@@ -5,20 +5,19 @@ body{
  
 
 .btn-menu_margin{
-    margin: 30px 66px 45px;
+    margin: 20px 75px 74px;
 }
 
 .btn-menu__set-password_margin{
     margin-left: 10px;
 }
 
-
-.tools__header_border_bottom{
-    border-bottom: 1px solid #818384;
+.btn-menu__entrance{
+    background: #CCC;
 }
 
-.tools__header_padding{
-    padding: 8px 7px;
+.tools__header_border_bottom{
+    /*border-bottom: 1px solid #818384;*/
 }
 
 .container{
@@ -28,7 +27,8 @@ body{
 }
 
 .container_padding{
-    padding: 0 66px;
+    margin-top: 20px;
+    padding: 0 75px;
 }
 
 .item{
@@ -42,7 +42,7 @@ body{
 }
 
 .picture__img{
-    width: 70%;
+    width: 28px;
     margin: auto;
 }
 
@@ -51,11 +51,12 @@ body{
 }
 
 .item__text_width{
-    width: calc(100% - 100px); 
+    width: calc(100% - 90px); 
 }
 
 .item_margin{
-    margin: 20px 0 0;
+    margin: 36px 0 0;
+    padding-bottom: 20px;
 }
 
 .description_text_size{
@@ -63,7 +64,7 @@ body{
 }
 
 .description_padding{
-    padding-top: 6px; 
+    padding-top: 9px; 
 }
 
 .picture{
@@ -88,12 +89,12 @@ body{
 }
 
 .item__text_desc{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .tools__link{
     display: block;
-    width: 400px;
+    width: 390px;
 }
 
 .tools__link:hover .header__text{
@@ -107,4 +108,111 @@ body{
 
 .tools__disable:hover .header__text{
     color: #202729;
+}
+
+/* Setup Password Modal */
+
+.setup-password {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.setup-password__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 20px 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+}
+
+.setup-password__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+
+.setup-password__form__control:not(:last-child) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 6px;
+    padding-bottom: 5px;
+}
+
+.setup-password__label {
+    margin-right: 5px;
+}
+
+.setup-password__close {
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    color: #000;
+}
+
+.setup-password__button-submit {
+    outline: none;
+    cursor: pointer;
+    background-color: #26BEB8;
+    color: #fff;
+    padding: 3px 5px;
+    border: 0;
+}
+
+.setup-password__button-submit:disabled {
+    background-color: #333;
+    opacity: .5;
+}
+
+.setup-password__alert {
+    display: block;
+    margin-top: 5px;
+    width: 100%;
+    color: red;
+    line-height: 1;
+    font-size: 10px;
+}
+
+.setup-password__input {
+    border: 1px solid #777;
+}
+
+.setup-password__input_error {
+    border: 1px solid red;
+}
+
+.setup-password__alert-box {
+    margin-bottom: 5px;
+    height: 25px;
+}
+
+.loader-wrapper {
+    position: relative;
+    height: 25px;
+}
+
+.loader {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+}
+
+.setup-password__response-ok {
+    color: #42B983;
+}
+
+.setup-password__response-error {
+    color: red;
 }

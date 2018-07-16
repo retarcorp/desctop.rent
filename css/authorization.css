@@ -31,7 +31,14 @@ body{
     margin: auto;
 }
 
+.button{
+    margin: 0 auto;
+}
 
+.header__link{
+    display: flex;
+    align-items: center;
+}
 .authorization__header{
     margin-bottom: 30px;
 }
@@ -74,4 +81,12 @@ body{
 .invelid_margin{
     margin-top: 10px;
 }
+
+.loader{
+    top: 17px;
+    right: 10px;
+}
+/*.loader__item{*/
+/*    border-top: 7px solid #0DBDFB;*/
+/*}*/
 

@@ -20,8 +20,10 @@ class User{
     const STATUS_ASSIGNED_LICENSE = 14;
     const STATUS_SET_UP = 15;
 
+    const INDIVIDUAL_FACE = 1; //\
+    const LEGAL_ENTITY = 2; //\
 
-    public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email;
+    public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email, $feature;
     public $auth;
     # @TODO add field INN to user class and database, set to '' when creating user 
     
@@ -39,10 +41,11 @@ class User{
         $this->registered_at = $r['registered_at'];
         $this->last_login = $r['last_login'];
         $this->last_ip = $r['last_ip'];
-        $this->inn = $r['inn']; //\
+        $this->inn = $r['inn']; 
         $this->email = $r['email'];
+        $this->feature = $r['feature']; //\ 11111
     }
-
+    
     public function update(){
         $sql = Sql::getInstance();
         $sql->query("UPDATE ".self::TABLE_NAME." SET 
@@ -54,8 +57,9 @@ class User{
             ,ssid ='{$this->ssid}'
             ,last_login = '".date("Y-m-d H:i:s")."'
             ,last_ip='".$_SERVER['REMOTE_ADDR']."'
+            ,feature={$this->feature}
         WHERE id={$this->id}");
-    }
+    } // здесь ещё feature = '{$this->feature}' перед WHERE
 
     public function getProfileData() : ProfileData {
         # @TODO: get ProfileData object for this user

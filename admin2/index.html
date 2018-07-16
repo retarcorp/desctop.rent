@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/admin-panel.css">
+    <script src="/js/retarcore.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <script src="/js/admin-panel.js"></script>
+    <script src="index.js"></script>
+    <title>Admin panel</title>
+</head>
+<body>
+    <header class="header header_padding block_color_blue-sky">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="list__item list__item_margin active">
+                    <a href="/" class="list__link text_color_white">Лицензии</a>
+                </li>  
+            </ul>
+        </nav>
+        <div class="header__profile">
+        </div>
+    </header>
+    <main class="main main_padding" id="tableSection">
+        <button class="button_add-license main__button button block_color_blue-sky main__button_margin" v-on:click="onAddLicense">
+            <span class="text_button text_color_white">Добавить лицензию +</span>
+        </button>
+        <section class="main__table main__table-shadow">
+            <table class="table-licenses">
+                <thead>
+                    <tr class="header__row block_color_blue-sky">
+                        <th class="col__header cell_margin">ID</th>
+                        <th class="col__header cell_margin">Логин</th>
+                        <th class="col__header cell_margin">Пароль для входа</th>
+                        <th class="col__header cell_margin">IP удаленного стола</th>
+                        <th class="col__header cell_margin">Id пользователя</th>
+                        <th class="col__header cell_margin">Данные RDP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in data" :key="item.id" is='table-item' :item='item'></tr>
+                </tbody>
+            </table>
+            <section class="main__settings main__settings_padding">
+            </section>
+        </section>
+        
+        <!-- Modal -->
+        <section class="add-license" v-if="isActive">
+            <header class="add-license__header block_color_blue-sky add-license__header_padding">
+                <button class="button block_color_blue-sky button__license" :class='{active: licenseOpened}' @click="tabsOpenLicense">
+                    <span class="text_button text_color_white">ЛИЦЕНЗИЯ</span>
+                </button>
+                <button class="button block_color_blue-sky button__rdp" :class='{active: rdpOpened}' @click="tabsOpenRdp">
+                    <span class="text_button text_color_white">RDP</span>
+                </button>
+                <button class="button__license-close" @click="isActive = false"></button>
+            </header>
+            <form class="add-license__license add-license__license_padding">
+                <div class="license__data-container license__data-container_margin" v-if='licenseOpened'>
+                    <div class="license__data license__data_margin">
+                        <label class="license__label license__label_margin" for="login">Login</label>
+                        <input class="license__input" type="text" id="login" v-model="licenseObject.login">
+                    </div>
+                    <div class="license__data license__data_margin">
+                        <label class="license__label license__label_margin" for="password">Password</label>
+                        <input class="license__input" type="password" id="password" v-model="licenseObject.password">
+                    </div>
+                    <div class="license__data license__data_margin license__data_margin-top">
+                        <label class="license__label license__label_margin" for="uid">UID</label>
+                        <input class="license__input" type="number" id="uid" v-model="licenseObject.uid">
+                    </div>
+                </div>
+                <div class="rdp__data-container rdp__data-container_margin " v-if='rdpOpened'>
+                    <div class="license__data license__data_margin">
+                        <label class="license__label license__label_margin" for="content">Ip</label>
+                        <input class="license__input" type="text" id="ip" v-model="rdpObject.ip">
+                        <div class="rdp__validity rdp__validity_margin">
+                            <label class="license__label license__label_margin rdp__label_margin" for="validity__from">Действует до (день, месяц, год)</label>
+                            <div class="validity__container">
+                                <input class="license__input validity__input" type="date" id="validity__to" v-model="rdpObject.due_to" value="2018-09-12">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="license__data license__data_margin">
+                        <label class="license__label license__label_margin" for="content">Content</label>
+                        <textarea class="license__input rdp__area" id="content" cols="30" rows="10" v-model="rdpObject.content"></textarea>
+                    </div>
+                </div>
+                <input class="button license__button-margin license__button block_color_blue-sky text_color_white" type="button" value="Создать" v-if="createMode" @click="onCreateLicense">
+                <div class="license__edit license__edit_padding" v-if="editMode">
+                    <button class="button license__button-remove block_color_blue-sky" type='button' @click = "confirmDelete = true"></button>
+                    <div class="edit__agree edit__agree_margin" v-if="confirmDelete">
+                        <p class="agree__text">Безвозвратно удалить?</p>
+                        <div class="agree__ask">
+                            <button class="button ask-yes" @click="onDeleteLicense" type='button'>
+                                <span class="text_color_white">Да</span>
+                            </button>
+                            <button class="button ask-no" @click="confirmDelete=false" type='button'>
+                                <span class="text_underline">Отмена</span>
+                            </button>
+                        </div>
+                    </div>
+                    <input class="button license__button-save block_color_blue-sky text_color_white" type="submit" value="Сохранить" @click="onSubmitLicenseEdit">
+                </div>        
+            </form>
+        </section>
+        
+    </main>
+</body>
+</html>

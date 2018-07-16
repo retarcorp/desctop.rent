@@ -7,6 +7,7 @@ _.core(function(){
                 phone: true
                 ,sms: false
             }
+            ,loader: false
             ,phone: ""
             ,phoneIsInvalid: false
             ,Messages:{
@@ -19,21 +20,35 @@ _.core(function(){
         }   
         ,methods:{
             onPhoneEntered: function(){
+                Vm.changeLoader();
                 if(this.validatePhone(this.phone)){
                     Api.OnPhoneEntered.exec({phone: this.phone})
                         .then(function(result){
                             if(result.isOk){
                                 Vm.Tabs.phone = false;
                                 Vm.Tabs.sms = true;
+                                Vm.changeLoader();
                                 return;
                             }
+                            Vm.changeLoader();
                             Vm.Messages.currentPhoneMessage = result.message;
                             this.phoneIsInvalid = true;
                         })                    
                 }else{
+                    Vm.changeLoader();
                     this.phoneIsInvalid = true;
                 }
                 
+            }
+            ,changeLoader: function(){
+                var loader = document.querySelector('.loader');
+                if(!Vm.loader){
+                    Vm.loader = true;
+                    loader.classList.remove('hidden');
+                } else {
+                    Vm.loader = false;
+                    loader.classList.add('hidden');
+                }
             }
 
             ,refreshPhoneMessage: function(){
@@ -45,11 +60,14 @@ _.core(function(){
             }
 
             ,onSmsCodeEntered: function(){
+                Vm.changeLoader();
                 Api.ValidateSms.exec({code: this.smsCode})
                     .then(function(result){
                         if(result.isOk){
+                            Vm.changeLoader();
                             return location.assign("/");
                         }
+                        Vm.changeLoader();
                         Vm.smsIsInvalid = true;
                         Vm.Messages.smsCodeMessage = result.message;
                     });

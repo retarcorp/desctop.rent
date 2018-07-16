@@ -1,5 +1,9 @@
 @media screen and (max-width: 1024px){
-    
+        /* CONTROL PANEL */
+
+    .tools__link{
+        width: 360px;
+    }
     
 
 }
@@ -8,7 +12,7 @@
     /* AUTHORIZATION AND CONFIRMATION */
 
     .header{
-        padding: 0 66px 0 30px;
+        padding: 0 75px 0 30px;
     }
     
     .main__header{
@@ -28,10 +32,10 @@
     }
 
     .footer{
-        padding: 5px 40px;
+        padding: 5px 30px;
     }
-
-    /* CONTROL PANEL */
+    
+            /* CONTROL PANEL */
 
     .tools__link{
         width: 324px;
@@ -74,10 +78,34 @@
         margin: 0;
         margin-top: 10px;
     }
-
+    
+    .main__left-menu{
+        width: 250px;
+    }
+    .left-menu__list{
+        padding-top: 25px;
+    }
+    
+    .main__right-tab{
+        width: calc(100% - 250px);
+    }
+    
+    .right-tab{
+        padding: 30px 50px 100px;
+    }
+    
+    .right-tab_margin{
+        margin-left: 250px;
+    }
+    .list__item{
+            background-position: 30px center;
+    }
+    .list__item a{
+        padding: 12px 0px 12px 68px;
+    }
 }
 
-@media screen and (max-width: 340px){
+@media screen and (max-width: 600px){
 
     /* AUTHORIZATION AND CONFIRMATION */
     .header{
@@ -91,7 +119,10 @@
     .footer{
         padding: 5px 20px;
     }
-
+    /* AUTHORIZATION */
+    .main__section{
+        margin: auto 20px;
+    }
 
     /* CONTROL PANEL */
 
@@ -148,6 +179,41 @@
     .item__text_desc{
         font-size: 13px;
     }
+    
+    .block__notice,
+    .block__info {
+        width: calc(100% - 60px);
+    }
+    
+    .notice__block{
+        margin-bottom: 10px;
+        padding: 0;
+    }
+    .notice__block:hover .notice__btns{
+        display: none;
+    }
+    .notice__btns{
+        flex-direction: column;
+        width: 80%; 
+        margin: 10px auto;
+    }
+    .button__pin_margin{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .info__label{
+        font-size: 14px;
+    }
+    .setting-btn{
+        /*flex-direction: column;*/
+        /*width: 80%;*/
+        /*margin: 0 auto;*/
+        flex-wrap: wrap;
+    }
+    .info__setting  p{
+        font-size: 14px;
+    }
 
     .header__nav-path{
         font-size: 15px;
@@ -160,5 +226,25 @@
     /*}*/
     .footer{
         font-size: 11px;
+    }
+    .loader{
+        top: 80px;
+        right: calc(50% - 15px);
+    }
+    
+    .field_margin_bottom{
+        margin-right: 0;
+    }
+    
+    .main__right-tab{
+        width: 100%;
+        margin: 0;
+        padding: 20px 30px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .resources__info{
+        flex-direction: column;
     }
 }

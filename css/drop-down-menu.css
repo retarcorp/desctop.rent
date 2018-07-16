@@ -1,12 +1,13 @@
 .header__menu{
     position: fixed;
     right: 0;
-    top: 60px;
+    top: 80px;
     z-index: 999999;
-    height: calc(100% - 90px);
+    height: calc(100% - 110px);
 }
 
 .drop-down-list{
+    width: 75px;
     height: 100%;
     list-style: none;
     position: relative;
@@ -16,6 +17,7 @@
 .drop-down-menu.active{
     /* display: block; */
     display: flex;
+    justify-content: flex-end;
 }
 
 .block_padding{
@@ -27,18 +29,20 @@
 }
 
 .drop-down-list__button{
+    width: 75px;
+    height: 75px;
     padding: 31px;
     position: relative;
 }
 
 .button__notification{
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    background: #0DBDFB;
+    right: 23px;
+    top: 24px;
+    background: #26BEB8;
     border-radius: 50%;
     color: #fff;
 }
@@ -46,7 +50,7 @@
 .drop-down-list__button_background{
     background-color:#fff;
     background-position: center;
-    background-size: 50%;
+    background-size: 22px;
     background-repeat: no-repeat; 
 }
 
@@ -84,6 +88,9 @@
     padding-bottom: 5px;
     border-bottom: 1px solid #000;
 }
+.balance__link:first-child{
+    margin-bottom: 8px;
+}
 
 .balance{
     display: flex;
@@ -106,11 +113,11 @@
 }
 
 .link-color{
-    color: #227693;
+    color: #26BEB8;
 }
 
 .money__count-color{
-    color: #227693; 
+    color: #26BEB8; 
 }
 
 .money__text-position{
@@ -123,6 +130,11 @@
 
 .block_text-size{
     font-size: 14px;
+}
+
+.resources__info{
+    display: flex;
+    justify-content: space-between;
 }
 
 .services__item{
@@ -156,11 +168,12 @@
 }
 
 .text-caption_menu{
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .text-balance{
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 19px;
 }
 
 .text-services{
@@ -169,4 +182,156 @@
 
 .text-resource{
     font-size: 14px;
+}
+
+
+
+.block__notice,
+.block__info{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 320px;
+    background: #fff;
+}
+.block__notice h1,
+.block__info h1{
+    font-size: 18px;
+}
+.block__notice.active{
+    display: block;
+}
+
+.block__info.active{
+    display: block;
+}
+
+.info__setting{
+    width: 100%;
+}
+
+.info__setting_margin{
+    margin-top: 10px;
+}
+
+.info__label{
+    width: 100%;
+}
+
+.info__input{
+    width: 100%;
+    height: 25px;
+}
+.setting-btn{
+    display: flex;
+    justify-content: space-between;
+}
+.setting-btn > .info__label{
+    position: relative;
+    width: 100%;
+}
+.info__button{
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+}
+.setting-btn .info__input{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.setting-btn .info__input:checked + .info__button{
+    color: #fff;
+    background: #227693;
+}
+
+.setting__select{
+    width: 100%;
+    height: 25px;
+}
+
+.info__agreement{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+
+.button__agree{
+    width: 120px;
+}
+
+.button__cancel{
+    width: 90px;
+}
+.button__cancel_margin{
+    margin-left: 10px;
+}
+
+.notice__block{
+    border: 1px solid transparent;
+    padding: 10px 7px;
+    cursor: pointer;
+}
+
+.notice__block:hover{
+    border: 1px solid #333333;
+}
+
+.notice__block:hover .notice__btns{
+    display: flex;
+}
+
+.notice__btns{
+    display: none;
+    width: 100%;
+    /* display: flex; */
+    margin-top: 10px;
+}
+
+.button__resource,
+.button__pin{
+    height: 30px;
+    padding: 0 10px;
+}
+
+.button__pin_margin{
+    margin-left: 10px;
+}
+
+
+.notice__picture{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.notice__img{
+    width: 20px;
+    /* align-self: flex-start; */
+}
+
+.description__header{
+    font-size: 16px;
+}
+
+.description__text{
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.description__header_margin{
+    margin-left: 10px;
+}
+
+.text-margin{
+    margin-top: 10px;
 }

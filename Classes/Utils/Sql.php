@@ -49,13 +49,15 @@ class Sql{
 	}
 
 	public function query($q){
+		# print_r($q."\n");
 	    $res = mysqli_query($this->resource(), $q);
 	    
 	    $this->lastQuery=$q;
 	    $this->lastError = NULL;
 	    if(mysqli_error($this->resource())){
 	        $this->lastError = "Error executing query '$q': ".mysqli_error($this->resource());
-	    }
+		}
+		print_r($this->lastError."\n");
 	    
 		return $res;
 	}

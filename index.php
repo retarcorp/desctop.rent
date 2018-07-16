@@ -22,56 +22,127 @@
     <link rel="stylesheet" href="/css/drop-down-menu.css">
     <link rel="stylesheet" href="/css/control-panel.css">
     <link rel="stylesheet" href="/css/adaptive.css">
+    
+    <script src="/js/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <script src="js/drop-down-menu.js"></script>
+    <script src="/js/retarcore.js"></script>
+    <script src="/js/api.js"></script>
+    
     <title>Control panel</title>
 </head>
 <body>
     <div id="wrapper">
         <?php require $_SERVER['DOCUMENT_ROOT']."/modules/user-header.php"?>
         
-        <main class="main main_padding_bottom">
+        <main id='control-panel' class="main main_padding_bottom">
             <header class="main__header">
                 <h1 class="header__text text_size_header">Добро пожаловать!</h1>
-                <ul class="header__nav-path text_color_grey text_size_small">Вы здесь:
+                <ul class="header__nav-path text_color_grey text_size_small font-regular">Вы здесь:
                     <li class="header__list-item"><a href="#" class="text_color_blue">Главная</a></li>
                 </ul>
             </header>
             <section class="btn-menu main__btn-menu btn-menu_margin">
                 <?php if($user->status == User::STATUS_JUST_CREATED || 
                             $user->status == User::STATUS_FILLED_PROFILE_DATA) { # @TODO paste russian text ?>
-                    <p style='margin-bottom: 10px;'>To continue work with the portal you need to set up your company data.</p>
-                    <a href='/profile/' class="btn-menu__entrance button button_theme_sky-dark btn-menu__button_size">
-                        <span class="button_text text_size_button button__text_color font-regular">Fill in profile data</span>
+                    <p style='margin-bottom: 20px;'>Для начала работы с порталом Вам необходимо ввести реквизиты Вашей компании.</p>
+                    <a href='/profile/'>
+                        <button class="btn-menu__entrance button btn-menu__button_size">
+                            <span class="button_text text_size_button font-regular">Заполнить данные профиля</span>  
+                        </button>
                     </a>
                     
                 <?php } ?>
 
-                <?php if($user->status == User::STATUS_SET_UP) { # @TODO paste russian text ?>
-                <button class="btn-menu__entrance button button_theme_sky-light btn-menu__button_size">
-                    <span class="button_text text_size_button button__text_color font-regular">Войти в рабочий стол</span>
-                </button>
+                <?php if($user->status == User::STATUS_SET_UP || $user->status == User::STATUS_ASSIGNED_LICENSE) { # @TODO paste russian text ?>
+                <a href='/connection/rdp/'>
+                    <button class="btn-menu__entrance button button_theme_sky-light btn-menu__button_size">
+                        <span class="button_text text_size_button button__text_color font-regular">Войти в рабочий стол</span>  
+                    </button>
+                </a>
                  <?php } ?>
 
                 <?php if($user->status == User::STATUS_ASSIGNED_LICENSE) { # @TODO paste russian text ?>
-                <button class="btn-menu__set-password button button_theme_sky-dark btn-menu__set-password_margin btn-menu__button_size">
-                    <span class="button_text text_size_button button__text_color font-regular">Установить пароль для первого входа</span>
-                </button>
+                <p style='margin: 10px 0;'>Для безопасной работы с рабочим столом основные возможности будут отключены, пока Вы не получите пароль доступа к рабочему столу.</p>
+                <a href='' class="">
+                    <button @click.prevent='showModal = true' class="btn-menu__set-password button button_theme_sky-dark btn-menu__button_size">
+                        <span class="button_text text_size_button button__text_color font-regular">Установить пароль для первого входа</span>    
+                    </button>
+                    
+                </a>
+                <!-- Setup Password Modal -->
+                <div v-if="showModal" class="setup-password" style="display: none">
+                    <div class="setup-password__container">
+                       <div v-if="ui.status == null">
+                          <div class="setup-password__header">
+                              Введите новый пароль: <div class="setup-password__close" @click.prevent="onResetSetupPassword">x</div>
+                          </div>
+                
+                          <div class="setup-password__body">
+                              <form @submit.prevent="onSetupPassword" class="setup-password__form" autocomplete="off">
+                                  <div class="setup-password__form__control">
+                                    <label class="setup-password__label">Password</label>
+                                    <input class="setup-password__input" v-model="user.password" type="password" :class="{'setup-password__input_error': !isPasswordsCorrect && user.password.length > 0}">
+                                  </div>
+                                  
+                                  <div class="setup-password__form__control">
+                                     <label class="setup-password__label">Password again</label>
+                                     <input class="setup-password__input" v-model="user.passwordConfirm" type="password" :class="{'setup-password__input_error': !isPasswordsCorrect && user.password.length > 0}">
+                                  </div>
+                                  
+                                  <div class="setup-password__alert-box">
+                                        <small class="setup-password__alert">{{ !isPasswordsLengthCorrect ? '* Пароль должен быть меньше 16 символов' : '' }}</small>
+                                        <small class="setup-password__alert">{{ !isPasswordsEqual ? '* Пароли не совпадают' : '' }}</small>
+                                  </div>
+                                  
+                                  
+                                  <button class="setup-password__button-submit" type="submit" :disabled='!isPasswordsCorrect'>Submit</button>
+                                  
+                              </form>
+                          </div>
+                       </div>
+                       <div v-if="ui.status == 0" class="setup-password__status-box">
+                           <div>
+                               Запрос отправлен
+                           </div>
+                       </div>
+                       <div v-if="ui.status == 1" class="setup-password__status-box">
+                           <h2>Процесс идет...</h2>
+                           <div class="loader-wrapper">
+                                <div class="loader">
+                                    <div class="loader__item"></div>        
+                                </div>
+                           </div>
+                       </div>
+                       <div v-if="ui.status == 2" class="setup-password__status-box">
+                           <div class="setup-password__response-ok">
+                               Выполнено успешно <div class="setup-password__close" @click.prevent="onResetSetupPassword">x</div>
+                           </div>
+                       </div>
+                       <div v-if="ui.status == 3" class="setup-password__status-box">
+                           <div class="setup-password__response-error">
+                               {{ ui.response }} <div class="setup-password__close" @click.prevent="onResetSetupPassword">x</div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+                
+                
                 <?php } ?>
             </section>
             <section class="main__tools tools">
                 <header class="tools__header main__header tools__header_margin_bottom">
-                    <h1 class="header__text tools__header_border_bottom tools__header_padding text_size_caption">Доступные инструменты</h1>
+                    <h1 class="header__text tools__header_border_bottom tools__header_padding text_size_caption font-regular">Доступные инструменты</h1>
                 </header>
                 <div class="tools__container container container_padding">
                 
                 <a href="/employees/" class="tools__link item_margin 
-                <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disabled"; ?>
+                <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disable"; ?>
                 ">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_sky-dark">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/employees.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -85,10 +156,10 @@
                         </div>
                     </a>
                     
-                    <a href="/folders/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disabled"; ?>">
+                    <a href="/folders/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_SET_UP)) ? "" :"tools__disable"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_disable">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/folders.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -101,10 +172,10 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/billing/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
+                    <a href="/billing/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disable"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_sky-dark">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/payments.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -118,10 +189,10 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/profile/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_JUST_CREATED)) ? "" :"tools__disabled"; ?>">
+                    <a href="/profile/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_JUST_CREATED)) ? "" :"tools__disable"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_sky-dark">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/data.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -134,10 +205,10 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/support/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
+                    <a href="/support/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disable"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_sky-dark">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/support.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -150,10 +221,10 @@
                             </div>   
                         </div>
                     </a>
-                    <a href="/services/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disabled"; ?>">
+                    <a href="/services/" class="tools__link item_margin <?php echo ($user->hasRightsAtLeast(User::STATUS_ASSIGNED_LICENSE)) ? "" :"tools__disable"; ?>">
                         <div class="container__item item">
                             <!-- <a href="#" class="item__link"> -->
-                                <div class="item__picture picture picture_theme_disable">
+                                <div class="item__picture picture">
                                     <img class="picture__img" src="img/icon-control-menu/services.png" alt="picture">
                                 </div>
                             <!-- </a> -->
@@ -170,6 +241,9 @@
             </section>
         </main>
         <?php include $_SERVER['DOCUMENT_ROOT']."/modules/footer.php";?>
-    </div>    
+    </div>
+    
+    <script src="/js/control-panel.js"></script>
+    
 </body>
 </html>

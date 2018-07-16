@@ -29,4 +29,10 @@ const Api = {
 
 Api.OnPhoneEntered = new Api.EndPoint("GET","/api/auth/phone/entered/");
 Api.ValidateSms = new Api.EndPoint("GET","/api/auth/phone/sms/validate/");
-Api.ChangeProfileData = new Api.EndPoint("POST","/api/profile/data/")
+Api.ChangeProfileData = new Api.EndPoint("POST","/api/profile/data/");
+Api.GetCompanyDataByInn = new Api.EndPoint("GET","/api/profile/data/inn/");
+Api.CreateLicense = new Api.EndPoint("POST","/api/license/create/");
+Api.DeleteLicense = new Api.EndPoint("POST","/api/license/delete/");
+Api.UpdateLicense = new Api.EndPoint("POST","/api/license/update/");
+Api.SetupPassword = new Api.EndPoint("POST", "/api/license/setupPassword/");
+Api.GetLicense = new Api.EndPoint('GET',"/api/licenses/");
