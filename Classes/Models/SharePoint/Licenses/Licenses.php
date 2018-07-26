@@ -15,6 +15,8 @@ class Licenses{
         $id = $u->id;
 
         $r = $sql->getAssocArray("SELECT id FROM ".License::TABLE_NAME." WHERE uid=$id");
+        $sql->logError(__METHOD__);
+        
         if(!count($r)){
             return null;
         }
@@ -24,6 +26,7 @@ class Licenses{
     public static function attachLicense(User $u): ?License {
         $sql = Sql::getInstance();
         $r = $sql->getAssocArray("SELECT id FROM ".License::TABLE_NAME." WHERE uid=0 OR uid={$u->id}");
+        $sql->logError(__METHOD__);
         
         if(!count($r)){
             Log::error("No free license found for user ".($u->id));
@@ -32,6 +35,8 @@ class Licenses{
         
         $license = $r[0]['id']*1;
         $sql->query("UPDATE ".License::TABLE_NAME." SET uid={$u->id} WHERE id=$license");
+        $sql->logError(__METHOD__);
+        
         $u->onLicenseAttached();
         return new License($license);
         

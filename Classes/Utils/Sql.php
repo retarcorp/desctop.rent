@@ -1,6 +1,7 @@
 <?php
 
 namespace Classes\Utils;
+use Classes\Utils\Log;
 
 class Sql{
  
@@ -57,7 +58,7 @@ class Sql{
 	    if(mysqli_error($this->resource())){
 	        $this->lastError = "Error executing query '$q': ".mysqli_error($this->resource());
 		}
-		print_r($this->lastError."\n");
+		//print_r($this->lastError."\n");
 	    
 		return $res;
 	}
@@ -98,6 +99,12 @@ class Sql{
 
 	public function getInsertId(){
 		return mysqli_insert_id($this->resource());
+	}
+	
+	public function logError(string $place){
+	    if( $e = mysqli_error($this->resource()) ){
+	        Log::error("In $place caught SQL-error: $e");
+	    }
 	}
 
 }

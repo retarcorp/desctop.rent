@@ -2,7 +2,7 @@
         /* CONTROL PANEL */
 
     .tools__link{
-        width: 360px;
+        width: 36rem;
     }
     
 
@@ -12,46 +12,46 @@
     /* AUTHORIZATION AND CONFIRMATION */
 
     .header{
-        padding: 0 75px 0 30px;
+        padding: 0 7.5rem 0 3rem;
     }
     
     .main__header{
-        padding: 0 30px;
+        padding: 0 3rem;
     }
     
     .btn-menu_margin{
-        margin: 30px 30px 45px;
+        margin: 3rem 3rem 4.5rem;
     }
     
     .container_padding{
-        padding: 0 30px;
+        padding: 0 3rem;
     }
 
     .main__section{
-        padding: 30px 20px 40px;
+        padding: 3rem 2rem 4rem;
     }
 
     .footer{
-        padding: 5px 30px;
+        padding: .5rem 3rem;
     }
     
             /* CONTROL PANEL */
 
     .tools__link{
-        width: 324px;
+        width: 32.4rem;
     }
 
 
     /* USER-CONTROL-PANEL */
     
     .text_size_header{
-        font-size: 32px;
+        font-size: 3.2rem;
     }
     .header__nav-path{
-        font-size: 15px;
+        font-size: 1.5rem;
     }
     .text_size_small{
-        font-size: 14px;
+        font-size: 1.4rem;
     }
 
     .field{
@@ -68,40 +68,40 @@
         flex-direction: column;
     }
     .save__button_size{
-        width: 320px;
+        width: 32rem;
     }
     .save__message{
-        width: 320px;
+        width: 32rem;
         text-align: center;
     }
     .save__message_margin{
         margin: 0;
-        margin-top: 10px;
+        margin-top: 1rem;
     }
     
     .main__left-menu{
-        width: 250px;
+        width: 25rem;
     }
     .left-menu__list{
-        padding-top: 25px;
+        padding-top: 2.5rem;
     }
     
     .main__right-tab{
-        width: calc(100% - 250px);
+        width: calc(100% - 25rem);
     }
     
     .right-tab{
-        padding: 30px 50px 100px;
+        padding: 3rem 5rem 10rem;
     }
     
     .right-tab_margin{
-        margin-left: 250px;
+        margin-left: 25rem;
     }
     .list__item{
-            background-position: 30px center;
+            background-position: 3rem center;
     }
     .list__item a{
-        padding: 12px 0px 12px 68px;
+        padding: 1.2rem 0 1.2rem 6.8rem;
     }
 }
 
@@ -109,39 +109,39 @@
 
     /* AUTHORIZATION AND CONFIRMATION */
     .header{
-        padding: 0 0 0 20px;
+        padding: 0 0 0 2rem;
     }
 
     .main__section{
-        padding: 30px 20px 40px;
+        padding: 3rem 2rem 4rem;
     }
 
     .footer{
-        padding: 5px 20px;
+        padding: .5rem 2rem;
     }
     /* AUTHORIZATION */
     .main__section{
-        margin: auto 20px;
+        margin: auto 2rem;
     }
 
     /* CONTROL PANEL */
 
     .main{
-        padding: 90px 0 90px;
+        padding: 9rem 0 9rem;
     }
 
     .main__header{
-        padding: 0 20px;
+        padding: 0 2rem;
     }
 
     .btn-menu_margin{
         display: flex;
         flex-direction: column;
-        margin: 30px 20px 45px;
+        margin: 3rem 2rem 4.5rem;
     }
 
     .container_padding{
-        padding: 0 20px;
+        padding: 0 2rem;
     }
 
     /* DROP-DOWN-MENU and USER-PROFILE */
@@ -150,43 +150,43 @@
         width: 100%;
     }
     .user-profile{
-        width: 120px;
-        padding: 0 20px;
+        width: 12rem;
+        padding: 0 2rem;
     }
 
     .user-profile__login{
         display: none;
     }
     .drop-down-list__button{
-        padding: 28px;
+        padding: 2.8rem;
     }
 
     .btn-menu__set-password_margin{
         margin-left: 0;
-        margin-top: 20px;
+        margin-top: 2rem;
     }
 
     .block_padding{
-        padding-top: 25px;
+        padding-top: 2.5rem;
     }
     
     .text_size_button{
-        font-size: 15px;
+        font-size: 1.5rem;
     }
     .item__text_head{
-        font-size: 16px;
+        font-size: 1.6rem;
     }
     .item__text_desc{
-        font-size: 13px;
+        font-size: 1.3rem;
     }
     
     .block__notice,
     .block__info {
-        width: calc(100% - 60px);
+        width: calc(100% - 6rem);
     }
     
     .notice__block{
-        margin-bottom: 10px;
+        margin-bottom: 1rem;
         padding: 0;
     }
     .notice__block:hover .notice__btns{
@@ -195,15 +195,15 @@
     .notice__btns{
         flex-direction: column;
         width: 80%; 
-        margin: 10px auto;
+        margin: 1rem auto;
     }
     .button__pin_margin{
         margin-left: 0;
-        margin-top: 10px;
+        margin-top: 1rem;
     }
     
     .info__label{
-        font-size: 14px;
+        font-size: 1.4rem;
     }
     .setting-btn{
         /*flex-direction: column;*/
@@ -212,24 +212,24 @@
         flex-wrap: wrap;
     }
     .info__setting  p{
-        font-size: 14px;
+        font-size: 1.4rem;
     }
 
     .header__nav-path{
-        font-size: 15px;
+        font-size: 1.5rem;
     }
     .text_size_small{
-        font-size: 14px;
+        font-size: 1.4rem;
     }
     /*.text_size_header{*/
     /*    font-size: 25px;*/
     /*}*/
     .footer{
-        font-size: 11px;
+        font-size: 1.1rem;
     }
     .loader{
         top: 80px;
-        right: calc(50% - 15px);
+        right: calc(50% - 1.5rem);
     }
     
     .field_margin_bottom{
@@ -239,7 +239,7 @@
     .main__right-tab{
         width: 100%;
         margin: 0;
-        padding: 20px 30px;
+        padding: 2rem 3rem;
     }
 }
 

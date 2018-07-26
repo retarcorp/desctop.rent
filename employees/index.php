@@ -4,7 +4,7 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
     use Classes\Models\Users\User;
-    Safety::declareSetUpUsersAccessZone();    
+    // Safety::declareProtectedZone();    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,11 +17,18 @@
     <link rel="stylesheet" href="/css/control-panel.css">
     <link rel="stylesheet" href="/css/user-control-panel.css">
     
+    <link rel="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/adaptive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <script src="/js/drop-down-menu.js"></script>
     <script src="/js/menu-user-control-panel.js"></script>
+
+    <script src="/js/retarcore.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>My employees</title>
 </head>
 <body>

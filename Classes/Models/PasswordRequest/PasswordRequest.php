@@ -2,15 +2,18 @@
 
 namespace Classes\Models\PasswordRequest;
 use Classes\Utils\Sql;
+use Classes\Models\SharePoint\Licenses\License;
+use Classes\Exceptions\WrongIdException;
+use Classes\Exceptions\NonExistingItemException;
 
 class PasswordRequest {
     
     const TABLE_NAME = "password_request";
     
-    const REQUEST_OPENED = 0;
-    const REQUEST_PROCESSED = 1;
-    const REQUEST_OK = 2;
-    const REQUEST_ERROR = 3;
+    const STATUS_OPENED = 0;
+    const STATUS_PROCESSED = 1;
+    const STATUS_OK = 2;
+    const STATUS_ERROR = 3;
 
     private $sql = null;
 
@@ -23,17 +26,22 @@ class PasswordRequest {
     public $message;
     
     public function __construct(int $id){
+        if( $id <= 0 ){
+            throw new WrongIdException("Wrong id $id");
+        }
+        
         $this->id = $id;
         $this->sql = Sql::getInstance();
     }
 
     public function setPropsFromDB(): self{
         $q = "SELECT * FROM " . self::TABLE_NAME . "
-            WHERE id = $id";
+            WHERE id = {$this->id}";
         $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
 
         if( empty($data) ){
-            throw new \Exception("There is no such request $id in DB");
+            throw new NonExistingItemException("There is no such request $id in DB");
         }
 
         $data = $data[0];
@@ -49,9 +57,23 @@ class PasswordRequest {
         $this->status = intval($data['status']);
         $this->message = $data['message'];
     }
+    
+    public function setCurrentStatus(){
+        $q = "SELECT status FROM " . self::TABLE_NAME . "
+            WHERE id = {$this->id}";
+        $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
+        $this->status = intval($data[0]['status']);
+    }
 
-    public function update(){
-        
+    public function update(): self{
+        $q = "UPDATE " . self::TABLE_NAME . "
+            SET status = ?,
+            message = '?'
+            WHERE id = ?";
+        $this->sql->execPrepared($q, [$this->status, $this->message, $this->id]);
+        $this->sql->logError(__METHOD__);
+        return $this;
     }
 
     public function toArray(): array{
@@ -69,6 +91,10 @@ class PasswordRequest {
         $request = new PasswordRequest($id);
         $request->setProps($data);
         return $request;
+    }
+    
+    public function getLicense(): License{
+        return new License($this->licenseId);
     }
 
 }

@@ -134,25 +134,25 @@
     <ul class="drop-down-menu__drop-down-list drop-down-list">
         <li class="drop-down-list__item item">
             <a href="#" class="item__link">
-                <button class="drop-down-list__button button button__notice drop-down-list__button_background">
+                <button class="drop-down-list__button button__notice drop-down-list__button_background">
                     <span class="button__notification"></span>
                 </button>
             </a>
         </li>
         <li class="drop-down-list__item">
             <a href="#" class="item__link">
-                <button class="drop-down-list__button button button__info drop-down-list__button_background"></button>
+                <button class="drop-down-list__button button__info drop-down-list__button_background"></button>
             </a>
         </li>
         <li class="drop-down-list__item">
             <a href="#" class="item__link">
-                <button class="drop-down-list__button button button__support drop-down-list__button_background"></button>
+                <button class="drop-down-list__button button__support drop-down-list__button_background"></button>
             </a>
             
         </li>
         <li class="drop-down-list__item">
-            <a href="/logout/index.php" class="item__link">
-                <button class="drop-down-list__button button button__exit drop-down-list__button_background"></button>
+            <a href="/logout/" class="item__link">
+                <button class="drop-down-list__button button__exit drop-down-list__button_background"></button>
             </a>
         </li>
     </ul>

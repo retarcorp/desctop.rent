@@ -3,6 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
 
 use Classes\Utils\JSONResponse;
+use Classes\Exceptions\DesktopRentException;
 
 $path = stripslashes($_GET['api_path']);
 $method = $_SERVER['REQUEST_METHOD'];
@@ -39,6 +40,8 @@ if(!$obj){
 try{
     $result = $obj->$method();
     JSONResponse::ok($result);
+}catch(DesktopRentException $e){
+    JSONResponse::error("DesktopRentException: " . $e->getMessage());
 }catch(\Exception $e){
     JSONResponse::error($e->getMessage());
 }

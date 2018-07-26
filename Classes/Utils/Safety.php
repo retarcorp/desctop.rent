@@ -37,7 +37,7 @@ class Safety{
             
         }
         header("Location: ".self::AUTHORIZED_ZONE_URL);
-            die();
+        die();
     }
 
     public static function declareAccessZone($accessStatuses = []){
@@ -50,5 +50,9 @@ class Safety{
         }
         header("Location: ".self::AUTHORIZED_ZONE_URL);
         die();
+    }
+    
+    public static function getProtectedString(string $str): string{
+        return addslashes(htmlspecialchars(strip_tags($str)));
     }
 }

@@ -16,12 +16,8 @@ class LicenseFactory{
             (login, pw, rdp, uid)
             VALUES('?', '?', ?, ?)";
         
-        # $hash = License::getHash($password);
         $sql->execPrepared($q, [$login, $password, $rdp->id, $uid]);
-        
-        if($e = $sql->getLastError()){
-            # print_r($e);
-        }
+        $sql->logError(__METHOD__);
         
         $id = $sql->getInsertId();
         return new License($id);
@@ -32,18 +28,19 @@ class LicenseFactory{
         $q = "DELETE FROM " . License::TABLE_NAME . "
             WHERE id = ?";
         $sql->execPrepared($q, [$license->getId()]);
-        
+        $sql->logError(__METHOD__);
     }
 
     public function getLicenses(): array{
         $sql = Sql::getInstance();
         $q = "SELECT id FROM " . License::TABLE_NAME;
         $ids = $sql->getAssocArray($q);
-        $licenses = array_map(function($e){
-            $id = +$e['id'];
+        $sql->logError(__METHOD__);
+        
+        return array_map(function($e){
+            $id = intval($e['id']);
             return new License($id);
         }, $ids);
-        return $licenses;
     }
 }
 

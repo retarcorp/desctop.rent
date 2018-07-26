@@ -1,0 +1,281 @@
+.tab-data__content{
+    display: block;
+}
+
+.table__employees,
+.table__folders{
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+}
+
+.table_margin{
+    margin-top: 56px;
+}
+
+.table__row{
+    display: flex;
+}
+
+.table__row:nth-child(2n-1){
+    background-color: #F8F8F8;
+}
+
+.table__col{
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 14px 0 13px;
+    text-align: center;
+    height: 66px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.col__edit{
+    flex-basis: 64px;
+    flex-grow: 0;
+}
+.col__edit{
+    padding: 0;
+}
+.table__button-edit{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    width: 64px;
+    height: 100%;
+    background-image: url(../img/icon-user-control-panel/pencil.png);
+    background-repeat: no-repeat;
+    background-size: 13px;
+    background-position: center;
+}
+
+.table__button-edit:hover{
+    border: 1px solid #000;
+    background: none;
+    background-image: url(../img/icon-user-control-panel/pencil.png);
+    background-repeat: no-repeat;
+    background-size: 13px;
+    background-position: center;
+}
+
+.table__page{
+    display: flex;
+    justify-content: center;
+    margin-top: 42px;
+}
+
+.page__list{
+    list-style: none;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+}
+.page__item{
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+}
+
+.page__item.disabled:hover{
+    background-color: #fff;
+    cursor: default;
+    color: inherit;
+}
+
+.page__item:hover{
+    color: #fff;
+    background-color: #26BEB8;
+}
+
+.page__btn-prev,
+.page__btn-next{
+    width: 44px;
+    height: 44px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-user-control-panel/prev.png);
+    background-size: 5px 8px;
+    background-position: center;
+
+}
+
+.page__btn-next{
+    background-image: url(../img/icon-user-control-panel/prev.png);
+    transform: rotate(180deg);
+}
+
+
+/*PAPAPS*/
+.new__employees,
+.edit__employees{
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.49);
+}
+
+.form__new-employees{
+    margin: auto;
+    position: relative;
+    padding: 30px;
+    background-color: #fff;
+    max-width: 880px;
+    width: 100%;
+}
+
+.form__container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form__drop-down{
+    position: relative;    
+}
+
+.form__drop-down:before{
+    content: "";
+    position: absolute;
+    bottom: 36px;
+    right: 24px;
+    display: block;
+    width: 15px;
+    height: 9px;
+    cursor: pointer;
+    background: none;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-user-control-panel/drop-down.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+.form__header{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    margin-top: 3px;
+}
+
+#addEmployees,
+#saveEmployees{
+    width: 270px;
+}
+
+.form__close{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 33px;
+    right: 30px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    background: none;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-user-control-panel/close.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+.form__buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form__remove{
+    display: flex;
+    align-items: center;
+}
+
+.button__remove{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: block;
+    width: 17px;
+    height: 21px;
+    background: none;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-user-control-panel/trush.png);
+    background-size: 100%;
+    background-position: center;
+    margin-left: 10px;
+}
+
+.remove__agreement button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 10px;
+    font-size: 15px;
+}
+
+.remove__agreement button:hover{
+    color: #fff;
+    background-color: #26BEB8;
+}
+
+.remove__agreement span{
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.new__employees,
+.edit__employees{
+    display: none;
+}
+
+
+
+/* BILLS BLOCKS WITH INFO-BILL */
+
+.bills{
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.bills__header{
+    font-size: 20px;
+}
+.bills__who{
+    margin: 20px 0;
+    font-size: 16px;
+}
+.payment__lock{
+    margin-top: 10px;
+    color: #E83E3E;
+    cursor: pointer;
+}
+
+.bills__payment{
+    display: flex;
+    margin-bottom: 30px;
+}
+.payment__count{
+    margin-right: 15px;
+}
+
+
+
+
+
+
+
+
+

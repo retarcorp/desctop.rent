@@ -1,5 +1,6 @@
 {
     "require":{
-        "phpdocumentor/phpdocumentor": "2.*"
+        "apigen/apigen": "dev-master",
+        "roave/better-reflection": "dev-master#c87d856"
     }
 }

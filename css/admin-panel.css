@@ -9,10 +9,10 @@ body *{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 7rem;
 }
 .header_padding{
-    padding: 0 63px;
+    padding: 0 6.3rem;
 }
 .block_color_blue-sky{
     background-color: #0097a7;
@@ -39,16 +39,16 @@ body *{
 }
 
 .list__link{
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .list__item_margin:not(:first-child){
-    margin-left: 35px;
+    margin-left: 3.5rem;
 }
 .header__drop{
     display: block;
-    width: 33px;
-    height: 19px;
+    width: 3.3rem;
+    height: 1.9rem;
     background-image: url(../img/icon-admin/drop.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -62,20 +62,19 @@ body *{
 }
 
 .main_padding{
-    padding: 50px 63px;
+    padding: 5rem 6.3rem;
 }
 .main__button{
-    width: 215px;
-    height: 45px;
+    
 }
 .main__button_margin{
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 .text_button{
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 .main__table-shadow{
-    box-shadow: 0 0 84px rgba(22,86,107, 0.16);
+    box-shadow: 0 0 8.4rem rgba(22,86,107, 0.16);
 }
 .table-licenses{
     width: 100%;
@@ -86,11 +85,11 @@ body *{
     display: flex;
 }
 .col__header{
-    line-height: 70px;
-    height: 70px;
+    line-height: 7rem;
+    height: 7rem;
     flex: 3.5;
     color: #fff;
-    font-size: 17px;
+    font-size: 1.7rem;
 }
 .table__column{
     display: flex;
@@ -98,12 +97,12 @@ body *{
     text-align: center;
     align-items: center;
     color: inherit;
-    height: 70px;
+    height: 7rem;
     flex: 3.5;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 .cell_margin:not(:last-child){
-    margin-right: 15px;
+    margin-right: 1.5rem;
 }
 .col__header:first-child,
 .table__column:first-child{
@@ -127,17 +126,17 @@ tbody .table__row:hover{
 .dotter{
     color: #4c4c4c;
     display: block;
-    line-height: 35px;
+    line-height: 3.5rem;
     text-align: center;
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.6rem;
 }
 .link-prev,
 .link-next{
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 7px 11px;
+    background-size: .7rem 1.1rem;
 }
 .link-prev{
     background-image: url(../img/icon-admin/prev.png);
@@ -159,10 +158,10 @@ tbody .table__row:hover{
     display: flex;
 }
 .main__licenses-count-margin{
-    margin-left: 45px;
+    margin-left: 4.5rem;
 }
 .licenses-count__text{
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #4c4c4c;
 }
 .licenses-count__label{
@@ -172,7 +171,7 @@ tbody .table__row:hover{
     cursor: pointer;
 }
 .licenses-count__label_margin{
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 .licenses-count__input{
     width: 100%;
@@ -184,7 +183,7 @@ tbody .table__row:hover{
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #4c4c4c;
 }
 .licenses-count__input:checked + .licenses-count__span{
@@ -197,7 +196,7 @@ tbody .table__row:hover{
     align-items: center;
 }
 .main__settings_padding{
-    padding: 55px 30px;
+    /*padding: 5.5rem 3rem;*/
 }
 
 .add-license{
@@ -216,25 +215,34 @@ tbody .table__row:hover{
     background-color: #fff;
     margin: auto;
     margin-top: 0;
-    width: 860px;
+    width: 86rem;
     /* height: 290px;  */
 }
 .add-license__header{
-    width: 860px;
+    width: 86rem;
     position: relative;
     margin: auto;
     margin-bottom: 0;
-    height: 47px;
+    height: 4.7rem;
 }
 
 .add-license__header_padding{
-    padding: 0 30px;
+    padding: 0 3rem;
 }
 
 .button__license,
 .button__rdp{
     height: 100%;
     border: none;
+}
+
+.license__button-remove {
+    border: 1px solid transparent;
+}
+
+.license__button-remove:hover {
+    opacity: .8;
+    cursor: pointer;
 }
 
 .button__license:hover,
@@ -250,42 +258,40 @@ tbody .table__row:hover{
 .license__data-container_margin,
 .rdp__data-container_margin{
     flex-wrap: wrap;
-    margin: 30px;
+    margin: 3rem;
 }
 .license__data-container,
 .rdp__data-container{
     
 }
 .license__data{
-    width: calc(50% - 15px);
+    width: calc(50% - 1.5rem);
     display: flex;
     flex-direction: column; 
 }
 .license__data_margin:not(:nth-child(2n-1)){
-    margin-left: 30px;
+    margin-left: 3rem;
 }
 .license__data_margin-top{
-    margin-top: 20px;
+    margin-top: 2rem;
 }
 
 .license__input{
-    height: 38px;
+    height: 3.8rem;
     border: 1px solid rgba(111,111,111, 0.41);
-    padding: 10px;
+    padding: 1rem;
 }
 .license__label{
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #747474;
 }
 .license__label_margin{
-    margin-bottom: 8px;
+    margin-bottom: .8rem;
 }
 .license__button,
 .license__button-save,
 .license__button-edit{
-    
-    width: 200px;
-    height: 50px;
+
     align-self: flex-end;
 }
 
@@ -294,7 +300,7 @@ tbody .table__row:hover{
 }
 
 .license__button-margin{
-    margin-right: 30px;
+    margin-right: 3rem;
 }
 
 .license__data-container{
@@ -303,22 +309,22 @@ tbody .table__row:hover{
 
 .rdp__area{
     resize: none;
-    height: 124px;
+    height: 25rem;
 }
 
 .rdp__validity_margin{
-    margin-top: 20px;
+    margin-top: 2rem;
 }
 .validity__container{
-    margin-top: 6px;
+    margin-top: .6rem;
 }
 
 .button__license-close{
     position: absolute;
-    top: 14px;
-    right: 30px;
-    width: 19px;
-    height: 19px;
+    top: 1.4rem;
+    right: 3rem;
+    width: 1.9rem;
+    height: 1.9rem;
     border: none;
     background: none;
     outline: none;
@@ -336,25 +342,25 @@ tbody .table__row:hover{
     justify-content: space-between;
 }
 .license__edit_padding{
-    padding: 0 30px;
+    padding: 0 3rem;
 }
 
 .license__button-remove{
-    height: 50px;
-    padding: 0 25px;
-    background-image: url(../img/icon-admin/trash.png);
+    height: 5rem;
+    padding: 0 2.5rem;
+    background-image: url('../img/icon-admin/trash.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 25px;
+    background-size: 2.5rem;
 }
 
 .edit__agree{
     
-    width: calc(100% - 267px);
+    width: calc(100% - 26.7rem);
 }
 
 .edit__agree_margin{
-    margin-left: 17px;
+    margin-left: 1.7rem;
 }
 
 .ask-yes{
@@ -362,8 +368,8 @@ tbody .table__row:hover{
 }
 .ask-yes,
 .ask-no{
-    height: 28px;
-    padding: 0 10px;
+    height: 2.8rem;
+    padding: 0 1rem;
 }
 .ask-no{
     border: none;
@@ -376,7 +382,7 @@ tbody .table__row:hover{
     border-bottom: 1px solid #747474;
 }
 .add-license__license_padding{
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
 }
 
 /* JS LOGIC! */

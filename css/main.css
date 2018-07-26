@@ -10,6 +10,7 @@ body, html{
     height: 100%;
     padding: 0;
     margin: 0;
+    font-size: 62.5%;
 }
 
 body *{
@@ -45,15 +46,15 @@ body *{
 
 
 .header{
-    height: 80px;
+    height: 8rem;
     width: 100%;
     position: fixed;
-    padding:0 75px;
+    padding:0 7.5rem;
     z-index: 10;
 }
 
 .logo{
-    width: 180px;
+    width: 18rem;
 }
 
 .header__logo{
@@ -62,11 +63,11 @@ body *{
 
 .header__text{
     color: #2F555E;
-    font-size: 21px;
+    font-size: 2.1rem;
 }
 
 .header__text_size_head{
-    font-size: 24px;
+    font-size: 2.4rem;
 }
 
 .header_text_align{
@@ -85,9 +86,9 @@ body *{
 .user-profile{
     display: flex;
     align-items: center;
-    padding: 0 25px;
+    padding: 0 2.5rem;
     justify-content: space-between;
-    width: 245px;
+    width: 24.5rem;
     height: 100%;
     cursor: pointer;
 }
@@ -99,11 +100,11 @@ body *{
 
 .user-profile__login{
     color: #fff;
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 .user-profile__avatar {
-    width: 60px;
-    height: 60px;
+    width: 6rem;
+    height: 6rem;
     display: flex;
 }
 
@@ -118,8 +119,8 @@ body *{
     cursor: pointer;
     width: 0;
 	height: 0;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
+	border-left: 0.7rem solid transparent;
+	border-right: 0.7rem solid transparent;
 	border-top: 8px solid #fff;
 }
 
@@ -128,7 +129,7 @@ body *{
 }
 
 .user-profile__button.active{
-    border-top: 8px solid#fff;
+    border-top: .8rem solid#fff;
 }
 
 
@@ -138,25 +139,25 @@ body *{
     align-items: center;
     bottom: 0;
     width: 100%;
-    height: 30px;
-    padding: 5px 75px;
+    height: 3rem;
+    padding: .5rem 7.5rem;
     background: #737373;
     color: #fff;
-    font-size: 12px;
+    font-size: 1.2rem;
     flex: 0;
 }
 
 .main{
     flex: 1;
-    padding: 130px 0 140px;
+    padding: 13rem 0 14rem;
 }
 .input {
-    height: 50px;
-    padding: 8px 10px;
+    height: 5rem;
+    padding: .8rem 1rem;
     border: 1px solid #000;
-    margin-bottom: 15px;
-    margin-top: 12px;
-    font-size: 17px;
+    margin-bottom: 1.5rem;
+    margin-top: 1.2rem;
+    font-size: 1.7rem;
 }
 
 .button{
@@ -171,8 +172,10 @@ body *{
     /*vertical-align: top;*/
     /*align-items: flex-start;*/
     cursor: pointer;
-    width: 272.67px;
-    height: 65.88px;
+    display: inline-block;
+    padding: 1.6rem 3rem;
+    /*width: 272.67px;*/
+    /*height: 65.88px;*/
     /*left: 400px;*/
     /*top: 549px;*/
     
@@ -183,7 +186,7 @@ body *{
 
 .button:hover{
     /*border: 2px solid #000;*/
-    background: #2CC3B8;
+    background-color: #2CC3B8;
 }
 
 .button:focus{
@@ -225,47 +228,47 @@ body *{
     color: #202729;
 } */
 .button__text_size_small{
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 .text_size_14{
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 .text_size_small{
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 .text_size_min-small{
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .text_size_caption{
-    font-size: 28px;
+    font-size: 2.8rem;
 }
 
 .text_size_button{
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .text_size_header{
-    font-size: 38px;
+    font-size: 3.8rem;
 }
 
 .main__header{
     position: relative;
-    padding: 0 75px;
+    padding: 0 7.5rem;
 }
 .header__nav-path{
-    margin-top: 8px;
+    margin-top: .8rem;
     display: flex;
     list-style: none;
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .header__list-item {
-    margin-left: 5px; 
+    margin-left: .5rem; 
 }
 
 .tools__header_margin_bottom{
-    margin-bottom: 5px;
+    margin-bottom: .5rem;
 }
 
 .button > span{
@@ -288,8 +291,8 @@ body *{
     /*top: 0;*/
     /*left: 0;*/
     position: absolute;
-    top: 17px;
-    right: -50px;
+    top: 1.7rem;
+    right: -5rem;
 }
 
 .loader_relative{
@@ -298,11 +301,11 @@ body *{
 
 .loader__item {
     margin: auto;
-    border: 7px solid #f3f3f3;
+    border: .7rem solid #f3f3f3;
     border-radius: 50%;
-    border-top: 7px solid #24B9B3;
-    width: 30px;
-    height: 30px;
+    border-top: .7rem solid #24B9B3;
+    width: 3rem;
+    height: 3rem;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
 }

@@ -6,10 +6,18 @@ const Profile = {
             ,data:{
                 saved: false
                 ,profileData: ["","","","","",""]
-                ,loader: false
-                
+                ,loader: false,
+                error: false,
+                errorMessage: ''
             }
             ,methods:{
+                
+                clearStatusFields() {
+                    vm.saved = false;
+                    vm.error = false;
+                    vm.errorMessage = ''
+                },
+                
                 onSave: function(){
                     vm.changeLoader();
                     vm.saved = false;
@@ -44,10 +52,10 @@ const Profile = {
                     var loader = document.querySelector('.loader');
                     if(!vm.loader){
                         vm.loader = true;
-                        loader.classList.remove('hidden');
+                        // loader.classList.remove('hidden');
                     } else {
                         vm.loader = false;
-                        loader.classList.add('hidden');
+                        // loader.classList.add('hidden');
                     }
                 }
 
@@ -109,29 +117,39 @@ const Profile = {
         //     tabCompany.classList.add('active');
         // });
         btnAssociate.addEventListener('click', function(e){
+            vm.clearStatusFields();
             e.preventDefault();
             btnAssociate.classList.add('active');
             btnCompany.classList.remove('active');
             tabAssociate.classList.add('active');
             tabCompany.classList.remove('active');
         });
-        // function getCompanyData(){
-        //     var data = {
-        //         // form: $('.form__company').data('form'),
-        //         inn: $('#inn').val(),       
-        //         email: $('#email').val(),       
-        //         phone: $('#phone').val(),    
-        //         feature: 2,
-        //         'field-0': $('#field-0').val(),       
-        //         'field-1': $('#field-1').val(),       
-        //         'field-2': $('#field-2').val(),       
-        //         'field-3': $('#field-3').val(),       
-        //         'field-4': $('#field-4').val(),       
-        //         'field-5': $('#field-5').val()       
-        //     };
+        
+        btnCompany.addEventListener('click', function(e){
+            vm.clearStatusFields();
+            e.preventDefault();
+            btnCompany.classList.add('active');
+            btnAssociate.classList.remove('active');
+            tabCompany.classList.add('active');
+            tabAssociate.classList.remove('active');
+        });
+        function getCompanyData(){
+            var data = {
+                // form: $('.form__company').data('form'),
+                inn: $('#inn').val(),       
+                email: $('#email').val(),       
+                phone: $('#phone').val(),    
+                feature: 2//,
+                // 'field-0': $('#field-0').val(),       
+                // 'field-1': $('#field-1').val(),       
+                // 'field-2': $('#field-2').val(),       
+                // 'field-3': $('#field-3').val(),       
+                // 'field-4': $('#field-4').val(),       
+                // 'field-5': $('#field-5').val()       
+            };
             
-        //     return data;
-        // }
+            return data;
+        }
         function getAssociateData(){
             var data = {
                 // form: $('.form__company').data('form'),
@@ -147,28 +165,56 @@ const Profile = {
             return data;
         }
         
-        // $('#companySend').click(function(e){
-        //     console.log(getCompanyData());
-        //     e.preventDefault();
-        //     const data = getCompanyData();
-        //     const params = new URLSearchParams();
-        //     Object.keys(data).forEach(key => params.append(key, data[key]));
-        //     axios.post('/api/profile/data/', params)
-        //     .then(function(respones){
-        //         //vm.changeLoader();
-        //         console.log('Работает');
-        //     })
-        // });
+        $('#companySend').click(function(e){
+            vm.clearStatusFields();
+            vm.changeLoader();
+            console.log(getCompanyData());
+            e.preventDefault();
+            const data = getCompanyData();
+            const params = new URLSearchParams();
+            Object.keys(data).forEach(key => params.append(key, data[key]));
+            axios.post('/api/profile/data/', params)
+            .then(function(res){
+                vm.changeLoader();
+                if(res.data.status === 'OK') {
+                    vm.saved = true;
+                    setTimeout(() => {
+                        vm.saved = false;
+                    }, 3000)
+                } else {
+                    vm.error = true;
+                    vm.errorMessage = res.data.message
+                }
+            })
+            .catch(e => {
+                vm.error = true;
+                vm.errorMessage = e
+            })
+        });
         $('#associateSend').click(function(e){
+            vm.clearStatusFields();
+            vm.changeLoader();
             console.log(getAssociateData());
             e.preventDefault();
             const data = getAssociateData();
             const params = new URLSearchParams();
             Object.keys(data).forEach(key => params.append(key, data[key]));
             axios.post('/api/profile/data/', params)
-            .then(function(respones){
-                //vm.changeLoader();
-                console.log('Работает');
+            .then(function(res){
+                vm.changeLoader();
+                if(res.data.status === 'OK') {
+                    vm.saved = true;
+                    setTimeout(() => {
+                        vm.saved = false;
+                    }, 3000)
+                } else {
+                    vm.error = true;
+                    vm.errorMessage = res.data.message
+                }
+            })
+            .catch(e => {
+                vm.error = true;
+                vm.errorMessage = e
             })
         });
         

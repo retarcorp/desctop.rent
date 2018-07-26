@@ -35,25 +35,25 @@
         </header>
     
         <main class="main" id="app">
-            <section class="main__section authorization" v-if="Tabs.phone">
+            <section class="main__section authorization" v-if="Tabs.phone" @keyup.enter='onPhoneEntered'>
                 <header class="authorization__header header_text_align header_text-size_caption">Вход в систему</header>
                 <input id="phone" class="input authorization__phone" type="tel" @input="refreshPhoneMessage" v-model="phone" placeholder="+ 7 (    ) ___-__-__">
                 <button class="authorization__button button text_size_button loader_relative" @click.prevent="onPhoneEntered">
-                    <span class="text_size_button button__text_color font-regular">Войти в кабинет</span>
+                    <span class="text_size_button button__text_color font-regular button-with-loader">Войти в кабинет</span>
                     <div class="loader hidden">
                         <div class="loader__item"></div>        
                     </div>
                 </button>
                 <span class="invalid-phone text_color_grey text_size_min-small invelid_margin" v-if="phoneIsInvalid">{{Messages.currentPhoneMessage}}</span>
             </section>
-            <section class="main__section sms-confirmation" v-if="Tabs.sms">
+            <section class="main__section sms-confirmation" v-if="Tabs.sms" @keyup.enter='onSmsCodeEntered'>
                 <header class="sms-confirmation__header header_text_align header_text-size_caption">Вход в систему</header>
                 <label for="sms" class="sms-confirmation__help-info text_color_grey text_size_small">На указанный Вами номер было отправлено
                     СМС-сообщение с кодом подтверждения. Введите этот код в поле ниже:
                 </label>
                 <input id="sms" class="input sms-confirmation__number" type="text" @input="refreshSmsMessage" placeholder="Например: 003827" v-model="smsCode">
                 <button class="sms-confirmation__button button loader_relative" @click.prevent="onSmsCodeEntered">
-                    <span class="text_size_button button__text_color font-regular">Войти в кабинет</span>
+                    <span class="text_size_button button__text_color font-regular button-with-loader">Войти в кабинет</span>
                     <div class="loader hidden">
                         <div class="loader__item"></div>        
                     </div>
@@ -61,8 +61,8 @@
                 <p class="status invelid_margin text_color_grey text_size_min-small" v-if="smsIsInvalid">{{Messages.smsCodeMessage}}</p>
                 <p class="sms-confirmation__agreement text_color_grey text_size_min-small font-italic">
                     Нажимая на кнопку Войти в кабинет, Вы выражаете
-                    согласие с <a class="sms-confirmation__link" href="#">условиями предоставления услуг</a>
-                    и <a class="sms-confirmation__link" href="#">политикой конфиденциальности</a>
+                    согласие с <a class="sms-confirmation__link" href="/termsofservice/" target="_blank">условиями предоставления услуг</a>
+                    и <a class="sms-confirmation__link" href="/privacypolicy/" target="_blank">политикой конфиденциальности</a>
                 </p>
             </section>
         </main>

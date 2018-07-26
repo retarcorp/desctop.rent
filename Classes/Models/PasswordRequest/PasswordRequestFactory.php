@@ -7,34 +7,87 @@ use Classes\Models\PasswordRequest\PasswordRequest;
 use Classes\Models\SharePoint\Licenses\Licenses;
 use Classes\Models\SharePoint\Licenses\License;
 use Classes\Models\Users\UsersFactory;
+use Classes\Models\Users\User;
 
 class PasswordRequestFactory {
     
     private $sql;
     
     public function __construct(){
-        $this->sql = new Sql();
+        $this->sql = Sql::getInstance();
     }
     
-    public function getEmail() {
-        $u = new UsersFactory();
-        $u->getCurrentUser();
-    }
-    
-    /*public function createRequest($license ??){
-        $this->sql->query("INSERT INTO ".PasswordRequest::TABLE_NAME." (created_at, license_id, email, new_pw, status, message) 
-            VALUES (now(),".User::STATUS_JUST_CREATED.",'".."', ' ',".User::INDIVIDUAL_FACE.")");
-        // 11111
-    }*/
-    
-    public function getOpenedRequest(/*$license*/) {
-        $data = $this->sql->getAssocArray("select * from ".PasswordRequest::TABLE_NAME." where status=".PasswordRequest::REQUEST_OPENED."");
-        $arr = [];
+    public function createRequest(License $license, string $password): PasswordRequest{
+        $q = ("INSERT INTO " . PasswordRequest::TABLE_NAME . "
+            (created_at, license_id, email, new_pw, status, message)
+            VALUES (NOW(), ? , '?', '?', ?, '?')");
         
+        $this->sql->execPrepared($q, [
+            $license->getId(),
+            $license->getLogin(),
+            $password,
+            PasswordRequest::STATUS_OPENED,
+            ''
+        ]);
+        $this->sql->logError(__METHOD__);
+        
+        $id = $this->sql->getInsertId();
+        return new PasswordRequest($id);
+    }
+    
+    public function isPasswordRequestCreatingAvailable(License $license): bool{
+        $q = "SELECT COUNT(*) amount FROM " . PasswordRequest::TABLE_NAME . "
+            WHERE status IN (" . PasswordRequest::STATUS_OPENED . ",
+            " . PasswordRequest::STATUS_PROCESSED . ")
+            AND license_id = " . $license->getId();
+        
+        $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
+        return !intval($data[0]['amount']);
+    }
+    
+    public function getOpenedRequest(): array{
+        $q = "SELECT * FROM " . PasswordRequest::TABLE_NAME . "
+            WHERE status = " . PasswordRequest::STATUS_OPENED;
+            
+        $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
+        
+        $arr = [];
         foreach ($data as $i=>$value) {
-            //$arr[$i] = $data[$i];
-            $arr[$i] = PasswordRequest::arrayToInstance($value);;
+            $arr[] = PasswordRequest::arrayToInstance($value);;
         }
         return $arr;
     }
+    
+    public function getPendingPasswordRequest(License $license): ?PasswordRequest{
+        if( is_null($license) ){
+            return null;
+        }
+        
+        $q = "SELECT * FROM " . PasswordRequest::TABLE_NAME . "
+            WHERE license_id = " . $license->getId() . "
+            AND status IN (" . PasswordRequest::STATUS_OPENED . ",
+            " . PasswordRequest::STATUS_PROCESSED . ")";
+            
+        $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
+        return empty($data) ? null : PasswordRequest::arrayToInstance($data[0]);
+    }
+    
+    public function getLastPasswordRequestForUser(License $license): ?PasswordRequest{
+        if (!$license) {
+            return null;
+        }
+        
+        $q = "SELECT * FROM " . PasswordRequest::TABLE_NAME . "
+            WHERE license_id = " . $license->getId() . "
+            ORDER BY id DESC
+            LIMIT 1";
+            
+        $data = $this->sql->getAssocArray($q);
+        $this->sql->logError(__METHOD__);
+        return empty($data) ? null : PasswordRequest::arrayToInstance($data[0]);
+    }
+    
 }

@@ -2,14 +2,17 @@ body{
     background: none;
 }
 
- 
+.tools__disable {
+    pointer-events: none
+}
 
 .btn-menu_margin{
-    margin: 20px 75px 74px;
+    margin: 2rem 7.5rem 7.4rem;
+    font-size: 1.3rem;
 }
 
 .btn-menu__set-password_margin{
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .btn-menu__entrance{
@@ -27,8 +30,8 @@ body{
 }
 
 .container_padding{
-    margin-top: 20px;
-    padding: 0 75px;
+    margin-top: 2rem;
+    padding: 0 7.5rem;
 }
 
 .item{
@@ -42,7 +45,7 @@ body{
 }
 
 .picture__img{
-    width: 28px;
+    width: 2.8rem;
     margin: auto;
 }
 
@@ -51,50 +54,61 @@ body{
 }
 
 .item__text_width{
-    width: calc(100% - 90px); 
+    width: calc(100% - 9rem); 
 }
 
 .item_margin{
-    margin: 36px 0 0;
-    padding-bottom: 20px;
+    margin: 3.6rem 0 0;
+    padding-bottom: 2rem;
 }
 
 .description_text_size{
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .description_padding{
-    padding-top: 9px; 
+    padding-top: .9rem; 
 }
 
 .picture{
-    width: 80px;
-    height: 80px;
+    width: 8rem;
+    height: 8rem;
 }
 
 .picture_theme_sky-dark{
     background-color: #227693;
 }
 
-.tools__disabled .item__picture{
-    background-color: #818384;
+.item__picture {
+    background-size: contain;
+    background-color: #fff;
+    width: 3.6rem;
+    height: 3.6rem;
+    margin: auto;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
-.btn-menu__button_size{
-    height: 45px;
+.tools__disable .item__picture{
+    background-blend-mode: luminosity;
+    opacity: .5;
 }
+
+/*.btn-menu__button_size{*/
+/*    height: 45px;*/
+/*}*/
 
 .item__text_head{
-    font-size: 17px;
+    font-size: 1.7rem;
 }
 
 .item__text_desc{
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .tools__link{
     display: block;
-    width: 390px;
+    width: 39rem;
 }
 
 .tools__link:hover .header__text{
@@ -127,38 +141,67 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  padding: 20px 30px;
+  padding: 2rem 3rem;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  max-width: 65rem;
+  width: 100%;
 }
 
 .setup-password__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 3px;
+    margin-bottom: 3.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.setup-password__form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.setup-password__input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 1.6rem;
 }
 
 
-.setup-password__form__control:not(:last-child) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-top: 6px;
-    padding-bottom: 5px;
+.setup-password__form__control {
+    width: 48%;
+}
+
+.setup-password__form__control:first-child {
+    margin-right: 4%;
 }
 
 .setup-password__label {
-    margin-right: 5px;
+    display: block;
+    color: #3C3C3C;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.setup-password__status-box_no-loader {
+    display: flex;
+    justify-content: space-between;
 }
 
 .setup-password__close {
     display: inline-block;
-    padding: 3px;
+    background: url('../img/Close.png') center no-repeat;
+    background-size: cover;
+    width: 3rem;
+    height: 3rem;
     cursor: pointer;
     outline: none;
-    border: 0;
-    color: #000;
+}
+
+.setup-password__response-ok , .setup-password__status-box_loader-text, .setup-password__response-error {
+    font-size: 2rem;
 }
 
 .setup-password__button-submit {
@@ -166,47 +209,72 @@ body{
     cursor: pointer;
     background-color: #26BEB8;
     color: #fff;
-    padding: 3px 5px;
+    padding: 1.8rem 3.5rem;
     border: 0;
+    font-size: 1.6rem;
+}
+
+.setup-password__status-box_loader-text {
+    margin-left: 6rem;
 }
 
 .setup-password__button-submit:disabled {
     background-color: #333;
     opacity: .5;
+    cursor: auto;
 }
 
 .setup-password__alert {
     display: block;
-    margin-top: 5px;
+    margin-top: .5rem;
     width: 100%;
-    color: red;
-    line-height: 1;
-    font-size: 10px;
+    line-height: normal;
+    font-size: inherit;
 }
 
 .setup-password__input {
-    border: 1px solid #777;
+    border: 1px solid transparent;
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background-color: #EDEDED;
+}
+
+.setup-password__input:focus {
+    border: 1px solid #C0C0C0;
 }
 
 .setup-password__input_error {
-    border: 1px solid red;
+    border: 1px solid #E83E3E !important;
 }
 
 .setup-password__alert-box {
-    margin-bottom: 5px;
-    height: 25px;
+    font-size: 1.4rem;
+    color: #2F555E;
+    margin-bottom: 4rem;
+}
+
+.setup-password__status-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .loader-wrapper {
     position: relative;
-    height: 25px;
+    margin-left: 2rem;
+    height: 2.5rem;
 }
 
 .loader {
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 8px;
+    transform: translate(-50%, -50%);
+}
+
+.loader__item_cp {
+    height: 4.5rem;
+    width: 4.5rem;
 }
 
 .setup-password__response-ok {
@@ -214,5 +282,5 @@ body{
 }
 
 .setup-password__response-error {
-    color: red;
+    color: #E83E3E;
 }

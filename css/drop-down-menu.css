@@ -1,13 +1,13 @@
 .header__menu{
     position: fixed;
     right: 0;
-    top: 80px;
+    top: 8rem;
     z-index: 999999;
-    height: calc(100% - 110px);
+    height: calc(100% - 11rem);
 }
 
 .drop-down-list{
-    width: 75px;
+    width: 7.5rem;
     height: 100%;
     list-style: none;
     position: relative;
@@ -21,7 +21,7 @@
 }
 
 .block_padding{
-    padding: 30px 20px;
+    padding: 3rem 2rem;
 }
 
 .item__link{
@@ -29,19 +29,19 @@
 }
 
 .drop-down-list__button{
-    width: 75px;
-    height: 75px;
-    padding: 31px;
+    width: 7.5rem;
+    height: 7.5rem;
+    padding: 3.1rem;
     position: relative;
 }
 
 .button__notification{
     display: block;
-    width: 12px;
-    height: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
     position: absolute;
-    right: 23px;
-    top: 24px;
+    right: 2.3rem;
+    top: 2.4rem;
     background: #26BEB8;
     border-radius: 50%;
     color: #fff;
@@ -50,7 +50,7 @@
 .drop-down-list__button_background{
     background-color:#fff;
     background-position: center;
-    background-size: 22px;
+    background-size: 2.2rem;
     background-repeat: no-repeat; 
 }
 
@@ -59,7 +59,17 @@
 }
 .button__info{
     background-image: url(../img/drop-down-icon/information.png);
+    border: 1px solid transparent;
 }
+
+.drop-down-list__button {
+    border: 1px solid transparent;
+}
+
+.drop-down-list__button:hover {
+    border: 1px solid #ccc;
+}
+
 .button__support{
     background-image: url(../img/drop-down-icon/support.png);
 }
@@ -73,11 +83,11 @@
 }
 
 .block_shadow{
-    box-shadow: -1px 0px 5px #aaa;
+    box-shadow: -1px 0px .5rem #aaa;
 }
 
 .drop-down-list__block{
-    width: 320px;
+    width: 32rem;
     height: 100%;
     /* position: absolute; */
     /* left: -320px; */
@@ -85,11 +95,11 @@
 }
 
 .block__header-border{
-    padding-bottom: 5px;
+    padding-bottom: .5rem;
     border-bottom: 1px solid #000;
 }
 .balance__link:first-child{
-    margin-bottom: 8px;
+    margin-bottom: .8rem;
 }
 
 .balance{
@@ -99,17 +109,17 @@
 
 .balance_margin,
 .resources_margin{
-    margin: 10px 0 20px;
+    margin: 1rem 0 2rem;
 }
 
 .services_margin{
-    margin: 10px 0 35px;
+    margin: 1rem 0 3.5rem;
 }
 
 .balance__link{
     display: block;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .link-color{
@@ -125,11 +135,11 @@
 }
 
 .money__count-size{
-    font-size: 24px;
+    font-size: 2.4rem;
 }
 
 .block_text-size{
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 .resources__info{
@@ -148,8 +158,8 @@
 }
 
 .resources__disk span{
-    font-size: 30px;
-    margin-right: 5px;
+    font-size: 3rem;
+    margin-right: .5rem;
     color: #227693;
     line-height: 0.8;
 }
@@ -164,24 +174,25 @@
 
 .drop-down-list__button:hover{
     background-color:#E0E0E0;
-    border: 2px solid rgba(0,0,0,0);
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
 }
 
 .text-caption_menu{
-    font-size: 20px;
+    font-size: 2rem;
 }
 
 .text-balance{
-    font-size: 14px;
-    line-height: 19px;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
 }
 
 .text-services{
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
 .text-resource{
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 
@@ -193,12 +204,12 @@
     left: 0;
     top: 0;
     height: 100%;
-    width: 320px;
+    width: 32rem;
     background: #fff;
 }
 .block__notice h1,
 .block__info h1{
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 .block__notice.active{
     display: block;
@@ -213,7 +224,7 @@
 }
 
 .info__setting_margin{
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .info__label{
@@ -222,7 +233,7 @@
 
 .info__input{
     width: 100%;
-    height: 25px;
+    height: 2.5rem;
 }
 .setting-btn{
     display: flex;
@@ -233,7 +244,7 @@
     width: 100%;
 }
 .info__button{
-    height: 30px;
+    height: 3rem;
     width: 100%;
     cursor: pointer;
 }
@@ -243,7 +254,7 @@
     left: 0;
     width: 100%;
     opacity: 0;
-    height: 30px;
+    height: 3rem;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -255,30 +266,30 @@
 
 .setting__select{
     width: 100%;
-    height: 25px;
+    height: 2.5rem;
 }
 
 .info__agreement{
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    margin-top: 30px;
+    margin-top: 3rem;
 }
 
 .button__agree{
-    width: 120px;
+    width: 12rem;
 }
 
 .button__cancel{
-    width: 90px;
+    width: 9rem;
 }
 .button__cancel_margin{
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .notice__block{
     border: 1px solid transparent;
-    padding: 10px 7px;
+    padding: 1rem .7rem;
     cursor: pointer;
 }
 
@@ -294,17 +305,17 @@
     display: none;
     width: 100%;
     /* display: flex; */
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .button__resource,
 .button__pin{
-    height: 30px;
-    padding: 0 10px;
+    height: 3rem;
+    padding: 0 1rem;
 }
 
 .button__pin_margin{
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 
@@ -315,23 +326,23 @@
 }
 
 .notice__img{
-    width: 20px;
+    width: 2rem;
     /* align-self: flex-start; */
 }
 
 .description__header{
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .description__text{
-    font-size: 13px;
-    margin-top: 5px;
+    font-size: 1.3rem;
+    margin-top: .5rem;
 }
 
 .description__header_margin{
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .text-margin{
-    margin-top: 10px;
+    margin-top: 1rem;
 }

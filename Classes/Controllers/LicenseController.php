@@ -15,22 +15,19 @@ class LicenseController {
     # @http POST /license/create/
     public function createLicense(){
         $login = $_POST['login'];
-        $uid = $_POST['uid'];
+        $uid = intval($_POST['uid']);
         $password = $_POST['password'];
         $content = $_POST['rdpContent'];
-        // $created_at = $_POST['created_at'];
         $due_to = $_POST['rdpDueTo']." 12:00:00";
         $ip = $_POST['rdpIp'];
         
         $rdpFactory = new RdpFactory();
         $rdp = $rdpFactory->createRdp($ip, $content, date("Y-m-d H:i:s"), $due_to);
-        #print_r($rdp);
         
         $licenseFactory = new LicenseFactory();
         $license = $licenseFactory->createLicense($uid, $rdp, $login, $password);
-        #print_r($license);
         
-        return JSONResponse::ok($license->toArray());
+        return $license->toArray();
     } 
 
     # @http GET /license/
@@ -57,7 +54,8 @@ class LicenseController {
                 'rdp' => $rdp
             ];
         }, $licenses);
-        return JSONResponse::ok($results);
+        
+        return $results;
     }
 
     # @http POST /license/update/
@@ -67,14 +65,15 @@ class LicenseController {
 
         $login = $_POST['login'];
         $password = $_POST['password'];
-        $uid = $_POST['uid']; //\
+        $uid = $_POST['uid'];
+        $prevUserId = $uid ? $uid : $license->getUid();
         $content = $_POST['rdpContent'];
         $due_to = $_POST['rdpDueTo'];
         $ip = $_POST['rdpIp'];
 
         $license->setLogin($login);
         
-        if( trim($password) ){  //\ если пароль не менялся
+        if( trim($password) ){
             $hash = License::getHash($password);
             $license->setPassword($hash);
         }
@@ -82,13 +81,20 @@ class LicenseController {
         $license->setUid($uid);
         $license->updateLicense();
         
-        $rdp = $license->getRdp(); //\
+        $rdp = $license->getRdp();
         $rdp->ip = $ip;
-        $rdp->due_to = $due_to; //\
+        $rdp->due_to = $due_to;
         $rdp->updateContent($content);
         $rdp->updateRdp();
+        
+        $user = new User($prevUserId);
+        if( $uid ){
+            $user->onLicenseAttached();
+        }else{
+           $user->onLicenseDettached();
+        }
 
-        return JSONResponse::ok(['license' => $license->toArray(), 'rdp' => $rdp->toArray()]);
+        return ['license' => $license->toArray(), 'rdp' => $rdp->toArray()];
 
     }
 
@@ -102,7 +108,7 @@ class LicenseController {
         $lf = new LicenseFactory;
         $lf->deleteLicense($license);
 
-        return JSONResponse::ok("Лицензия успешно удалена");
+        return "Лицензия успешно удалена";
 
 
     }

@@ -11,6 +11,7 @@ use Classes\Models\Users\UsersFactory;
 use Classes\Models\Users\ProfileData; //\
 use Classes\Models\Users\User;
 use Classes\Models\SharePoint\Licenses\Licenses;
+use Classes\Utils\Common;
 
 class ProfileController {
     
@@ -23,35 +24,48 @@ class ProfileController {
         $user = $factory->getCurrentUser();
 
         $feature = intval($_POST['feature']);
-        $user->feature = $feature;
+        
+        if( !trim($_POST['email'])
+            || !Common::isEmailValid($_POST['email'])
+        ){
+            throw new \Exception("Email введен неверно");
+        }
+        
+        $inn = trim($_POST['inn']);
         
         if( !isset($feature) ){
-            throw new \Exception("Проверьте введенные данные");
+            throw new \Exception("Тип пользователя не опознан");
         }elseif( $feature == User::LEGAL_ENTITY ){
-            
             $connection = new \Classes\Vendor\Seldon\Connection();
-            $data = $connection->findCompany(trim($_POST['inn']));
+            $data = $connection->findCompany($inn);
             
             if( !($data['companies_list']) || empty($data['companies_list']) ){
                 throw new \Exception("Компания с таким ИНН не найдена в реестре индивидуальных предпринимателей и юридических лиц! Пожалуйста, проверьте введенную информацию.");
             }
             
-        }elseif( $feature != User::INDIVIDUAL_FACE ){
+        }elseif( $feature == User::INDIVIDUAL_FACE ){
+            $data = [];
+            foreach($_POST as $name => $value){
+                if( strpos($name, "field-") === 0){
+                    $n = explode("-",$name);
+                    $n = intval($n[1]);
+                    $data[$n] = $value;
+                }
+            }
+        }else{
             throw new \Exception("Тип пользователя не опознан.");
         }
         
-        $user->inn = $_POST['inn'];
-        $user->email = $_POST['email'];
+        $user->feature = $feature;
+        $user->inn = $inn;
+        $email = trim($_POST['email']);
+        $user->email = $email;
         $user->update();
         
         $pd = $user->getProfileData();
             
-        foreach($_POST as $name => $value){
-            if(strpos($name,"field-") === 0){
-                $n = explode("-",$name);
-                $n = intval($n[1]);
-                $pd->data[$n] = $value;
-            }
+        foreach($data as $i => $value){
+            $pd->data[$i] = $value;
         }
             
         $pd->update();
@@ -80,7 +94,7 @@ class ProfileController {
                     ,"name" => $r['basic']['fullName']
                     ,"ogrn" => $r['basic']['ogrn']
                     ,"status" => $r['basic']['status']['code']
-                    ];
+                ];
                 return $res;
             }
         }

@@ -9,31 +9,31 @@
 
 
 .main{
-    padding: 80px 0 0;
+    padding: 8rem 0 0;
     display: flex;
 }
 
 .main__left-menu{
     /* flex: 1; */
-    width: 310px;
+    width: 31rem;
 }
 
 .main__right-tab{
     /* flex: 4; */
-    width: calc(100% - 300px);
+    width: calc(100% - 30rem);
 }
 
 .left-menu{
     display: flex;
     flex-direction: column;
-    height: calc(100% - 90px);  
+    height: calc(100% - 9rem);  
 }
 
 .left-menu_position{
     position: fixed;
-    top: 80px;
+    top: 8rem;
     background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px .4rem rgba(0, 0, 0, 0.25);
 
 }
 
@@ -42,11 +42,11 @@
 }
 
 .left-menu__button_margin{
-    margin: 20px auto 10px;
+    margin: 2rem auto 1rem;
 }
 
 .left-menu__button_size{
-    width: calc(100% - 44px);
+    width: calc(100% - 4.4rem);
     
 }
 
@@ -55,19 +55,19 @@
 }
 
 .list_padding{
-    padding: 0 20px;
+    padding: 0 2rem;
 }
 .list__item{
     display: block;
-    background-size: 18px;
-    background-position: 75px center;
+    background-size: 1.8rem;
+    background-position: 7.5rem center;
     background-repeat: no-repeat;
 }
 .list__item a{
     display: block;
-    padding: 18px 0px 17px 106px;
+    padding: 1.8rem 0px 1.7rem 10.6rem;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-family: OpenSans Regular;
 
 }
@@ -97,11 +97,11 @@
 }
 
 .right-tab{
-    padding: 50px 70px;
+    padding: 5rem 7rem;
 }
 
 .right-tab_margin{
-    margin-left: 310px;
+    margin-left: 31rem;
 }
 
 .tab-data__content{
@@ -112,7 +112,7 @@
 }
 
 .tab-data__content_margin_top{
-    margin-top: 25px;
+    margin-top: 2.5rem;
 }
 
 .field{
@@ -123,12 +123,12 @@
 }
 
 .field_margin_bottom{
-    margin-bottom: 10px;
-    margin-right: 20px;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
 }
 
 .field_margin_bottom:htn-child(2n-1){
-    margin-right: 20px;
+    margin-right: 2rem;
 }
 
 .field__input{
@@ -137,8 +137,8 @@
     /*border-color: #818384;*/
     /*margin: 0;*/
 
-    width: 391.78px;
-    height: 50.31px;
+    width: 39rem;
+    height: 5rem;
     border: none;
     
     background: #EDEDED;
@@ -155,17 +155,22 @@
     /*width: 200px;*/
     width: 100%;
 }
+.field__label span{
+    font-weight: 400;
+}
 .save{
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 .save_margin{
-    margin-top: 30px;
+    margin-top: 3rem;
 }
 .save__message{
-    line-height: 40px;
+    line-height: 4rem;
 }
 .save__message_margin{
-    margin-left: 15px;
+    margin-left: 1.5rem;
 }
 
 .list__item.active{
@@ -174,14 +179,14 @@
 
 
 .text_size_header{
-    font-size: 28px;
+    font-size: 2.8rem;
 }
 
 .header__nav-path{
-    margin-top: 8px;
+    margin-top: ..8rem;
     display: flex;
     list-style: none;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 /* лучший селектор в мире!!!!!!! */
@@ -195,24 +200,24 @@ section[class^="right-tab__"].active {
 }
 
 .left-menu__list{
-    padding-top: 35px;
+    padding-top: 3.5rem;
 }
 
 .selection__list{
-    margin-top: 37px;
+    margin-top: 3.7rem;
     display: flex;
     justify-content: flex-start;
     list-style: none;
 }
 
 .selection__list li {
-    padding: 5px 0;
-    font-size: 16px;
+    padding: .5rem 0;
+    font-size: 1.6rem;
     cursor: pointer;
 }
 
 .selection__list li:not(:last-child){
-    margin-right: 25px;
+    margin-right: 2.5rem;
 }
 
 
@@ -244,8 +249,8 @@ section[class^="right-tab__"].active {
 
     .header__button-adaptive{
         display: block;
-        width: 40px;
-        height: 40px;
+        width: 4rem;
+        height: 4rem;
         background: none;
         border: none;
         outline: none;
@@ -253,14 +258,14 @@ section[class^="right-tab__"].active {
         background-image: url(../img/icon-adaptive-menu.png);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 40px;
+        background-size: 4rem;
     }
 
     .left-menu{
         display: none;
         position: fixed;
         width: 100%;
-        top: 60px;
+        top: 6rem;
     }
     .left-menu.active{
         display: block;
@@ -268,11 +273,11 @@ section[class^="right-tab__"].active {
     }
 
     .left-menu__button_margin{
-        margin: 20px;
+        margin: 2rem;
     }
 
     .right-tab{
-        padding: 0 20px;
+        padding: 0 2rem;
         width: 100%;
     }
     .right-tab_margin{
@@ -295,6 +300,6 @@ section[class^="right-tab__"].active {
     }
     .save__message_margin{
         margin: 0;
-        margin-top: 5px;
+        margin-top: .5rem;
     }
 }

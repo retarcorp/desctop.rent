@@ -6,12 +6,12 @@ use Classes\Utils\Sql;
 use Classes\Models\Users\User;
 use Classes\Utils\Sms;
 use Classes\Models\Users\ProfileData;
+use Classes\Exceptions\DesktopRentException;
 
 class UsersFactory{
     
-    
-    
     private $sql;
+    
     public function __construct(){
         $this->sql = new Sql();
     }
@@ -27,16 +27,17 @@ class UsersFactory{
         }else{
             return null;
         }
+        
         $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." WHERE ssid='$ssid' AND auth=".User::AUTH_DONE);
+        $this->sql->logError(__METHOD__);
+        
         if(count($r)){
             return new User($r[0][0]);
-        }   
+        }
         return null;
     }
     
     public function logout(){
-        # Fin current user and set its auth to auth_logout and update user
-        # Delete ssid from cookie
         $user = $this->getCurrentUser();
         if ($user != null) {
             
@@ -87,36 +88,16 @@ class UsersFactory{
 
     public function phoneIsTaken(string $phone){
         $r = $this->sql->getArray("SELECT COUNT(id) FROM ".User::TABLE_NAME." WHERE phone = '$phone';");
-        
+        $this->sql->logError(__METHOD__);
         return $r[0][0] > 0;
     }
 
 
     public function createUser($phone){
         $this->sql->query("INSERT INTO ".User::TABLE_NAME." (phone, status, registered_at, inn, feature) 
-            VALUES ('$phone',".User::STATUS_JUST_CREATED.",'".date("Y-m-d H:i:s")."', ' ',".User::INDIVIDUAL_FACE.")");
-        // 11111
+            VALUES ('$phone',".User::STATUS_JUST_CREATED.",'".date("Y-m-d H:i:s")."', '',".User::INDIVIDUAL_FACE.")");
         
-        # @TODO create lines in ProfileData table
-        /////////////////////////////////////////////
-        //$pd = new ProfileData();
-        //ProfileData::TABLE_NAME; //\
-        /*$id = $this->sql->insert_id;
-        foreach(ProfileData::$fields as $i=>$name){
-            
-            //$value = isset($this->data[$i]) ? str_replace(["'",'"','\\'],"",$this->data[$i]) : self::VAL_UNDEFINED;
-            $this->sql->query("INSERT INTO ".ProfileData::TABLE_NAME." VALUES (default, {$id}, $i, '$value')");
-        }
-        $this->sql->query("INSERT INTO ".ProfileData::TABLE_NAME." VALUES");//\
-
-        if($this->sql->getLastError()){
-             throw new \Exception($this->sql->getLastError());
-         }
-         */
-        //////////////////////////////////////////////
-        
-
-
+        $this->sql->logError(__METHOD__);
         $user = $this->getUserByPhone($phone);
         $pd = new ProfileData($user->id);
         $pd->update();
@@ -126,16 +107,15 @@ class UsersFactory{
 
     public function getUserByPhone(string $phone){
         $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." WHERE phone='$phone'");
-        if($this->sql->getLastError()){
-            
-            throw new \Exception($this->sql->getLastError());
-        }
+        $this->sql->logError(__METHOD__);
         return new User(intval($r[0][0]));
     }
 
     public function getUserBySmsCode(int $code){
         $r = $this->sql->getArray("SELECT id FROM ".User::TABLE_NAME." 
             WHERE sms_code=$code AND auth=".User::AUTH_PENDING);
+        
+        $this->sql->logError(__METHOD__);
         if(count($r)){
             return new User($r[0][0]);
         }

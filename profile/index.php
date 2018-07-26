@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/user-control-panel.css">
     
     <link rel="stylesheet" href="/css/adaptive.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <script src="/js/drop-down-menu.js"></script>

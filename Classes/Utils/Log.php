@@ -4,11 +4,17 @@ namespace Classes\Utils;
 
 class Log{
     
+    public function const PATH = '/errors.log';
+    
     public static function info(string $report){
-        # @TODO implement
+        self::log($report);
     }
     
     public static function error(string $report){
-        # @TODO implement
+        self::log("ERROR:" . $report);
+    }
+    
+    private static function log(string $message){
+        file_put_contents($_SERVER['DOCUMENT_ROOT'] . self::PATH, $message);
     }
 }

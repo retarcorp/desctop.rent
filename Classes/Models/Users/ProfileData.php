@@ -14,50 +14,43 @@ class ProfileData {
     const VAL_UNDEFINED = "";
     
     static $fields = [
-            0 => "Название компании" // companyName
-            ,1 => "Регион" // region
-            ,2 => "Название банка" //bankname
-            ,3 => "КПП" //kpp
-            ,4 => "БИК" //bik
-            ,5 => "Расчетный счет" //paymentAccount
-            ,6 => 'Фамилия' // surname
-            ,7 => 'Имя' // name
-            ,8 => 'Отчество' //lastname
-            //,9 => 'Признак ЮЛ/ФЛ'
+        0 => "Название компании" // companyName
+        ,1 => "Регион" // region
+        ,2 => "Название банка" //bankname
+        ,3 => "КПП" //kpp
+        ,4 => "БИК" //bik
+        ,5 => "Расчетный счет" //paymentAccount
+        ,6 => 'Фамилия' // surname
+        ,7 => 'Имя' // name
+        ,8 => 'Отчество' //lastname
+        //,9 => 'Признак ЮЛ/ФЛ'
     ];
 
     static $legalEntityFields = [ 
-            0 => "Название компании" // companyName
-            ,1 => "Регион" // region
-            ,2 => "Название банка" //bankname
-            ,3 => "КПП" //kpp
-            ,4 => "БИК" //bik
-            ,5 => "Расчетный счет" //paymentAccount
-        ];
+        0 => "Название компании" // companyName
+        ,1 => "Регион" // region
+        ,2 => "Название банка" //bankname
+        ,3 => "КПП" //kpp
+        ,4 => "БИК" //bik
+        ,5 => "Расчетный счет" //paymentAccount
+    ];
         
     static $fieldsForIndividualFace = [ //\
-            6 => 'Фамилия' // surname
-            ,7 => 'Имя' // name
-            ,8 => 'Отчество' //lastname
-        ];
-      
-    /*static $fields = [
-            0 => "Название компании" // companyName
-            ,1 => "Регион" // region
-            ,2 => "Название банка" //bankname
-            ,3 => "КПП" //kpp
-            ,4 => "БИК" //bik
-            ,5 => "Расчетный счет" //paymentAccount
-    ];*/ // origin
+        6 => 'Фамилия' // surname
+        ,7 => 'Имя' // name
+        ,8 => 'Отчество' //lastname
+    ];
     
     public $data = [];
     private $user;
     public function __construct(int $uid){
         $this->uid = $uid;
         $this->user = new User($uid);
-        # @TODO get from database profile data object and fill fields,  intert the data to the form
+        
         $sql = Sql::getInstance(); 
         $rows = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE uid=$uid");
+        $sql->logError(__METHOD__);
+        
         foreach ($rows as $i => $iter) {
             $this->data[intval($iter['item'])] = $iter["value"];
         }
@@ -80,21 +73,14 @@ class ProfileData {
     public function update(){
         $sql = Sql::getInstance();
         $sql->query("DELETE FROM ".self::TABLE_NAME." WHERE uid=".$this->uid);
+        $sql->logError(__METHOD__);
         
         $myFields = $this->isIndividualFace() ?  self::$fieldsForIndividualFace : self::$legalEntityFields ; // тут нужно будет проверять feature из users
         foreach($myFields as $i=>$val){
             $value = isset($this->data[$i]) ? str_replace(["'",'"','\\'],"",$this->data[$i]) : self::VAL_UNDEFINED;
             $sql->query("INSERT INTO ".self::TABLE_NAME." VALUES (default, {$this->uid}, $i, '$value')");
+            $sql->logError(__METHOD__);
         }
-    } // 11111
-    
-    /*public function update(){
-        $sql = Sql::getInstance();
-        $sql->query("DELETE FROM ".self::TABLE_NAME." WHERE uid=".$this->uid);
-        foreach($fields as $i){
-            $value = isset($this->data[$i]) ? str_replace(["'",'"','\\'],"",$this->data[$i]) : self::VAL_UNDEFINED;
-            $sql->query("INSERT INTO ".self::TABLE_NAME." VALUES (default, {$this->uid}, $i, '$value')");
-        }
-    }*/ //origin method
+    }
 
 }

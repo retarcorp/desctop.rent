@@ -12,12 +12,10 @@ class RdpFactory{
             (ip, content, created_at, due_to)
             VALUES('?', '?', '?', '?')";
         
-        if($e = $sql->getLastError()){
-            print_r($e);
-        }
+        $sql->logError(__METHOD__);
 
         $sql->execPrepared($q, [$ip, $content, $createdAt, $dueTo]);
-        #print_r($sql->getLastError());
+        $sql->logError(__METHOD__);
         
         $id = $sql->getInsertId();
         return new Rdp($id);
@@ -25,7 +23,7 @@ class RdpFactory{
     public function deleteRdp(Rdp $rdp) {
         $sql = Sql::getInstance();
         $sql->query("DELETE FROM ". Rdp::TABLE_NAME ." WHERE id=".$rdp->id."");
-
+        $sql->logError(__METHOD__);
     }
     
 }

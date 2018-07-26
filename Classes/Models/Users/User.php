@@ -6,6 +6,10 @@ use Classes\Utils\Sql;
 
 use Classes\Models\Rdp\Rdp;
 use Classes\Models\Users\ProfileData;
+use Classes\Models\SharePoint\Licenses\License;
+use Classes\Models\Finance\Transaction;
+use Classes\Exceptions\WrongIdException;
+use Classes\Exceptions\NonExistingItemException;
 
 class User{
     
@@ -20,18 +24,27 @@ class User{
     const STATUS_ASSIGNED_LICENSE = 14;
     const STATUS_SET_UP = 15;
 
-    const INDIVIDUAL_FACE = 1; //\
-    const LEGAL_ENTITY = 2; //\
+    const INDIVIDUAL_FACE = 1;
+    const LEGAL_ENTITY = 2;
 
     public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email, $feature;
     public $auth;
-    # @TODO add field INN to user class and database, set to '' when creating user 
     
     public function __construct(int $id){
+        if( $id <= 0 ){
+            throw new WrongIdException("Wrong id $id");
+        }
+        
         $sql = Sql::getInstance();
         $r = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE id=$id");
+        $sql->logError(__METHOD__);
+        
+        if( empty($r) ){
+            throw new NonExistingItemException("There is no such user $id");
+        }
+        
         $r = $r[0];
-
+        
         $this->id = $r['id'];
         $this->auth = $r['auth'];
         $this->status = $r['status'];
@@ -43,11 +56,12 @@ class User{
         $this->last_ip = $r['last_ip'];
         $this->inn = $r['inn']; 
         $this->email = $r['email'];
-        $this->feature = $r['feature']; //\ 11111
+        $this->feature = $r['feature'];
     }
     
     public function update(){
         $sql = Sql::getInstance();
+        
         $sql->query("UPDATE ".self::TABLE_NAME." SET 
             status={$this->status}
             ,auth={$this->auth}
@@ -59,12 +73,25 @@ class User{
             ,last_ip='".$_SERVER['REMOTE_ADDR']."'
             ,feature={$this->feature}
         WHERE id={$this->id}");
-    } // здесь ещё feature = '{$this->feature}' перед WHERE
+        
+        $sql->logError(__METHOD__);
+    }
+    
+    public function getLicense(): ?License{
+        $sql = Sql::getInstance();
+        $q = "SELECT id FROM " . License::TABLE_NAME . "
+            WHERE uid = {$this->id}";
+            
+        $data = $sql->getAssocArray($q);
+        $sql->logError(__METHOD__);
+        
+        $id = @intval($data[0]['id']);
+        return $id ? new License($id) : null;
+    }
 
     public function getProfileData() : ProfileData {
-        # @TODO: get ProfileData object for this user
-        $profileData = new ProfileData($this->id); //\
-        return $profileData; //\
+        $profileData = new ProfileData($this->id);
+        return $profileData;
     }
 
     public function hasRightsAtLeast(int $num){
@@ -80,4 +107,24 @@ class User{
         $this->status = $this->status < self::STATUS_ASSIGNED_LICENSE ? self::STATUS_ASSIGNED_LICENSE : $this->status;
         $this->update();
     }
+    
+    public function onLicenseDettached(){
+        $this->status = self::STATUS_FILLED_PROFILE_DATA;
+        $this->update();
+    }
+    
+    public function getTransactions(int $amount = 0, int $step = 0): array{
+        $q = "SELECT * FROM " . Transaction::TABLE_NAME . "
+            WHERE uid = {$this->id}
+            ORDER BY id DESC";
+        
+        $q = $amount ? $q . " LIMIT $amount " : $q;
+        $q = $amount ? $q . " OFFSET $step " : $q;
+        
+        $sql = Sql::getInstance();
+        $data = $sql->getAssocArray($q);
+        $sql->logError(__METHOD__);
+        return Transaction::toInstances($data);
+    }
+    
 }

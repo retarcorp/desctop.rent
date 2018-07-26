@@ -22,28 +22,9 @@
                 <li class="list__item list__item_margin active">
                     <a href="/" class="list__link text_color_white">Лицензии</a>
                 </li>  
-                <!--<li class="list__item list__item_margin">-->
-                <!--    <a href="#" class="list__link text_color_white">Item Nav 2</a>-->
-                <!--    <span class="header__drop"></span>-->
-                <!--</li>  -->
-                <!--<li class="list__item list__item_margin">-->
-                <!--    <a href="#" class="list__link text_color_white">Item Nav 3</a>-->
-                <!--</li>  -->
-                <!--<li class="list__item list__item_margin">-->
-                <!--    <a href="#" class="list__link text_color_white">Item Nav 4</a>-->
-                <!--    <span class="header__drop"></span>-->
-                <!--</li>  -->
-                <!--<li class="list__item list__item_margin">-->
-                <!--    <a href="#" class="list__link text_color_white">Item Nav 5</a>-->
-                <!--</li>  -->
-                <!--<li class="list__item list__item_margin">-->
-                <!--    <a href="#" class="list__link text_color_white">Item Nav 6</a>-->
-                <!--</li>  -->
             </ul>
         </nav>
         <div class="header__profile">
-            <!--<span class="profile__name text_color_white">Администратор</span>-->
-            <!--<span class="header__drop"></span>-->
         </div>
     </header>
     <main class="main main_padding" id="tableSection">
@@ -52,78 +33,36 @@
         </button>
         <section class="main__table main__table-shadow">
             <table class="table-licenses">
-                <tr class="header__row block_color_blue-sky">
-                    <th class="col__header cell_margin">ID</th>
-                    <th class="col__header cell_margin">Логин</th>
-                    <th class="col__header cell_margin">Пароль для входа</th>
-                    <th class="col__header cell_margin">IP удаленного стола</th>
-                    
-                    <th class="col__header cell_margin">Id пользователя</th>
-                    <th class="col__header cell_margin">Данные RDP</th>
-                </tr>
-                <tbody>
-                    <tr class="table__row" v-for="item in data" :key="item.id" @click="onLicenseClick(item)">
-                        <td class="table__column column__id cell_margin">{{ item.license.id }}</td>
-                        <td class="table__column column__login cell_margin">{{ item.license.login }}</td>
-                        <td class="table__column column__pas cell_margin">{{ item.license.password }}</td>
-                        <td class="table__column column__uid cell_margin">{{ item.rdp.ip }}</td>
-                        <td class="table__column column__uid cell_margin">{{ item.license.uid }}</td>
-                        <td class="table__column column__rdp cell_margin">{{ item.license.rdp }}</td>
+                <thead>
+                    <tr class="header__row block_color_blue-sky">
+                        <th class="col__header cell_margin">ID</th>
+                        <th class="col__header cell_margin">Логин</th>
+                        <th class="col__header cell_margin">Пароль для входа</th>
+                        <th class="col__header cell_margin">IP удаленного стола</th>
+                        <th class="col__header cell_margin">Id пользователя</th>
+                        <th class="col__header cell_margin">Данные RDP</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in data" :key="item.id" is='table-item' :item='item'></tr>
                 </tbody>
             </table>
             <section class="main__settings main__settings_padding">
-                <!--<section class="main__paginator">-->
-                <!--    <a href="#prev" class="paginator__link link-prev"></a>-->
-                <!--    <a href="#" class="paginator__link active">1</a>-->
-                <!--    <a href="#" class="paginator__link">2</a>-->
-                <!--    <a href="#" class="paginator__link">3</a>-->
-                <!--    <a href="#" class="paginator__link">4</a>-->
-                <!--    <a href="#" class="paginator__link">5</a>-->
-                <!--    <a href="#" class="paginator__link">6</a>-->
-                <!--    <a href="#" class="paginator__link">7</a>-->
-                <!--    <a href="#" class="paginator__link">8</a>-->
-                <!--    <a href="#" class="paginator__link">9</a>-->
-                <!--    <span class="dotter">&hellip;</span>-->
-                <!--    <a href="#" class="paginator__link">95</a>-->
-                <!--    <a href="#next" class="paginator__link link-next"></a>-->
-                <!--</section>-->
-                <!--<section class="main__licenses-count main__licenses-count-margin">-->
-                <!--    <p class="licenses-count__text">Лицензий на странице: </p>-->
-                <!--    <label class="licenses-count__label licenses-count__label_margin">-->
-                <!--        <input class="licenses-count__input" type="radio" name="count" checked>-->
-                <!--        <span class="licenses-count__span">10</span>-->
-                <!--    </label>-->
-                <!--    <label class="licenses-count__label">-->
-                <!--        <input class="licenses-count__input" type="radio" name="count">-->
-                <!--        <span class="licenses-count__span">20</span>-->
-                <!--    </label>-->
-                <!--    <label class="licenses-count__label">-->
-                <!--        <input class="licenses-count__input" type="radio" name="count">-->
-                <!--        <span class="licenses-count__span">40</span>-->
-                <!--    </label>-->
-                <!--    <label class="licenses-count__label">-->
-                <!--        <input class="licenses-count__input" type="radio" name="count">-->
-                <!--        <span class="licenses-count__span">60</span>-->
-                <!--    </label>-->
-                <!--    <label class="licenses-count__label">-->
-                <!--        <input class="licenses-count__input" type="radio" name="count">-->
-                <!--        <span class="licenses-count__span">ВСЕ</span>-->
-                <!--    </label>-->
-                <!--</section>-->
             </section>
         </section>
+        
+        <!-- Modal -->
         <section class="add-license" v-if="isActive">
             <header class="add-license__header block_color_blue-sky add-license__header_padding">
-                <button class="button block_color_blue-sky button__license"  v-bind:class='{active: licenseOpened}' @click="tabsOpenLicense">
+                <button class="button block_color_blue-sky button__license" :class='{active: licenseOpened}' @click="tabsOpenLicense">
                     <span class="text_button text_color_white">ЛИЦЕНЗИЯ</span>
                 </button>
-                <button class="button block_color_blue-sky button__rdp" v-bind:class='{active: rdpOpened}' @click="tabsOpenRdp">
+                <button class="button block_color_blue-sky button__rdp" :class='{active: rdpOpened}' @click="tabsOpenRdp">
                     <span class="text_button text_color_white">RDP</span>
                 </button>
                 <button class="button__license-close" @click="isActive = false"></button>
             </header>
-            <form class="add-license__license add-license__license_padding">
+            <form @submit.prevent class="add-license__license add-license__license_padding">
                 <div class="license__data-container license__data-container_margin" v-if='licenseOpened'>
                     <div class="license__data license__data_margin">
                         <label class="license__label license__label_margin" for="login">Login</label>
@@ -145,7 +84,6 @@
                         <div class="rdp__validity rdp__validity_margin">
                             <label class="license__label license__label_margin rdp__label_margin" for="validity__from">Действует до (день, месяц, год)</label>
                             <div class="validity__container">
-                               
                                 <input class="license__input validity__input" type="date" id="validity__to" v-model="rdpObject.due_to" value="2018-09-12">
                             </div>
                         </div>
@@ -156,11 +94,8 @@
                     </div>
                 </div>
                 <input class="button license__button-margin license__button block_color_blue-sky text_color_white" type="button" value="Создать" v-if="createMode" @click="onCreateLicense">
-                <!--<button class="button license__button-edit block_color_blue-sky license__button-margin" v-if="editMode">-->
-                <!--    <span class="text_color_white" >Сохранить</span>-->
-                <!--</button>-->
                 <div class="license__edit license__edit_padding" v-if="editMode">
-                    <button class="button license__button-remove block_color_blue-sky" type='button' @click = "confirmDelete = true"></button>
+                    <button class="license__button-remove block_color_blue-sky" type='button' @click = "confirmDelete = true"></button>
                     <div class="edit__agree edit__agree_margin" v-if="confirmDelete">
                         <p class="agree__text">Безвозвратно удалить?</p>
                         <div class="agree__ask">
@@ -176,6 +111,7 @@
                 </div>        
             </form>
         </section>
+        
     </main>
 </body>
 </html>
