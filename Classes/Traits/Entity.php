@@ -16,14 +16,13 @@ trait Entity {
     
     # Requires:
     # 1) public const TABLE_NAME
-    # 2) protected const PROPS_COLUMNS_INFO = []
+    # 2) public const PROPS_COLUMNS_INFO = []
     /*
         [
             'uid' => ['type' => 'int', 'get'],
             'payment_way' => ['alias' => 'payment', 'type' => 'int', 'get', 'set']
         ]
     */
-    # 3) Optional public const VALIDATION_METHOD
     
     public function __construct(int $id){
         if( $id <= 0 ){
@@ -157,7 +156,7 @@ trait Entity {
             }
         }
         
-        $method = isset(self::VALIDATION_METHOD) ? self::VALIDATION_METHOD : "getValidatedData";
+        $method = "getValidatedData";
         if( method_exists($this, $method) ){
             $arr = $this->$method($arr);
         }

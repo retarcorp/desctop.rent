@@ -4,7 +4,7 @@ namespace Classes\Utils;
 
 class Log{
     
-    public function const PATH = '/errors.log';
+    public const PATH = '/errors.log';
     
     public static function info(string $report){
         self::log($report);

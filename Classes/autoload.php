@@ -9,6 +9,6 @@ spl_autoload_register(function ($class) {
     if(is_file($path)){
         require_once($path);    
     }else{
-        throw new Exception("Unable to load class $class! File /$class.php not found.");
+        throw new \Exception("Unable to load class $class! File /$class.php not found.");
     }
 });

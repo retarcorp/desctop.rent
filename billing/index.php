@@ -20,10 +20,12 @@
     <link rel="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/adaptive.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
     <script src="/js/drop-down-menu.js"></script>
     <script src="/js/menu-user-control-panel.js"></script>
+    <script src="billing.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>My payments</title>
 </head>
 <body>

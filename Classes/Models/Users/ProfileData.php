@@ -7,7 +7,9 @@ namespace Classes\Models\Users;
 use Classes\Utils\Sql;
 use Classes\Models\Users\User;
 
-
+/**
+ * DOC OLIX TEST Profile Data class
+ */
 class ProfileData {
     
     const TABLE_NAME = "profile_data";
@@ -43,6 +45,16 @@ class ProfileData {
     
     public $data = [];
     private $user;
+
+    /**
+  * TEST SUMMARY INFORMATION
+  *
+  * TEST DESCRIPTION METHOD WHICH OLIX GETS
+  *
+  * @param int $uid like userID
+  *
+  * @return void
+  */
     public function __construct(int $uid){
         $this->uid = $uid;
         $this->user = new User($uid);
@@ -55,6 +67,15 @@ class ProfileData {
             $this->data[intval($iter['item'])] = $iter["value"];
         }
     }
+      /**
+  * TEST SUMMARY INFORMATION GET DATA
+  *
+  * TEST DESCRIPTION METHOD WHICH OLIX GETS
+  *
+  * @param void
+  *
+  * @return array
+  */
     function getData() {
         return $this->data;
     }

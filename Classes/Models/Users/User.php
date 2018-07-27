@@ -1,5 +1,20 @@
 <?php
 
+/**
+ * TEST This block contains a short description of the classes
+ * present in the rest of this file.
+ *
+ * TEST This paragraph contains the long description of the same
+ * things.
+ *
+ * TEST This entire block will be completely ignored by ApiGen and
+ * is here only to maintain compatibility with PhpDocumentor.
+ * Requiring the presence of this near useless block in every
+ * php file is one of PhpDocumentors downsides.
+ *
+ * @package TEST Some package that only PhpDocumentor sees.
+ */
+
 namespace Classes\Models\Users;
 
 use Classes\Utils\Sql;
@@ -11,25 +26,101 @@ use Classes\Models\Finance\Transaction;
 use Classes\Exceptions\WrongIdException;
 use Classes\Exceptions\NonExistingItemException;
 
+/**
+ * The User class is a sample class that holds a single
+ * user instance.
+ *
+ * The constructor of the User class takes a Data Mapper which
+ * handles the user persistence in the database. In this case,
+ * we will provide a fake one.
+ *
+ * @category  MyLibrary
+ * @package   Main
+ * @license   http://www.opensource.org/licenses/RCorp-Olex
+ * @example   ../index.php
+ * @example <br />
+ * @version   0.01
+ * @since     2018-27-07
+ * @author    RCorp Olex <Olix@olex.me>
+ */
+
 class User{
-    
+/**
+ * The user's db table name. 
+ * @var string
+ */
     const TABLE_NAME = "users";
 
+/**
+ * When the user exits status. 
+ * @var string
+ */
     const AUTH_LOGGED_OUT = 0;
+/**
+ * When the user's autorization is in progress status. 
+ * @var string
+ */
     const AUTH_PENDING = 3;
+/**
+ * When the user autorized status. 
+ * @var string
+ */
     const AUTH_DONE = 12;
 
+/**
+ * User's creating is started status. 
+ * @var string
+ */
     const STATUS_JUST_CREATED = 10;
+    /**
+ * User's profile data is created status. 
+ * @var string
+ */
     const STATUS_FILLED_PROFILE_DATA = 13;
+    /**
+ * User got a license. 
+ * @var string
+ */
     const STATUS_ASSIGNED_LICENSE = 14;
+        /**
+ * User set up. 
+ * @var string
+ */
     const STATUS_SET_UP = 15;
 
+
+        /**
+ * User's feature when he is a INDIVIDUAL FACE. 
+ * @var string
+ */
     const INDIVIDUAL_FACE = 1;
+            /**
+ * User's feature when he is a LEGAL ENTITY. 
+ * @var string
+ */
     const LEGAL_ENTITY = 2;
 
     public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email, $feature;
     public $auth;
     
+    /**
+     * Constructor initialises the db-connection and gets all parameters of user.
+     *
+     * @param string void
+     *
+     * @return  void
+     * @throws  NonExistingItemException
+     * @todo    Check to make sure the username isn't already taken
+     *
+     * @since   2018-27-07
+     * @author  Bruno Skvorc <bruno@skvorc.me>
+     *
+     * @edit    2018-27-07<br />
+     *          RCorp Olex<br />
+     *          Changed some essential
+     *          functionality for the better<br/>
+     *          #edit1
+     */
     public function __construct(int $id){
         if( $id <= 0 ){
             throw new WrongIdException("Wrong id $id");
@@ -58,7 +149,24 @@ class User{
         $this->email = $r['email'];
         $this->feature = $r['feature'];
     }
-    
+    /**
+     * "Update" does a update user's parameters in db.
+     *
+     * @param string void
+     *
+     * @return  void
+     * @throws  Sql log error
+     * @todo    i don't know because this is TEST
+     *
+     * @since   2018-27-07
+     * @author  Olix >
+     *
+     * @edit    2018-27-07<br />
+     *          RCorp Olex<br />
+     *          Changed some essential
+     *          functionality for the better<br/>
+     *          #edit1
+     */
     public function update(){
         $sql = Sql::getInstance();
         

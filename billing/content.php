@@ -1,4 +1,4 @@
-<section class="right-tab__tab-data tab-data active">
+<section class="right-tab__tab-data tab-data active" id="content">
     <header class="tab__header">
         <h1 class="header__text text_size_header">Лицевой счет</h1>
         <ul class="header__nav-path text_color_grey">Вы здесь:
@@ -32,78 +32,12 @@
     </ul>
     <div class="tab-data__content tab-data__content_margin_top">
         <table class="table__employees table_margin">
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
+            <tr class="table__row" v-for="item in billings" :key="item.id">
+                <td class="table__col col__date">{{ item.added.split(" ")[0] }}</td>
+                <td class="table__col col__price">{{ item.sum }} Руб</td>
+                <td class="table__col col__status">{{ item.status }}</td>
                 <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
-                </td>
-                <td class="table__col col__filePDF">
-                    <a href="#">Скачать PDF</a>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__date">14.11.2018</td>
-                <td class="table__col col__price">430 000 Руб</td>
-                <td class="table__col col__status">Оплачен</td>
-                <td class="table__col col__fileDOC">
-                    <a href="#">Скачать DOC</a>
+                    <a :href="'/api/user/transactions/' ">Скачать DOC</a>
                 </td>
                 <td class="table__col col__filePDF">
                     <a href="#">Скачать PDF</a>
