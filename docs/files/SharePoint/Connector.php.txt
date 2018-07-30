@@ -1,0 +1,126 @@
+<?php
+
+namespace Classes\Models\SharePoint;
+use Classes\Utils\Sql;
+use Classes\Exceptions\DesktopRentException;
+
+/** Class for connecting with C# library to complete basic operations with files and folders */
+class Connector{
+    
+    /**
+     * @param string $folderPath This is absolute path to parent folder, in which you want to create a new folder.
+     * @param string $folderName This is name of a new fodler.
+     * @throws DesktopRentException Exception is occured when folder with such name is already exists in a parent folder.
+     * @return void
+     */
+    public static function createFolder(string $folderPath, string $folderName){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $folderPath This is absolute path to a folder.
+     * @throws DesktopRentException Exception is occured when folder for such path is not found.
+     * @return void
+     */
+    public static function deleteFolder(string $folderPath){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $folderPath This is absolute path to a folder.
+     * @param string $name New name of a folder.
+     * @throws DesktopRentException Exception is occured when folder for such path is not found or folder with such name are already exists.
+     * @return void
+     */
+    public static function renameFolder(string $folderPath, string $name){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $folderPath This is absolute path to a folder.
+     * @throws DesktopRentException Exception is occured when folder for such path is not found.
+     * @return array Array of names of folders and files from this folder.
+     */
+    public static function getFolderContent(string $folderPath): array{
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $from This is absolute path to a folder, which you want to be copied.
+     * @param string $to This is absolute path to a folder, in which you want copy a folder.
+     * @throws DesktopRentException Exception is occured when folder for any path is not found or folder with such name are already exists.
+     * @return void
+     */
+    public static function copyFolder(string $from, string $to){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $from This is absolute path to a folder, which you want to be moved.
+     * @param string $to This is absolute path to a folder, in which you want move a folder.
+     * @throws DesktopRentException Exception is occured when folder for any path is not found or folder with such name are already exists.
+     * @return void
+     */
+    public static function moveFolder(string $from, string $to){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $localPath This is absolute path to a file from which this file can be uploaded.
+     * @param string $folderPath This is absolute path to a folder, in which you want to upload a file.
+     * @throws DesktopRentException Exception is occured when file or foler are not found, file with such name is already exists or file size is too big to upload it.
+     * @return void
+     */
+    public static function uploadFile(string $localPath, string $folderPath){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $path This is absolute path to a file.
+     * @throws DesktopRentException Exception is occured when is are not found.
+     * @return void
+     */
+    public static function deleteFile(string $path){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $path This is absolute path to a file.
+     * @param string $name This is name of a file.
+     * @throws DesktopRentException Exception is occured when file is not found.
+     * @return void
+     */
+    public static function renameFile(string $path, string $name){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $path This is absolute path to a file.
+     * @throws DesktopRentException Exception is occured when file is not found or file with such name are already exists.
+     * @return string Content of a file.
+     */
+    public static function getFileContent(string $path): string{
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $from This is absolute path to a file.
+     * @param string $to This is absolute path of a folder.
+     * @throws DesktopRentException Exception is occured when file or folder are not found or file with such name is already exists in this folder.
+     * @return void
+     */
+    public static function copyFile(string $from, string $to){
+        throw new DesktopRentException();
+    }
+    
+    /**
+     * @param string $from This is absolute path to a file.
+     * @param string $to This is absolute path of a folder.
+     * @throws DesktopRentException Exception is occured when file or folder are not found or file with such name is already exists in this folder.
+     * @return void
+     */
+    public static function moveFile(string $from, strign $to){
+        throw new DesktopRentException();
+    }
+    
+}

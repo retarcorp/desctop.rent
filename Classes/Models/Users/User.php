@@ -1,20 +1,5 @@
 <?php
 
-/**
- * TEST This block contains a short description of the classes
- * present in the rest of this file.
- *
- * TEST This paragraph contains the long description of the same
- * things.
- *
- * TEST This entire block will be completely ignored by ApiGen and
- * is here only to maintain compatibility with PhpDocumentor.
- * Requiring the presence of this near useless block in every
- * php file is one of PhpDocumentors downsides.
- *
- * @package TEST Some package that only PhpDocumentor sees.
- */
-
 namespace Classes\Models\Users;
 
 use Classes\Utils\Sql;
