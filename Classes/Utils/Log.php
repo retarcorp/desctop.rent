@@ -15,6 +15,6 @@ class Log{
     }
     
     private static function log(string $message){
-        file_put_contents($_SERVER['DOCUMENT_ROOT'] . self::PATH, $message);
+        file_put_contents($_SERVER['DOCUMENT_ROOT'] . self::PATH, $message, FILE_APPEND);
     }
 }

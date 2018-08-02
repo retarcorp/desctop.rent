@@ -6,6 +6,9 @@ use Classes\Models\Users\UsersFactory;
 use Classes\Models\Users\User;
 use Classes\Models\Finance\Transaction;
 use Classes\Utils\Safety;
+use Classes\Models\Finance\Operations;
+use Classes\Models\Finance\Binding;
+use Classes\Models\Finance\BankActionsWorker;
 
 class FinanceController{
     
@@ -24,6 +27,67 @@ class FinanceController{
         return array_map(function($transaction){
             return $transaction->toArray();
         }, $transactions);
+    }
+    
+    # @http GET /order/
+    public function createOrder(){
+        Safety::declareProtectedZone();
+        
+        if( !isset($_GET['sum']) || !isset($_GET['id']) ){
+            return 'Проверьте введенные данные';
+        }
+        
+        $sum = floatval($_GET['sum']);
+        $id = intval($_GET['id']);
+        $expiration = isset($_GET['expiration']) ? $_GET['expiration'] : '';
+        $response = Operations::registerOrder($sum * 100, $id, $expiration); // price without dots
+        
+        if( isset($response['errorCode']) ){
+            return $response['errorMessage'];
+        }
+        
+        $orderId = $response['orderId'];
+        $bankRedirect = $response['formUrl'];
+        
+        $baw = new BankActionsWorker();
+        $uf = new UsersFactory();
+        $user = $uf->getCurrentUser();
+        
+        $order = $baw->createOrder($user, $orderId, $bankRedirect);
+        $transaction = $baw->createTransaction($order, $sum, Transaction::PAYMENT_BY_SBERBANK);
+        
+        // $response = Binding::bindCard($orderId); // Access denied
+        
+        header("Location: $bankRedirect");
+    }
+    
+    # @http GET /order/status/
+    public function getOrderStatus(){
+        //Safety::declareProtectedZone();
+        
+        if( isset($_GET['id']) ){
+            $id = intval($_GET['id']);
+            $response = Operations::getOrderStatus(['orderNumber' => $id]);
+        }elseif( isset($_GET['orderId']) ){
+            $orderId = $_GET['orderId'];
+            $response = Operations::getOrderStatus(['orderId' => $orderId]);
+        }else{
+            return 'Проверьте введенные данные';
+        }
+        
+        if( $response['errorCode'] ){
+            return $response['errorMessage'];
+        }
+        
+        print_r($response);
+    }
+    
+    # @http GET /order/pay/
+    public function pay(){
+        //Safety::declareProtectedZone();
+        
+        $redirect = $_GET['redirect'];
+        header("Location: $redirect");
     }
     
 }

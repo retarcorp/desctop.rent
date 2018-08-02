@@ -8,37 +8,43 @@ use Classes\Utils\DateUtil;
 use Classes\Utils\Common;
 use Classes\Exceptions\DesktopRentException;
 
-class Transaction{
+class Transaction {
     
     public const TABLE_NAME = 'users_transactions';
     /*
         # id INT
         # sum DECIMAL
-        # uid INT
+        # order_id INT
         # payment_way INT
         # status INT
-        # added DATETIME
     */
     
     protected const PROPS_COLUMNS_INFO = [
         'sum' => ['type' => 'float', 'get', 'set'],
-        'uid' => ['type' => 'int', 'get'],
+        'order_id' => ['alias' => 'orderId', 'type' => 'int', 'get'],
         'payment_way' => ['alias' => 'payment', 'type' => 'int', 'get', 'set'],
-        'status' => ['type' => 'int', 'get', 'set'],
-        'added' => ['type' => 'str','get']
+        'status' => ['type' => 'int', 'get', 'set']
     ];
     
     use \Classes\Traits\Entity;
     
     private $id;
     private $sum;
-    private $uid;
     private $payment;
     private $status;
-    private $added;
+    private $orderId;
     
-    public function getValidatedData(array $data): array{
-        $data['added'] = DateUtil::toRussianFormat($data['added']);
-        return $data;
+    public const STATUS_OPENED = 1;
+    public const STATUS_DECLINED = 2;
+    public const STATUS_PAID = 3;
+    public const STATUS_RETURNED = 4;
+    public const STATUS_ERORR = 5;
+    
+    public const PAYMENT_BY_SBERBANK = 11;
+    
+    public function setPaid(){
+        $this->status = self::STATUS_PAID;
+        $this->update();
     }
+    
 }

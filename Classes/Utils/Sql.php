@@ -2,6 +2,7 @@
 
 namespace Classes\Utils;
 use Classes\Utils\Log;
+use Classes\Exceptions\NonExistingItemException;
 
 class Sql{
  
@@ -99,6 +100,19 @@ class Sql{
 
 	public function getInsertId(){
 		return mysqli_insert_id($this->resource());
+	}
+	
+	public function getLastItem(string $table){
+	    $q = "SELECT * FROM $table
+	        ORDER BY id DESC
+	        LIMIT 1";
+	    $data = $this->getAssocArray($q);
+	    
+	    if( empty($data) ){
+	        throw new NonExistingItemException("Table $table is empty");
+	    }
+	    
+	    return $data[0];
 	}
 	
 	public function logError(string $place){

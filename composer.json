@@ -6,8 +6,9 @@
     
     "autoload": {
         "classmap": [
-            "src/"
-        ]
+            "vendor/"
+        ],
+        "psr-4": {"Classes\\": "Classes/"}
     },
     "require-dev": {
         "phpunit/phpunit": "7"

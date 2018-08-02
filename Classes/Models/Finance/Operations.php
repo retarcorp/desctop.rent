@@ -1,0 +1,83 @@
+<?php
+
+namespace Classes\Models\Finance;
+
+use Classes\Models\Finance\Transaction;
+use Classes\Models\Finance\Credentials;
+use Classes\Utils\Curl;
+
+class Operations {
+    
+    protected const API_PATH = 'https://3dsec.sberbank.ru/payment/rest/';
+    
+    protected const CREDENTIALS_DATA = [
+        'password' => Credentials::PASSWORD,
+        'userName' => Credentials::API_NAME,
+        'language' => 'ru'
+    ];
+    
+    protected const SUCCESS_REDIRECT_URL = "http://137.117.138.150/Success.php";
+    protected const FAIL_REDIRECT_URL = "http://137.117.138.150/Fail.php";
+    
+    protected static function execQuery(string $subpath, array $options){
+        $path = self::API_PATH . $subpath;
+        $data = array_merge(self::CREDENTIALS_DATA, $options);
+        return json_decode(Curl::post($path, $data)['data'], true);
+    }
+    
+    public static function registerOrder(
+        int $amount,
+        int $number,
+        string $expiration = '',
+        string $pageView = 'DESKTOP',
+        int $currency = 643
+    ){
+        $data = [
+            'amount' => $amount,
+            'orderNumber' => $number,
+            'returnUrl' => self::SUCCESS_REDIRECT_URL,
+            'failUrl' => self::FAIL_REDIRECT_URL,
+            'pageView' => $pageView,
+            'currency' => $currency
+        ];
+        
+        if( $expiration ){
+            $data['expirationDate'] = str_replace(' ', 'T', $expiration);
+        }
+        
+        return self::execQuery('register.do', $data);
+    }
+    
+    public static function declinePayment(string $orderId){
+        return self::execQuery('register.do', [
+            'orderId' => $orderId
+        ]);
+    }
+    
+    public static function returnMoney(int $amount, int $currency = 643, string $orderId){
+        return self::execQuery('refund.do', [
+            'amount' => $amount,
+            'currency' => $currency,
+            'orderId' => $orderId
+        ]);
+    }
+    
+    public static function getOrderStatusByClientOrderId(int $id){
+        return self::execQuery('getOrderStatusExtended.do', [
+            'orderNumber' => $id
+        ]);
+    }
+    
+    public static function getOrderStatusByBankOrderId(string $orderId){
+        return self::execQuery('getOrderStatusExtended.do', [
+            'orderId' => $orderId
+        ]);
+    }
+    
+    public static function is3DSecured(string $card){
+        return self::execQuery('verifyEnrollment.do', [
+            'pan' => $card // номер карты
+        ]);
+    }
+    
+}

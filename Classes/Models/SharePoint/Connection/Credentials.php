@@ -12,6 +12,6 @@ class Credentials{
     public const APP_URI = '137.117.138.150';
     public const APP_REDIRECT_URI = 'https://137.117.138.150/sharepoint.php';
     
-    public const PROGRAMM_LAUNCHER_PATH = "C:\inetpub\desktop.rent\SharePoint\SharePoint.exe";
+    public const PROGRAMM_LAUNCHER_PATH = "C:\inetpub\desktop.rent\SharePoint\App\Token.exe";
     
 }

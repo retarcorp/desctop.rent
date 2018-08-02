@@ -8,8 +8,11 @@ use Classes\Models\Rdp\Rdp;
 use Classes\Models\Users\ProfileData;
 use Classes\Models\SharePoint\Licenses\License;
 use Classes\Models\Finance\Transaction;
+use Classes\Models\Finance\Order;
+use Classes\Models\Finance\BankActionsWorker;
 use Classes\Exceptions\WrongIdException;
 use Classes\Exceptions\NonExistingItemException;
+use Classes\Exceptions\SqlErrorException;
 
 /**
  * The User class is a sample class that holds a single
@@ -206,8 +209,8 @@ class User{
         $this->update();
     }
     
-    public function getTransactions(int $amount = 0, int $step = 0): array{
-        $q = "SELECT * FROM " . Transaction::TABLE_NAME . "
+    private function getOrders(int $amount = 0, int $step = 0): array {
+        $q = "SELECT * FROM " . Order::TABLE_NAME . "
             WHERE uid = {$this->id}
             ORDER BY id DESC";
         
@@ -216,8 +219,23 @@ class User{
         
         $sql = Sql::getInstance();
         $data = $sql->getAssocArray($q);
-        $sql->logError(__METHOD__);
-        return Transaction::toInstances($data);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
+        
+        return Order::toInstances($data);
+    }
+    
+    public function getTransactions(int $amount = 0, int $step = 0): array{
+        $orders = $this->getOrders($amount, $step);
+        
+        return array_map(function($order){
+            $baw = new BankActionsWorker();
+            $transaction = $baw->getTransactionForOrder($order);
+            $transaction->setPropsFromDB();
+            return $transaction;
+        }, $orders);
     }
     
 }

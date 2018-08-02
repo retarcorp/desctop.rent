@@ -20,8 +20,13 @@ class Connector{
         $this->executor = new System();
     }
     
+    public function setProgramCredentials(){
+        
+    }
+    
     public function launchProgram(){
         $args = func_get_args();
+        print_r($args);
         return $this->executor->getResult(Credentials::PROGRAMM_LAUNCHER_PATH . " " . implode(" ", $args));
     }
     
@@ -68,6 +73,7 @@ class Connector{
      */
     public function createFolder(string $folderPath, string $folderName){
         $response = $this->launchProgram(Actions::CREATE_FOLDER, $folderPath, $folderName);
+        print_r($response);
         return $this->handleProgramResult($response);
     }
     

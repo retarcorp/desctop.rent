@@ -5,7 +5,8 @@ namespace Classes\Utils;
 class Curl{
 
     public static function get(string $path, array $data, array $headers = []){
-        $curl = curl_init($path."?".http_build_query($data));
+        $url = $path."?".http_build_query($data);
+        $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);

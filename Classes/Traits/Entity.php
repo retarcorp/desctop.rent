@@ -11,6 +11,7 @@ use Classes\Exceptions\WrongIdException;
 use Classes\Exceptions\NonExistingItemException;
 use Classes\Exceptions\UnAvailablePropertyException;
 use Classes\Exceptions\UndefinedMethodException;
+use Classes\Exceptions\SqlErrorException;
 
 trait Entity {
     
@@ -26,7 +27,7 @@ trait Entity {
     
     public function __construct(int $id){
         if( $id <= 0 ){
-            throw new WrongIdException("Wrong id $id, it must be positive");
+            throw new WrongIdException(__METHOD__ . ": Wrong id $id, it must be positive");
         }
         
         $this->id = $id;
@@ -41,10 +42,13 @@ trait Entity {
         
         $sql = $sql = Sql::getInstance();
         $data = $sql->getAssocArray($q);
-        $sql->logError(__METHOD__);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
         
         if( empty($data) ){
-            throw new NonExistingItemException("There is no such item {$this->id} in DB");
+            throw new NonExistingItemException(__METHOD__ . ": There is no such item {$this->id} in DB");
         }
         
         $this->setProps($data[0]);
@@ -100,7 +104,11 @@ trait Entity {
         $values [] = $this->id;
         
         $sql->execPrepared($q , $values);
-        $sql->logError(__METHOD__);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
+        
         return $this;
     }
     
@@ -133,18 +141,22 @@ trait Entity {
     }
     
     public function __get(string $prop){
+        if( $prop == 'id'){
+            return $this->$prop;
+        }
+        
         if( $this->hasGetter($prop) ){
             return $this->$prop;
         }
         
-        throw new UnAvailablePropertyException("Trying to get value of unavailable property $prop");
+        throw new UnAvailablePropertyException(__METHOD__ . ": Trying to get value of unavailable property $prop");
     }
     
     public function __set(string $prop, $value){
         if( $this->hasSetter($prop) ){
             $this->$prop = $value;
         }else{
-            throw new UnAvailablePropertyException("Trying to set value $value of unavailable property $prop");
+            throw new UnAvailablePropertyException(__METHOD__ . ": Trying to set value $value of unavailable property $prop");
         }
     }
     
@@ -182,7 +194,7 @@ trait Entity {
             return $this->$prop;
             
         }else{
-            throw new UndefinedMethodException("Undefined method $method");
+            throw new UndefinedMethodException(__METHOD__ . ": Undefined method $method");
         }
     }
     
@@ -196,6 +208,10 @@ trait Entity {
         return array_reduce($this, function($carry, $curr){
             $carry .= serialize($curr);
         }, '');
+    }
+    
+    public static function getInfo(): array{
+        return self::PROPS_COLUMNS_INFO;
     }
     
 }
