@@ -9,10 +9,10 @@ class Sms{
 	
 	const API_STREAMTELECOM_LOGIN = "DesktopRent"; //\\
 	const API_STREAMTELECOM_PASSWORD = "20VM18Capital";//\\
-	const TEST_LOGIN = "SMS Info "; //\\
+	const TEST_LOGIN = "DesktopRent"; //\\
 	
 	// stream-telecom sms 
-	public static function sendStreamTelecom(string $phone,string $message) {//\\
+	public static function send(string $phone,string $message) {//\\
 		$curlQuery = curl_init();
 		curl_setopt($curlQuery, CURLOPT_URL, "http://gateway.api.sc/rest/Session/session.php");
 		curl_setopt($curlQuery, CURLOPT_RETURNTRANSFER, true);
@@ -26,6 +26,7 @@ class Sms{
 		curl_setopt($curlSms, CURLOPT_POST, true);
 		curl_setopt($curlSms, CURLOPT_POSTFIELDS, "sessionId=".$APIkey."&sourceAddress=".self::TEST_LOGIN."&destinationAddress=".$phone."&data=".$message);
 		$result = @json_decode(curl_exec($curlSms), true);
+		return $result;
 	}
 
 	/**
@@ -33,7 +34,7 @@ class Sms{
 	 *  @param \string phone Phone number to send an sms
 	 *  @param \string message Text to be sent via sms, max=69 symbols
 	 */
-	public static function send(string $phone,string $message) {
+	public static function sendBelarus(string $phone,string $message) {
 		$curl = curl_init(); 
 	
 		curl_setopt($curl, CURLOPT_URL, 'http://api.rocketsms.by/json/send');	

@@ -25,21 +25,22 @@ class FinanceController{
         $transactions = $user->getTransactions($amount, $step);
         
         return array_map(function($transaction){
+            $transaction->setPropsFromDB();
             return $transaction->toArray();
         }, $transactions);
     }
     
-    # @http GET /order/
+    # @http POST /order/
     public function createOrder(){
         Safety::declareProtectedZone();
         
-        if( !isset($_GET['sum']) || !isset($_GET['id']) ){
+        if( !isset($_POST['sum']) || !isset($_POST['id']) ){
             return 'Проверьте введенные данные';
         }
         
-        $sum = floatval($_GET['sum']);
-        $id = intval($_GET['id']);
-        $expiration = isset($_GET['expiration']) ? $_GET['expiration'] : '';
+        $sum = floatval($_POST['sum']);
+        $id = intval($_POST['id']);
+        $expiration = isset($_POST['expiration']) ? $_POST['expiration'] : '';
         $response = Operations::registerOrder($sum * 100, $id, $expiration); // price without dots
         
         if( isset($response['errorCode']) ){
@@ -63,7 +64,7 @@ class FinanceController{
     
     # @http GET /order/status/
     public function getOrderStatus(){
-        //Safety::declareProtectedZone();
+        Safety::declareProtectedZone();
         
         if( isset($_GET['id']) ){
             $id = intval($_GET['id']);
@@ -84,7 +85,7 @@ class FinanceController{
     
     # @http GET /order/pay/
     public function pay(){
-        //Safety::declareProtectedZone();
+        Safety::declareProtectedZone();
         
         $redirect = $_GET['redirect'];
         header("Location: $redirect");

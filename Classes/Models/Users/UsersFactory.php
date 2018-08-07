@@ -37,6 +37,11 @@ class UsersFactory{
         return null;
     }
     
+    public function getCurrentAdmin(): ?User{
+        $user = $this->getCurrentUser();
+        return is_null($user) || !($user->isAdmin()) ? null : $user;
+    }
+    
     public function logout(){
         $user = $this->getCurrentUser();
         if ($user != null) {
@@ -75,6 +80,7 @@ class UsersFactory{
 
     public function smsAuth($user){
         $user->sms_code = $this->generateSmsCode();
+        // Sms::send($user->phone, Sms::getMessage(Sms::LOGIN_CODE, $user->sms_code));
         Sms::send($user->phone, Sms::getMessage(Sms::LOGIN_CODE, $user->sms_code));
         $user->auth = User::AUTH_PENDING;
         $user->update();

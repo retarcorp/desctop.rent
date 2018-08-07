@@ -52,7 +52,22 @@ class Safety{
         die();
     }
     
+    const ADMIN_ZONE_URL = '/admin/';
+    public static function declareAdminZone(){
+        $factory = new UsersFactory();
+        $user = $factory->getCurrentAdmin();
+        if( is_null($user) ){
+            header("Location: " . self::ADMIN_ZONE_URL);
+            die();
+        }
+    }
+    
     public static function getProtectedString(string $str): string{
         return addslashes(htmlspecialchars(strip_tags($str)));
     }
+    
+    public static function protect(string $str){
+        return self::getProtectedString($str);
+    }
+    
 }

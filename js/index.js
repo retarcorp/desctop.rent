@@ -56,6 +56,7 @@ _.core(function(){
                 this.Messages.currentPhoneMessage = this.Messages.phoneValidationMessage
             }
             ,validatePhone: function(phone){
+                return true;
                 return /\+\d{8,14}/.test(phone);
             }
 

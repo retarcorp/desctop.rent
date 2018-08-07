@@ -1,0 +1,7 @@
+<?php
+
+namespace Classes\Exceptions;
+
+class DesktopRentException extends \Exception{
+    
+}

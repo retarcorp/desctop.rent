@@ -1,0 +1,66 @@
+<?php
+
+namespace Classes\Models\Finance;
+
+use Classes\Utils\Sql;
+use Classes\Utils\Log;
+use Classes\Utils\DateUtil;
+use Classes\Utils\Common;
+use Classes\Exceptions\DesktopRentException;
+use Classes\Exceptions\SqlErrorException;
+
+use Classes\Models\Finance\Order;
+use Classes\Models\Finance\Transaction;
+use Classes\Models\Finance\Operation;
+use Classes\Models\Users\UsersFactory;
+use Classes\Models\Users\User;
+
+class BankActionsWorker {
+    
+    use \Classes\Traits\ObjectOperations;
+    
+    public function createOrder(User $user, string $bankOrderId, string $redirect): Order{
+        $columns = ['uid', 'created', 'bank_order_id', 'redirect_url'];
+        $values = [$user->id, DateUtil::toSqlFormat(time()), $bankOrderId, $redirect];
+        $class = 'Classes\Models\Finance\Order';
+        
+        return $this->createObject($class, $columns, $values);
+    }
+    
+    public function createTransaction(Order $order, float $sum, int $payment) {
+        $columns = ['sum', 'order_id', 'payment_way', 'status'];
+        $values = [$sum, $order->getId(), $payment, Transaction::STATUS_OPENED];
+        $class = 'Classes\Models\Finance\Transaction';
+        
+        return $this->createObject($class, $columns, $values);
+    }
+    
+    public function getOrderByBankOrderId(string $orderId): Order{
+        $q = "SELECT * FROM " . Order::TABLE_NAME . "
+            WHERE bank_order_id = '$orderId'";
+        
+        $sql = Sql::getInstance();
+        $data = $sql->getAssocArray($q);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
+        
+        return Order::toInstance($data[0]);
+    }
+    
+    public function getTransactionForOrder(Order $order): Transaction{
+        $q = "SELECT * FROM " . Transaction::TABLE_NAME . "
+            WHERE order_id = {$order->getId()}";
+        
+        $sql = Sql::getInstance();
+        $data = $sql->getAssocArray($q);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
+        
+        return Transaction::toInstance($data[0]);
+    }
+    
+}

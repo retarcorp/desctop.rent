@@ -1,0 +1,20 @@
+<?php
+
+namespace Classes\Utils;
+
+class Log{
+    
+    public const PATH = '/errors.log';
+    
+    public static function info(string $report){
+        self::log($report);
+    }
+    
+    public static function error(string $report){
+        self::log("ERROR:" . $report);
+    }
+    
+    private static function log(string $message){
+        file_put_contents($_SERVER['DOCUMENT_ROOT'] . self::PATH, $message, FILE_APPEND);
+    }
+}

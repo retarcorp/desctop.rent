@@ -9,6 +9,7 @@ use Classes\Utils\Common;
 use Classes\Exceptions\DesktopRentException;
 use Classes\Exceptions\UnEqualAmountException;
 use Classes\Exceptions\SqlErrorException;
+use Classes\Exceptions\NegativeNumberException;
 
 trait ObjectOperations {
     
@@ -52,6 +53,27 @@ trait ObjectOperations {
         if( $e = $sql->getLastError() ){
             throw new SqlErrorException(__METHOD__ . ": $e");
         }
+    }
+    
+    private function getObjects(string $class, int $amount = 0, int $step = 0): array{
+        if( $amount < 0 || $step < 0 ){
+            throw new NegativeNumberException("Amount $amount and step $step must be positive");
+        }
+        
+        $sql = Sql::getInstance();
+        $q = "SELECT id FROM " . $class::TABLE_NAME . "
+            ORDER BY id DESC";
+        
+        $q = $amount ? $q . " LIMIT $amount " : $q;
+        $q = $step ? $q . " OFFSET $step " : $q;
+        
+        $data = $sql->getAssocArray($q);
+        
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
+        
+        return $class::toInstances($data);
     }
     
 }

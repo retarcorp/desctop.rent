@@ -3,13 +3,14 @@
 namespace Classes\Models\Users;
 
 use Classes\Utils\Sql;
-
+use Classes\Utils\DateUtil;
 use Classes\Models\Rdp\Rdp;
 use Classes\Models\Users\ProfileData;
 use Classes\Models\SharePoint\Licenses\License;
 use Classes\Models\Finance\Transaction;
 use Classes\Models\Finance\Order;
 use Classes\Models\Finance\BankActionsWorker;
+use Classes\Models\Services\Service;
 use Classes\Exceptions\WrongIdException;
 use Classes\Exceptions\NonExistingItemException;
 use Classes\Exceptions\SqlErrorException;
@@ -21,15 +22,6 @@ use Classes\Exceptions\SqlErrorException;
  * The constructor of the User class takes a Data Mapper which
  * handles the user persistence in the database. In this case,
  * we will provide a fake one.
- *
- * @category  MyLibrary
- * @package   Main
- * @license   http://www.opensource.org/licenses/RCorp-Olex
- * @example   ../index.php
- * @example <br />
- * @version   0.01
- * @since     2018-27-07
- * @author    RCorp Olex <Olix@olex.me>
  */
 
 class User{
@@ -87,6 +79,8 @@ class User{
  * @var string
  */
     const LEGAL_ENTITY = 2;
+    
+    const ADMIN = 333;
 
     public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email, $feature;
     public $auth;
@@ -173,6 +167,10 @@ class User{
         $sql->logError(__METHOD__);
     }
     
+    public function isAdmin(): bool{
+        return $this->feature == self::ADMIN;
+    }
+    
     public function getLicense(): ?License{
         $sql = Sql::getInstance();
         $q = "SELECT id FROM " . License::TABLE_NAME . "
@@ -209,13 +207,9 @@ class User{
         $this->update();
     }
     
-    private function getOrders(int $amount = 0, int $step = 0): array {
-        $q = "SELECT * FROM " . Order::TABLE_NAME . "
-            WHERE uid = {$this->id}
-            ORDER BY id DESC";
-        
+    private function getObjectsDataByQuery(string $q, int $amount = 0, int $step = 0): array{        
         $q = $amount ? $q . " LIMIT $amount " : $q;
-        $q = $amount ? $q . " OFFSET $step " : $q;
+        $q = $step ? $q . " OFFSET $step " : $q;
         
         $sql = Sql::getInstance();
         $data = $sql->getAssocArray($q);
@@ -224,6 +218,15 @@ class User{
             throw new SqlErrorException(__METHOD__ . ": $e");
         }
         
+        return $data;
+    }
+    
+    public function getOrders(int $amount = 0, int $step = 0): array {
+        $q = "SELECT id FROM " . Order::TABLE_NAME . "
+            WHERE uid = {$this->id}
+            ORDER BY id DESC";
+        
+        $data = $this->getObjectsDataByQuery(Order::TABLE_NAME, $amount, $step);
         return Order::toInstances($data);
     }
     
@@ -233,9 +236,30 @@ class User{
         return array_map(function($order){
             $baw = new BankActionsWorker();
             $transaction = $baw->getTransactionForOrder($order);
-            $transaction->setPropsFromDB();
             return $transaction;
         }, $orders);
+    }
+    
+    public function getServices(int $amount = 0, int $step = 0): array{
+        $q = "SELECT service_id AS id FROM " . Service::USERS_SERVICES_TABLE . "
+            WHERE user_id = {$this->id}
+            ORDER BY id DESC";
+        
+        $data = $this->getObjectsDataByQuery($q, $amount, $step);
+        return Service::toInstances($data);
+    }
+    
+    public function addService(Service $service){
+        $sql = Sql::getInstance();
+        
+        $q = "INSERT INTO " . Service::USERS_SERVICES_TABLE . "
+            (user_id, service_id, added)
+            VALUES(?, ?, '?')";
+        
+        $sql->execPrepared($q, [$this->id, $service->id, DateUtil::toSqlFormat(time())]);
+        if( $e = $sql->getLastError() ){
+            throw new SqlErrorException(__METHOD__ . ": $e");
+        }
     }
     
 }

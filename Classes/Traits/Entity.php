@@ -72,9 +72,14 @@ trait Entity {
     
     public static function toInstance(array $data): Object{
         $id = intval($data['id']);
+        unset($data['id']);
         $class = self::class;
         $object = new $class($id);
-        $object->setProps($data);
+        
+        if( !empty($data) ){
+            $object->setProps($data);
+        }
+        
         return $object;
     }
     
