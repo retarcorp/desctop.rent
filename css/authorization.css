@@ -39,6 +39,24 @@ body{
     display: flex;
     align-items: center;
 }
+
+.authorization__text{
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.authorization__phone{
+    width: 100%;
+}
+
+.authorization__phone-invalid{
+    border: 1px solid #e74c3c;
+}
+
+.authorization__phone-valid{
+    border: 1px solid #2ecc71;
+}
+
 .authorization__header{
     margin-bottom: 3rem;
 }

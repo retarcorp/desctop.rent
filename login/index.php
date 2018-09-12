@@ -1,8 +1,17 @@
 <?php
+
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
-    use Classes\Utils\Safety;
-    Safety::declareUnauthorizedOnlyZone(); 
     
+    use Classes\Utils\Safety;
+    use Classes\Models\Users\User;
+    use Classes\Models\Users\UsersActions;
+    
+    $ua = new UsersActions();
+    $current = $ua->getCurrentUser();
+    
+    if( $current instanceof User ){
+        header('Location: /');
+    }
     
 ?>
 
@@ -37,14 +46,26 @@
         <main class="main" id="app">
             <section class="main__section authorization" v-if="Tabs.phone" @keyup.enter='onPhoneEntered'>
                 <header class="authorization__header header_text_align header_text-size_caption">Вход в систему</header>
-                <input id="phone" class="input authorization__phone" type="tel" @input="refreshPhoneMessage" v-model="phone" placeholder="+ 7 (    ) ___-__-__">
-                <button class="authorization__button button text_size_button loader_relative" @click.prevent="onPhoneEntered">
-                    <span class="text_size_button button__text_color font-regular button-with-loader">Войти в кабинет</span>
-                    <div class="loader hidden">
-                        <div class="loader__item"></div>        
-                    </div>
-                </button>
-                <span class="invalid-phone text_color_grey text_size_min-small invelid_margin" v-if="phoneIsInvalid">{{Messages.currentPhoneMessage}}</span>
+                <label>
+                    <p class="authorization__text text_color_grey">Введите номер телефона</p>
+                    <input
+                        id="phone"
+                        class="input authorization__phone"
+                        type="tel" 
+                        @input="checkPhoneNumber"
+                        @input="refreshPhoneMessage"
+                        v-model="phone"
+                        placeholder="+7 903 1234567"
+                        required
+                    >
+                </label>
+                    <button class="authorization__button button text_size_button loader_relative" @click.prevent="onPhoneEntered">
+                        <span class="text_size_button button__text_color font-regular button-with-loader">Войти в кабинет</span>
+                        <div class="loader hidden">
+                            <div class="loader__item"></div>
+                        </div>
+                    </button>
+                    <span class="invalid-phone text_color_grey text_size_min-small invelid_margin" v-if="phoneIsInvalid">{{Messages.currentPhoneMessage}}</span>
             </section>
             <section class="main__section sms-confirmation" v-if="Tabs.sms" @keyup.enter='onSmsCodeEntered'>
                 <header class="sms-confirmation__header header_text_align header_text-size_caption">Вход в систему</header>

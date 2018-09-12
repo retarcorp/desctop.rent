@@ -1,6 +1,7 @@
 <?php
 
 namespace Classes\Utils;
+use Classes\Utils\DataHolder;
 
 class Sms{
 
@@ -28,6 +29,10 @@ class Sms{
 		$result = @json_decode(curl_exec($curlSms), true);
 		return $result;
 	}
+	
+	public function generateSmsCode(){
+        return rand(100000,999999);
+    }
 
 	/**
 	 *  @author Denis Latushkin
@@ -56,11 +61,20 @@ class Sms{
 	}
 
 	const LOGIN_CODE = 1;
+	const JOINED_USER = 2;
+	
 	public static function getMessage($type, $data){
 		switch($type){
 			case self::LOGIN_CODE:
 				return self::getLoginCodeMessage($data);
+			
+			case self::JOINED_USER:
+			    return self::getJoinedUserMessage($data);
 		}
+	}
+	
+	private static function getJoinedUserMessage(DataHolder $data){
+	    return "Сотрудник {$data->surname} {$data->name} {$data->patronymic}, телефон {$data->phone} запрашивает разрешение на присоединение к команде.";
 	}
 
 	private static function getLoginCodeMessage($data){

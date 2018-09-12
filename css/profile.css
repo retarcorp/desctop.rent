@@ -29,3 +29,18 @@
 .save__button_size {
     margin-right: .5rem;
 }
+
+.user__phone{
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    color: #000;
+    margin-top: 1.2rem;
+}
+
+#companyCancel{
+    margin-left: 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #2F555E;
+}

@@ -17,13 +17,17 @@ _.core(function(){
             }
             ,smsCode: ""
             ,smsIsInvalid: false
+            ,validatedPhone: ''
         }   
         ,methods:{
             onPhoneEntered: function(){
                 Vm.changeLoader();
-                if(this.validatePhone(this.phone)){
-                    Api.OnPhoneEntered.exec({phone: this.phone})
+                if(this.validatedPhone){
+                    Api.OnPhoneEntered.exec({phone: this.validatedPhone})
                         .then(function(result){
+                            if(result.data.id){
+                                return location.assign("/");
+                            }
                             if(result.isOk){
                                 Vm.Tabs.phone = false;
                                 Vm.Tabs.sms = true;
@@ -37,6 +41,7 @@ _.core(function(){
                 }else{
                     Vm.changeLoader();
                     this.phoneIsInvalid = true;
+                    Vm.Messages.currentPhoneMessage = Vm.Messages.phoneValidationMessage;
                 }
                 
             }
@@ -50,23 +55,46 @@ _.core(function(){
                     loader.classList.add('hidden');
                 }
             }
-
+            
+            ,checkAuthUser: function(){
+                axios.get('/api/auth/phone/')
+                     .then(function(res){
+                        console.log(res); 
+                     });
+               
+            }
+            ,checkPhoneNumber: function(){
+                // Delete comments from this part of code to allow enter by phone numbers
+                this.validatedPhone = this.phone;
+                return;
+                
+                const input = document.getElementById('phone');
+                
+                let matches = this.phone.match(/^\+?\s*(7)\s*\(?(\d{3})\)?\s*(\d{7})$/);
+                if( matches !== null){
+                    let phone = matches[1] + matches[2] + matches[3];
+                    input.classList.remove('authorization__phone-invalid');
+                    input.classList.add('authorization__phone-valid');
+                    this.validatedPhone = phone;
+                }else{
+                    input.classList.remove('authorization__phone-valid');
+                    input.classList.add('authorization__phone-invalid');
+                    this.validatedPhone = '';
+                }
+            }
+            
             ,refreshPhoneMessage: function(){
                 this.phoneIsInvalid=false;
                 this.Messages.currentPhoneMessage = this.Messages.phoneValidationMessage
             }
-            ,validatePhone: function(phone){
-                return true;
-                return /\+\d{8,14}/.test(phone);
-            }
 
             ,onSmsCodeEntered: function(){
                 Vm.changeLoader();
-                Api.ValidateSms.exec({code: this.smsCode})
+                Api.ValidateSms.exec({phone: this.validatedPhone, code: this.smsCode})
                     .then(function(result){
                         if(result.isOk){
                             Vm.changeLoader();
-                            return location.assign("/");
+                            return location.assign("/profile");
                         }
                         Vm.changeLoader();
                         Vm.smsIsInvalid = true;
@@ -84,6 +112,4 @@ _.core(function(){
         }
 
     })
-    //console.log(await Api.GetUsers.exec());
-    //console.log(Vm);
 });

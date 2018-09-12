@@ -1,73 +1,37 @@
 <?php
 namespace Classes\Utils;
 
-use Classes\Models\Users\UsersFactory;
+use Classes\Models\Users\UsersActions;
 use Classes\Models\Users\User;
+use Classes\Exceptions\DesktopRentException;
 
-class Safety{
+class Safety {
 
-
-    const PUBLIC_ZONE_URL = "/login/";
-    public static function declareProtectedZone(){
-        $factory = new UsersFactory();
-        $user = $factory->getCurrentUser();
-        if(!$user){
-            header("Location: ".self::PUBLIC_ZONE_URL);
-            die();
+    public static function checkAuth($user){
+        if( is_null($user) ){
+            throw new DesktopRentException("Пользователь не авторизован");
         }
-    }
-
-    const AUTHORIZED_ZONE_URL = "/";
-    public static function declareUnauthorizedOnlyZone(){
-        $factory = new UsersFactory();
-        $user = $factory->getCurrentUser();
-        if($user){
-            header("Location: ".self::AUTHORIZED_ZONE_URL);
-            die();
-        }
-    }
-
-    public static function declareSetUpUsersAccessZone(){
-        $factory = new UsersFactory();
-        $user = $factory->getCurrentUser();
-        if($user){
-            if($user->status == User::STATUS_SET_UP){
-                return;
-            }
-            
-        }
-        header("Location: ".self::AUTHORIZED_ZONE_URL);
-        die();
-    }
-
-    public static function declareAccessZone($accessStatuses = []){
-        $factory = new UsersFactory();
-        $user = $factory->getCurrentUser();
-        if($user){
-            if(in_array($user->status,$accessStatuses)){
-                return;
-            } 
-        }
-        header("Location: ".self::AUTHORIZED_ZONE_URL);
-        die();
     }
     
-    const ADMIN_ZONE_URL = '/admin/';
-    public static function declareAdminZone(){
-        $factory = new UsersFactory();
-        $user = $factory->getCurrentAdmin();
+    public static function checkExistance($user){
         if( is_null($user) ){
-            header("Location: " . self::ADMIN_ZONE_URL);
-            die();
+            throw new DesktopRentException("Пользователь не найден");
+        }
+    }
+    
+    public static function checkPhone($phone){
+        if( is_null($phone) ){
+            throw new DesktopRentException("Номер телефона введен в неверном формате!");
         }
     }
     
     public static function getProtectedString(string $str): string{
-        return addslashes(htmlspecialchars(strip_tags($str)));
+        return htmlspecialchars(strip_tags(trim($str)));
     }
     
-    public static function protect(string $str){
-        return self::getProtectedString($str);
+    public static function protect(string &$str){
+        $str = self::getProtectedString($str);
+        return $str;
     }
     
 }

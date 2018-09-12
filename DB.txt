@@ -1,0 +1,137 @@
+CREATE TABLE _users (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    phone VARCHAR(20) NOT NULL UNIQUE,
+    registered DATETIME NOT NULL,
+    auth_status BOOL NOT NULL DEFAULT 0,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE _users_connections (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    cookie VARCHAR(256) NOT NULL DEFAULT '',
+    ip VARCHAR(32) DEFAULT '',
+    setted DATETIME NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (user_id) 
+        REFERENCES _users(id)
+		ON DELETE CASCADE
+);
+CREATE INDEX curr_user ON _users_connections(user_id, cookie);
+
+CREATE TABLE _users_info (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    first_name VARCHAR(32) DEFAULT '',
+    last_name VARCHAR(32) DEFAULT '',
+    patronymic VARCHAR(32) DEFAULT '',
+    inn VARCHAR(32) DEFAULT '',
+    PRIMARY KEY(id),
+    FOREIGN KEY (user_id) 
+        REFERENCES _users(id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE _teams (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    owner INT UNSIGNED NOT NULL,
+    title VARCHAR(256) NOT NULL DEFAULT 'New team',
+    inn VARCHAR(32) DEFAULT '',
+    created DATETIME,
+    PRIMARY KEY(id),
+    FOREIGN KEY (owner)
+        REFERENCES _users(id)
+		ON DELETE CASCADE
+);
+CREATE INDEX title_index ON _teams(title);
+
+CREATE TABLE _users_teams (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    team_id INT UNSIGNED NOT NULL,
+    role_id INT UNSIGNED NOT NULL,
+    status INT NOT NULL DEFAULT 0,
+    added DATETIME NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (user_id)
+        REFERENCES _users(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (team_id)
+        REFERENCES _teams(id)
+		ON DELETE CASCADE
+	FOREIGN KEY (role_id)
+        REFERENCES _roles(id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE _roles (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title VARCHAR(512) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE _users_sms (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    code VARCHAR(32) NOT NULL,
+    sended DATETIME NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY (user_id)
+        REFERENCES _users(id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE _roles (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title VARCHAR(64) NOT NULL,
+    const TINYINT NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE _1c_dbs (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    conf_id INT UNSIGNED NOT NULL,
+    title VARCHAR(1024) NOT NULL,
+    hand_handled BOOL NOT NULL DEFAULT 0,
+    created DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES _users(id)
+            ON DELETE CASCADE,
+    FOREIGN KEY (conf_id)
+        REFERENCES _1c_db_configurations(id)
+            ON DELETE CASCADE
+);
+
+CREATE TABLE _1c_db_configurations (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    title VARCHAR(1024) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE _folders (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    title VARCHAR(1024) NOT NULL,
+    created DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES _users(id)
+            ON DELETE CASCADE
+);
+
+CREATE TABLE _scanners (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    user_id INT UNSIGNED NOT NULL,
+    title VARCHAR(256) NOT NULL,
+    address VARCHAR(1024) NOT NULL,
+    login VARCHAR(256) NOT NULL,
+    password VARCHAR(512) NOT NULL,
+    created DATETIME NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES _users(id)
+            ON DELETE CASCADE
+);
+

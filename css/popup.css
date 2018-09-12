@@ -1,0 +1,103 @@
+.new-folder__background{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.49);
+    z-index: 1000;
+    display: flex;
+}
+
+.popup{
+    background-color: #fff;
+    margin: auto;
+    position: relative;
+    padding: 3rem;
+}
+
+.popup__header{
+    font-size: 2rem;
+    padding-right: 4rem;
+    line-height: 2.7rem;
+}
+
+.popup__btn-close{
+    cursor: pointer;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 3.6rem;
+    right: 3rem;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    background: none;
+    background-repeat: no-repeat;
+    background-image: url(../img/icon-user-control-panel/close.png);
+    background-size: 100%;
+    background-position: center;
+}
+
+
+.popup__tabs{
+    list-style: none;
+    display: flex;
+}
+
+.popup__tabs-item{
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1.6rem;
+    margin-right: 2.8rem;
+    border-bottom: 1px solid transparent;
+}
+.popup__tabs-item:hover,
+.popup__tabs-item:active{
+    color: #26BEB8;
+    border-bottom: 1px solid #26BEB8;
+}
+
+.button__cancel{
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.popup__remove-size{
+    max-width: 39.2rem;
+}
+
+.field__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+}
+.field__container .field_margin_bottom{
+    margin-right: 0;
+}
+
+.error__value{
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+}
+
+.margin_create{
+    margin-top: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+

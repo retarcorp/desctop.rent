@@ -3,7 +3,8 @@ body{
 }
 
 .tools__disable {
-    pointer-events: none
+    pointer-events: none;
+    user-select: none;
 }
 
 .btn-menu_margin{
@@ -14,9 +15,52 @@ body{
 .btn-menu__set-password_margin{
     margin-left: 1rem;
 }
+.btn-menu__dashboard{
+    background-color: #CCCCCC;
+    position: relative;
+}
+.btn-menu__dashboard:hover{
+    background-color: #CCCCCC;
+}
+
+.help-info{
+    display: none;
+    padding: 1rem 1.3rem;
+    border: 1px solid #CCCCCC;
+    position: absolute;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: start;
+    background-color: #fff;
+    z-index: 100;
+    top: -70px;
+    left: 0;
+}
+.help-info > a{
+    color: #000;
+}
+
+.btn-menu__dashboard:hover .help-info{
+    display: block;
+}
+.link-help{
+    text-decoration: underline;
+}
+
+.help-info:after{
+    content: ''; 
+    position: absolute; /* Абсолютное позиционирование */
+    left: 107px; bottom: -20px; /* Положение треугольника */
+    border: 10px solid transparent; /* Прозрачные границы */
+    border-top: 10px solid #CCCCCC; /* Добавляем треугольник */
+}
 
 .btn-menu__entrance{
-    background: #CCC;
+    margin-right: 18px;
+}
+
+.btn-menu__entrance span{
+    color: #fff;
 }
 
 .tools__header_border_bottom{

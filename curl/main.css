@@ -1,0 +1,84 @@
+:root {
+    --shadow: 0 0 .4rem 0 #ccc;
+    --subshadow: 0 0 .2rem 0 #ccc;
+    --vertical-indent: 2.5rem;
+    --horizonal-indent: 3rem;
+    --box-indends: var(--vertical-indent) var(--horizonal-indent);
+    --white: #fff;
+    --black: #333;
+    --main-font-size: 1rem;
+    --horizontal-input-indent: 1.2rem;
+    --vertical-input-indent: .85rem;
+    --input-padding: var(--vertical-input-indent) var(--horizontal-input-indent);
+    --common-margin: .6rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: var(--box-indends);
+    font-size: 10px;
+}
+
+main {
+    padding: var(--box-indends);
+    box-shadow: var(--shadow);
+    font-size: var(--main-font-size);
+}
+
+form {
+    margin-top: var(--vertical-indent);
+    display: flex;
+    flex-direction: column;
+}
+
+input:focus {
+    outline: none;
+}
+
+input {
+    width: 60%;
+    padding: var(--input-padding);
+    max-width: 680px;
+    box-shadow: var(--subshadow);
+    margin-bottom: var(--common-margin);
+}
+
+#send {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--black);
+    font-size: 1.1rem;
+}
+
+.res {
+    margin-top: 2rem;
+}
+
+.spinner {
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    left: var(--horizonal-indent);
+    bottom: var(--vertical-indent);
+    transition: all .2s;
+    visibility: hidden;
+}
+
+.spinner img {
+    width: 100%;
+}
+
+.visible {
+    visibility: visible;
+}
+
+#results {
+    font-size: .85rem;
+    overflow: auto;
+}

@@ -1,10 +1,10 @@
 <?php
 
     #$_SERVER['DOCUMENT_ROOT'] = 'C:\inetpub\wwwroot\desktop.rent';
-    require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
-    use Classes\Utils\Safety;
-    use Classes\Models\Users\User;
-    Safety::declareProtectedZone();    
+    // require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
+    // use Classes\Utils\Safety;
+    // use Classes\Models\Users\User;
+    // Safety::declareProtectedZone();    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +26,11 @@
 
     <script src="/js/retarcore.js"></script>
     <script src="/js/api.js"></script>
+    <script src="/js/axios.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="index.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    
     <title>My profile</title>
 </head>
 <body>

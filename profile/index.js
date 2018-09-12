@@ -1,6 +1,5 @@
 const Profile = {
-    init: function(){
-
+    init : function(){
         var vm = new Vue({
             el: "#content"
             ,data:{
@@ -8,17 +7,42 @@ const Profile = {
                 ,profileData: ["","","","","",""]
                 ,loader: false,
                 error: false,
-                errorMessage: ''
+                errorMessage: '',
+                prevInn: $('#inn').val()
             }
             ,methods:{
                 
-                clearStatusFields() {
-                    vm.saved = false;
-                    vm.error = false;
-                    vm.errorMessage = ''
-                },
+                // clearStatusFields() {
+                //     vm.saved = false;
+                //     vm.error = false;
+                //     vm.errorMessage = ''
+                // },
+                fillProfileField: function(data){
+                    $('#surname').val(data.surname);
+                    $('#name').val(data.name);
+                    $('#patronymic').val(data.patronymic);
+                    $('#inn').val(data.inn);
+                }
+                ,editProfileInformation: function(){
+                    var inn = $('#inn').val();
+                    var data = {
+                        name: $('#name').val(),
+                        surname: $('surname').val(),
+                        patronymic : $('#patronymic').val(),
+                        inn: $('#inn').val() ? $('#inn').val() : vm.prevInn
+                    }
+                    console.log(data);
+                    
+                }
                 
-                onSave: function(){
+                ,getUserData: function(){
+                    axios.get('/api/user/data/')
+                         .then(function(res){
+                            vm.fillProfileField(res.data.data); 
+                         });
+                }
+                
+                ,onSave: function(){
                     vm.changeLoader();
                     vm.saved = false;
                     var serialized = this.serialize();
@@ -30,7 +54,6 @@ const Profile = {
                                 vm.changeLoader();
                                 return alert("Компания с таким ИНН не найдена! Проверьте введенные данные.");
                             }
-                            
                             return Api.ChangeProfileData
                                 .exec(serialized)
                                 .then(function(result){
@@ -48,6 +71,15 @@ const Profile = {
                         
                     
                 }
+                ,getUserDataField: function(){
+                    var data = {
+                        name: $('#name').val(),
+                        surname: $('#surname').val(),
+                        patronymic: $('#patronymic').val(),
+                        inn: $('#inn').val()
+                    };
+                    return data;
+                }
                 ,changeLoader: function(){
                     var loader = document.querySelector('.loader');
                     if(!vm.loader){
@@ -62,6 +94,7 @@ const Profile = {
                 ,onInput: function(e){
                     vm.saved = false;
                 }
+            
 
                 ,serialize: function(){
                     var data = {};
@@ -75,7 +108,6 @@ const Profile = {
                 
                 ,onInnChanged: function(e){
                     var val = e.target.value.trim();
-                   
                     if(/^\d{10}$/.test(val)){
                         Api.GetCompanyDataByInn.exec({inn: val})
                             .then(function(data){
@@ -99,16 +131,19 @@ const Profile = {
                             .catch(function(e){console.error(e)})
                     }
                 }
-            }       
+            }
+            ,created: function(){
+                this.getUserData();
+            }
         }); 
         
         // TEST! rewrite on VUE
         
         
-        var btnCompany = document.querySelector('.button__company'),
-            btnAssociate = document.querySelector('.button__associate');
-        var tabCompany = document.querySelector('.form__company'),
-            tabAssociate = document.querySelector('.form__associate');
+        //var btnCompany = document.querySelector('.button__company'),
+        //    btnAssociate = document.querySelector('.button__associate');
+        //var tabCompany = document.querySelector('.form__company'),
+        //    tabAssociate = document.querySelector('.form__associate');
         // btnCompany.addEventListener('click', function(e){
         //     e.preventDefault();
         //     btnAssociate.classList.remove('active');
@@ -116,30 +151,32 @@ const Profile = {
         //     tabAssociate.classList.remove('active');
         //     tabCompany.classList.add('active');
         // });
-        btnAssociate.addEventListener('click', function(e){
-            vm.clearStatusFields();
-            e.preventDefault();
-            btnAssociate.classList.add('active');
-            btnCompany.classList.remove('active');
-            tabAssociate.classList.add('active');
-            tabCompany.classList.remove('active');
-        });
-        
-        btnCompany.addEventListener('click', function(e){
-            vm.clearStatusFields();
-            e.preventDefault();
-            btnCompany.classList.add('active');
-            btnAssociate.classList.remove('active');
-            tabCompany.classList.add('active');
-            tabAssociate.classList.remove('active');
-        });
+        //btnAssociate.addEventListener('click', function(e){
+        //    vm.clearStatusFields();
+        //    e.preventDefault();
+        //    btnAssociate.classList.add('active');
+        //    btnCompany.classList.remove('active');
+        //    tabAssociate.classList.add('active');
+        //    tabCompany.classList.remove('active');
+        //});
+        //btnCompany.addEventListener('click', function(e){
+        //    vm.clearStatusFields();
+        //    e.preventDefault();
+        //    btnCompany.classList.add('active');
+        //    btnAssociate.classList.remove('active');
+        //    tabCompany.classList.add('active');
+        //    tabAssociate.classList.remove('active');
+        //});
         function getCompanyData(){
             var data = {
                 // form: $('.form__company').data('form'),
-                inn: $('#inn').val(),       
-                email: $('#email').val(),       
-                phone: $('#phone').val(),    
-                feature: 2//,
+                name: $('#name').val(),
+                surname: $('#surname').val(),
+                patronymic: $('#patronymic').val(),
+                inn: $('#inn').val()//,       
+                //email: $('#email').val(),       
+                //phone: $('#phone').val(),    
+                //feature: 2//,
                 // 'field-0': $('#field-0').val(),       
                 // 'field-1': $('#field-1').val(),       
                 // 'field-2': $('#field-2').val(),       
@@ -147,7 +184,6 @@ const Profile = {
                 // 'field-4': $('#field-4').val(),       
                 // 'field-5': $('#field-5').val()       
             };
-            
             return data;
         }
         function getAssociateData(){
@@ -166,30 +202,33 @@ const Profile = {
         }
         
         $('#companySend').click(function(e){
-            vm.clearStatusFields();
-            vm.changeLoader();
-            console.log(getCompanyData());
-            e.preventDefault();
-            const data = getCompanyData();
-            const params = new URLSearchParams();
-            Object.keys(data).forEach(key => params.append(key, data[key]));
-            axios.post('/api/profile/data/', params)
-            .then(function(res){
+            var inn = $('#inn').val();
+            if(inn !== ''){
+                //vm.clearStatusFields();
                 vm.changeLoader();
-                if(res.data.status === 'OK') {
-                    vm.saved = true;
-                    setTimeout(() => {
-                        vm.saved = false;
-                    }, 3000)
-                } else {
+                console.log(getCompanyData());
+                e.preventDefault();
+                const data = getCompanyData();
+                const params = new URLSearchParams();
+                Object.keys(data).forEach(key => params.append(key, data[key]));
+                axios.post('/api/user/data/edit/', params)
+                .then(function(res){
+                    vm.changeLoader();
+                    if(res.data.status === 'OK') {
+                        vm.saved = true;
+                        setTimeout(() => {
+                            vm.saved = false;
+                        }, 3000)
+                    } else {
+                        vm.error = true;
+                        vm.errorMessage = res.data.message
+                    }
+                })
+                .catch(e => {
                     vm.error = true;
-                    vm.errorMessage = res.data.message
-                }
-            })
-            .catch(e => {
-                vm.error = true;
-                vm.errorMessage = e
-            })
+                    vm.errorMessage = e
+                })
+            }
         });
         $('#associateSend').click(function(e){
             vm.clearStatusFields();
@@ -217,6 +256,15 @@ const Profile = {
                 vm.errorMessage = e
             })
         });
+        
+        // function getUserDate(){
+        //     axios.get('/api/user/data/')
+        //          .then(function(res){
+        //             console.log(res); 
+        //          });
+        // }
+        
+        //getUserDate();
         
         // end test code!
         

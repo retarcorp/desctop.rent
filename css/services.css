@@ -1,0 +1,109 @@
+.tab-data__content{
+    display: block;
+}
+
+.service__item{
+    max-width: 29.9rem;
+    width: 100%;
+    min-height: 33.4rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.service__header{
+    font-size: 1.8rem;
+    margin-bottom: .8rem;
+}
+
+.service__description,
+.service-capabilities__list{
+    font-size: 1.3rem;
+}
+
+.service-capabilities__list{
+    margin-top: .8rem;
+    flex: 1;
+    list-style: none;
+    height: auto;
+}
+
+.service-capabilitie__item{
+    margin-bottom: .6rem;
+    padding-left: 1.1rem;
+    position: relative;
+}
+
+.service-capabilitie__item:before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    background-color: #26BEB8;
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    top: .6rem;
+    left: 0;
+}
+
+.service__footer{
+    margin-top: .4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service__date{
+    font-size: 1.4rem;
+    color: #97AAAE;
+}
+
+.btn__service-off{
+    width: 12.2rem;
+    height: 3.5rem;
+    color: #97AAAE;
+    font-size: 1.4rem;
+    padding: 0;
+    background-color: #fff;
+}
+
+.service__item:hover{
+    background-color: #F5F5F5;
+}
+
+.service__item:hover .btn__service-off{
+    background-color: #2CC3B8;
+    color: #fff;
+}
+
+
+.services__connected,
+.services__avalible{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.second-section__maegin{
+    margin-top: 3rem;
+}
+
+.service__price{
+    font-size: 1.4rem;  
+}
+
+.service__price span{
+    font-size: 1.8rem;    
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -72,6 +72,10 @@
 
 }
 
+.item__dashboard{
+    background-image: url(../img/icon-user-control-panel/icon-dashboard.png);
+    background-size: 16px 16px;
+}
 .item__employees{
     background-image: url(../img/icon-user-control-panel/icon-employees.png);
 }
@@ -236,9 +240,10 @@ section[class^="right-tab__"].active {
     display: flex;
 }
 
-.button__company.active,
+/*.button__company.active,*/
 .button__associate.active{
     border-bottom: 1px solid #26BEB8;
+    color: #26BEB8;
 }
 @media screen and (max-width: 600px){
     /* ADAPTIVE-MENU (USER-CONTROL-PANEL)   */

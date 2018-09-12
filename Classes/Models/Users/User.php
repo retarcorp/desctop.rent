@@ -2,264 +2,298 @@
 
 namespace Classes\Models\Users;
 
-use Classes\Utils\Sql;
+use Classes\Sql\Sql;
 use Classes\Utils\DateUtil;
-use Classes\Models\Rdp\Rdp;
-use Classes\Models\Users\ProfileData;
-use Classes\Models\SharePoint\Licenses\License;
-use Classes\Models\Finance\Transaction;
-use Classes\Models\Finance\Order;
-use Classes\Models\Finance\BankActionsWorker;
-use Classes\Models\Services\Service;
-use Classes\Exceptions\WrongIdException;
-use Classes\Exceptions\NonExistingItemException;
-use Classes\Exceptions\SqlErrorException;
+use Classes\Utils\Common;
+use Classes\Utils\DataHolder;
+use Classes\Utils\Sms;
+use Classes\Exceptions\DesktopRentException;
+use Classes\Models\Teams\Team;
+use Classes\Models\Teams\Role;
+use Classes\Models\Users\UserData;
+use Classes\Models\_1C\DB;
+use Classes\Models\_1C\Configuration;
+use Classes\Models\Folders\Folder;
+use Classes\Models\Folders\Scanner;
 
-/**
- * The User class is a sample class that holds a single
- * user instance.
- *
- * The constructor of the User class takes a Data Mapper which
- * handles the user persistence in the database. In this case,
- * we will provide a fake one.
- */
-
-class User{
-/**
- * The user's db table name. 
- * @var string
- */
-    const TABLE_NAME = "users";
-
-/**
- * When the user exits status. 
- * @var string
- */
-    const AUTH_LOGGED_OUT = 0;
-/**
- * When the user's autorization is in progress status. 
- * @var string
- */
-    const AUTH_PENDING = 3;
-/**
- * When the user autorized status. 
- * @var string
- */
-    const AUTH_DONE = 12;
-
-/**
- * User's creating is started status. 
- * @var string
- */
-    const STATUS_JUST_CREATED = 10;
-    /**
- * User's profile data is created status. 
- * @var string
- */
-    const STATUS_FILLED_PROFILE_DATA = 13;
-    /**
- * User got a license. 
- * @var string
- */
-    const STATUS_ASSIGNED_LICENSE = 14;
-        /**
- * User set up. 
- * @var string
- */
-    const STATUS_SET_UP = 15;
-
-
-        /**
- * User's feature when he is a INDIVIDUAL FACE. 
- * @var string
- */
-    const INDIVIDUAL_FACE = 1;
-            /**
- * User's feature when he is a LEGAL ENTITY. 
- * @var string
- */
-    const LEGAL_ENTITY = 2;
+class User {
     
-    const ADMIN = 333;
-
-    public $id, $status, $phone, $sms_code, $ssid, $registered_at, $last_login, $last_ip, $inn, $email, $feature;
-    public $auth;
+    public const TABLE_NAME = '_users';
+    /*
+        # id INT
+        # phone VARCHAR(20)
+        # registered DATETIME
+        # auth_status BOOL
+    */
     
-    /**
-     * Constructor initialises the db-connection and gets all parameters of user.
-     *
-     * @param string void
-     *
-     * @return  void
-     * @throws  NonExistingItemException
-     * @todo    Check to make sure the username isn't already taken
-     *
-     * @since   2018-27-07
-     * @author  Bruno Skvorc <bruno@skvorc.me>
-     *
-     * @edit    2018-27-07<br />
-     *          RCorp Olex<br />
-     *          Changed some essential
-     *          functionality for the better<br/>
-     *          #edit1
-     */
-    public function __construct(int $id){
-        if( $id <= 0 ){
-            throw new WrongIdException("Wrong id $id");
-        }
-        
-        $sql = Sql::getInstance();
-        $r = $sql->getAssocArray("SELECT * FROM ".self::TABLE_NAME." WHERE id=$id");
-        $sql->logError(__METHOD__);
-        
-        if( empty($r) ){
-            throw new NonExistingItemException("There is no such user $id");
-        }
-        
-        $r = $r[0];
-        
-        $this->id = $r['id'];
-        $this->auth = $r['auth'];
-        $this->status = $r['status'];
-        $this->phone = $r['phone'];
-        $this->sms_code = $r['sms_code'];
-        $this->ssid = $r['ssid'];
-        $this->registered_at = $r['registered_at'];
-        $this->last_login = $r['last_login'];
-        $this->last_ip = $r['last_ip'];
-        $this->inn = $r['inn']; 
-        $this->email = $r['email'];
-        $this->feature = $r['feature'];
-    }
-    /**
-     * "Update" does a update user's parameters in db.
-     *
-     * @param string void
-     *
-     * @return  void
-     * @throws  Sql log error
-     * @todo    i don't know because this is TEST
-     *
-     * @since   2018-27-07
-     * @author  Olix >
-     *
-     * @edit    2018-27-07<br />
-     *          RCorp Olex<br />
-     *          Changed some essential
-     *          functionality for the better<br/>
-     *          #edit1
-     */
-    public function update(){
-        $sql = Sql::getInstance();
-        
-        $sql->query("UPDATE ".self::TABLE_NAME." SET 
-            status={$this->status}
-            ,auth={$this->auth}
-            ,sms_code={$this->sms_code}
-            ,email='{$this->email}'
-            ,inn='{$this->inn}'
-            ,ssid ='{$this->ssid}'
-            ,last_login = '".date("Y-m-d H:i:s")."'
-            ,last_ip='".$_SERVER['REMOTE_ADDR']."'
-            ,feature={$this->feature}
-        WHERE id={$this->id}");
-        
-        $sql->logError(__METHOD__);
-    }
+    public const SMS_TABLE = '_users_sms';
+    /*
+        # id INT
+        # user_id INT
+        # code VARCHAR(32)
+        # sended DATETIME
+    */
     
-    public function isAdmin(): bool{
-        return $this->feature == self::ADMIN;
-    }
+    public const CONNECTIONS_TABLE = '_users_connections';
+    /*
+        # id INT
+        # user_id INT
+        # cookie VARCHAR(256)
+        # ip VARCHAR(32)
+        # setted DATETIME
+    */
     
-    public function getLicense(): ?License{
-        $sql = Sql::getInstance();
-        $q = "SELECT id FROM " . License::TABLE_NAME . "
-            WHERE uid = {$this->id}";
-            
-        $data = $sql->getAssocArray($q);
-        $sql->logError(__METHOD__);
-        
-        $id = @intval($data[0]['id']);
-        return $id ? new License($id) : null;
-    }
-
-    public function getProfileData() : ProfileData {
-        $profileData = new ProfileData($this->id);
-        return $profileData;
-    }
-
-    public function hasRightsAtLeast(int $num){
-        return $this->status*1 >= $num;
-    }
+    protected const PROPS_COLUMNS_INFO = [
+        'phone' => ['type' => 'str', 'get'],
+        'registered' => ['type' => 'str', 'get'],
+        //'auth_status' => ['alias'=> 'authStatus', 'type' => 'int', 'get', 'set'],
+    ];
     
-    public function onCompanyDataApproved(){
-        $this->status = $this->status < self::STATUS_FILLED_PROFILE_DATA ? self::STATUS_FILLED_PROFILE_DATA : $this->status;
-        $this->update();
-    }
+    use \Classes\Traits\Entity;
+    use \Classes\Traits\FactoryMethods;
     
-    public function onLicenseAttached(){
-        $this->status = $this->status < self::STATUS_ASSIGNED_LICENSE ? self::STATUS_ASSIGNED_LICENSE : $this->status;
-        $this->update();
-    }
+    const COOKIE_NAME = 'desktoprent_user';
+    const COOKIE_LIFE_TIME = 60 * 60 * 24 * 7; // week
     
-    public function onLicenseDettached(){
-        $this->status = self::STATUS_FILLED_PROFILE_DATA;
-        $this->update();
-    }
+    //const SMS_CODE_LIFE_TIME = 60 * 3; //3 mins
     
-    private function getObjectsDataByQuery(string $q, int $amount = 0, int $step = 0): array{        
-        $q = $amount ? $q . " LIMIT $amount " : $q;
-        $q = $step ? $q . " OFFSET $step " : $q;
-        
-        $sql = Sql::getInstance();
-        $data = $sql->getAssocArray($q);
-        
-        if( $e = $sql->getLastError() ){
-            throw new SqlErrorException(__METHOD__ . ": $e");
-        }
-        
+    private $id;
+    private $phone;
+    private $registered;
+    //private $authStatus;
+    
+    private function getValidatedData(array $data): array{
+        $data['registered'] = DateUtil::toRussian($data['registered']);
         return $data;
     }
     
-    public function getOrders(int $amount = 0, int $step = 0): array {
-        $q = "SELECT id FROM " . Order::TABLE_NAME . "
-            WHERE uid = {$this->id}
-            ORDER BY id DESC";
-        
-        $data = $this->getObjectsDataByQuery(Order::TABLE_NAME, $amount, $step);
-        return Order::toInstances($data);
-    }
-    
-    public function getTransactions(int $amount = 0, int $step = 0): array{
-        $orders = $this->getOrders($amount, $step);
-        
-        return array_map(function($order){
-            $baw = new BankActionsWorker();
-            $transaction = $baw->getTransactionForOrder($order);
-            return $transaction;
-        }, $orders);
-    }
-    
-    public function getServices(int $amount = 0, int $step = 0): array{
-        $q = "SELECT service_id AS id FROM " . Service::USERS_SERVICES_TABLE . "
-            WHERE user_id = {$this->id}
-            ORDER BY id DESC";
-        
-        $data = $this->getObjectsDataByQuery($q, $amount, $step);
-        return Service::toInstances($data);
-    }
-    
-    public function addService(Service $service){
+    public function getUserData(): UserData{
         $sql = Sql::getInstance();
         
-        $q = "INSERT INTO " . Service::USERS_SERVICES_TABLE . "
-            (user_id, service_id, added)
-            VALUES(?, ?, '?')";
+        $q = "SELECT * FROM " . UserData::TABLE_NAME . "
+            WHERE user_id = {$this->id}";
         
-        $sql->execPrepared($q, [$this->id, $service->id, DateUtil::toSqlFormat(time())]);
-        if( $e = $sql->getLastError() ){
-            throw new SqlErrorException(__METHOD__ . ": $e");
+        $data = $sql->getRow($q);
+        return UserData::toInstance($data);
+    }
+    
+    public function hasUserData(): bool{
+        $sql = Sql::getInstance();
+        return $sql->getRowsAmountIn(UserData::TABLE_NAME, "user_id = {$this->id}");
+    }
+    
+    public function createUsersData(): UserData{
+        return $this->createObject(
+            "Classes\Models\Users\UserData",
+            ['user_id' => $this->id, 'inn' => '']
+        );
+    }
+    
+    public function clearSmsCodes(){
+        $sql = Sql::getInstance();
+        $sql->delete( self::SMS_TABLE, ['user_id' => $this->id] );
+    }
+    
+    public function addSmsCode(string $code){
+        $sql = Sql::getInstance();
+        $data = [
+            'user_id' => $this->id,
+            'code' => $code,
+            'sended' => DateUtil::toSql(time())
+        ];
+        
+        $sql->insert(self::SMS_TABLE, $data);
+    }
+    
+    public function checkSmsCode(string $code): bool{
+        $sql = Sql::getInstance();
+        
+        //$smsExpiration = DateUtil::toSql(time() - User::SMS_CODE_LIFE_TIME);
+        
+        return $sql->getRowsAmountIn(
+            self::SMS_TABLE,
+            "code = '$code' AND user_id = {$this->id} " // AND sended > '$smsExpiration'"
+        );
+    }
+    
+    public function generateHash(): string{
+        return md5(time());
+    }
+    
+    public function auth(){
+        $value = $this->generateHash();
+        
+        $sql = Sql::getInstance();
+        
+        $data = [
+            'user_id' => $this->id,
+            'cookie' => $value,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'setted' => DateUtil::toSql(time())
+        ];
+        
+        $sql->insert(self::CONNECTIONS_TABLE, $data);
+            
+        setcookie(self::COOKIE_NAME, $value, time() + self::COOKIE_LIFE_TIME, '/');
+    }
+    
+    public function logout(){
+        if( isset($_COOKIE[self::COOKIE_NAME]) ){
+            
+            $sql = Sql::getInstance();
+            $value = $_COOKIE[self::COOKIE_NAME];
+            
+            $sql->delete(self::CONNECTIONS_TABLE, ['user_id' => $this->id, 'cookie' => $value]);
+            $sql->logError(__METHOD__);
+            
+            setcookie(self::COOKIE_NAME, '', time() - 1, '/');
+            
+            //$this->authStatus = self::AUTH_STATUS_UNAUTHORIZED;
+            $this->update();
         }
+    }
+    
+    public function hasTeam(): bool{
+        $sql = Sql::getInstance();
+        return $sql->getRowsAmountIn(Team::TABLE_NAME, " owner = {$this->id} ");
+    }
+    
+    public function createTeam(string $title = 'Новая команда'): Team{
+        return $this->createObject(
+            "Classes\Models\Teams\Team",
+            [
+                'owner' => $this->id,
+                'title' => $title,
+                'created' => DateUtil::toSql(time())
+            ]
+        )->addRole($this, Role::master(), Team::USER_STATUS_APPROVED);
+    }
+    
+    public function getOwnedTeams($limit = null, $offset = null): array{
+        return $this->getObjects(
+            "Classes\Models\Teams\Team",
+            "owner = {$this->id}",
+            $limit, $offset
+        );
+    }
+    
+    public function isOwnerForTeam(Team $team): bool{
+        $sql = Sql::getInstance();
+        return $sql->getRowsAmountIn(Team::TABLE_NAME, "owner = {$this->id} AND id = {$team->getId()}");
+    }
+    
+    public function hasRelationWithTeams(): bool{
+        $sql = Sql::getInstance();
+        return $sql->getRowsAmountIn(Team::USERS_TEAMS_TABLE, "user_id = {$this->id}");
+    }
+    
+    public function hasRelationWithTeam(Team $team): bool{
+        $sql = Sql::getInstance();
+        return $sql->getRowsAmountIn(
+            Team::USERS_TEAMS_TABLE,
+            "user_id = {$this->id} AND team_id = {$team->getId()}"
+        );
+    }
+    
+    public function joinTeam(Team $team){
+        $team->addRole($this, Role::candidate());
+        
+        $userData = $this->getUserData();
+        
+        $data = new DataHolder([
+            'name' => [$userData->getName()],
+            'surname' => [$userData->getSurname()],
+            'patronymic' => [$userData->getPatronymic()],
+            'phone' => [$this->phone]
+        ]);
+        
+        Sms::send($this->phone, Sms::getMessage(Sms::JOINED_USER, $data));
+    }
+    
+    public function getJoinedTeams($limit = null, $offset = null): array{
+        $sql = Sql::getInstance();
+        
+        $q = "SELECT * FROM " . Team::TABLE_NAME . "
+            WHERE id IN (SELECT team_id id FROM " . Team::USERS_TEAMS_TABLE . "
+            WHERE user_id = {$this->id}
+            ORDER BY added DESC)";
+        
+        $q .= is_null($limit) ? '' : " LIMIT $limit ";
+        $q .= is_null($offset) ? '' : " OFFSET $offset ";
+        
+        $data = $sql->getAssoc($q);
+        return Team::toInstances($data);
+    }
+    
+    public function create1CDataBase(Configuration $conf, string $title, int $handHandled = 0): DB{
+        return $this->createObject(
+            "Classes\Models\_1C\DB",
+            [
+                'user_id' => $this->id,
+                'conf_id' => $conf->getId(),
+                'title' => $title,
+                'hand_handled' => $handHandled,
+                'created' => DateUtil::toSql(time())
+            ]
+        );
+    }
+    
+    public function get1CDataBases(): array{
+        return $this->getObjects(
+            "Classes\Models\_1C\DB",
+            "user_id = {$this->id}"
+        );
+    }
+    
+    public function delete1CDatabase(DB $db){
+        $this->deleteObject($db);
+    }
+    
+    public function createFolder(string $title): Folder{
+        return $this->createObject(
+            "Classes\Models\Folders\Folder",
+            [
+                'user_id' => $this->id,
+                'title' => $title,
+                'created' => DateUtil::toSql(time())
+            ]
+        );
+    }
+    
+    public function getFolders(): array{
+        return $this->getObjects(
+            "Classes\Models\Folders\Folder",
+            "user_id = {$this->id}"
+        );
+    }
+    
+    public function deleteFolder(Folder $folder){
+        $this->deleteObject($folder);
+    }
+    
+    public function createScanner(DataHolder $data): Scanner{
+        return $this->createObject(
+            "Classes\Models\Folders\Scanner",
+            [
+                'user_id' => $this->id,
+                'title' => $data->title,
+                'address' => $data->address,
+                'login' => $data->login,
+                'password' => $data->password,
+                'created' => DateUtil::toSql(time())
+            ]
+        );
+    }
+    
+    public function getScanners(): array{
+        return $this->getObjects(
+            "Classes\Models\Folders\Scanner",
+            "user_id = {$this->id}"
+        );
+    }
+    
+    public function deleteScanner(Scanner $scanner){
+        $this->deleteObject($scanner);
     }
     
 }

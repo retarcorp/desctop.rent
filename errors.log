@@ -1,1 +1,3 @@
-ERROR:In Classes\Traits\ObjectOperations::createObject caught SQL-error: Unknown column 'created' in 'field list'ERROR:In Classes\Traits\ObjectOperations::createObject caught SQL-error: Incorrect datetime value: 'NOW()' for column 'created' at row 1ERROR:In Classes\Models\Users\User::getEssences caught SQL-error: Unknown column 'uid' in 'where clause'
+ERROR:In Classes\Models\Users\UsersActions::registerUser caught SQL-error: Field 'registered' doesn't have a default value
+ERROR:In Classes\Models\Users\UsersActions::registerUser caught SQL-error: Data too long for column 'phone' at row 1
+ERROR:In Classes\Models\Users\User::auth caught SQL-error: Unknown column 'setted' in 'field list'

@@ -1,0 +1,58 @@
+31.08.2018 10:22:39: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'SHOW'.
+31.08.2018 10:39:11: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Incorrect syntax near 'AUTO_INCREMENT'.
+31.08.2018 10:48:06: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Incorrect syntax near 'AUTO_INCREMENT'.
+31.08.2018 10:51:03: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column, parameter, or variable #4: Cannot find data type BOOL.
+31.08.2018 10:51:25: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column, parameter, or variable #4: Cannot find data type BOOLEAN.
+03.09.2018 11:18:59: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11:15:59' at line 1
+03.09.2018 11:20:57: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11:17:57' at line 1
+04.09.2018 09:08:40: Classes\Models\Users\User::logout
+06.09.2018 15:30:57: Classes\Models\Users\User::logout
+10.09.2018 09:59:56: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:00:25: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:03:29: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:03:59: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:04:57: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:06:07: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:07:28: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:07:53: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:09:06: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:09:37: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:11:13: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:11:40: SQLSTATE[HY000]: General error: 1364 Field 'inn' doesn't have a default value
+10.09.2018 10:37:55: Classes\Models\Users\User::logout
+10.09.2018 10:39:12: Classes\Models\Users\User::logout
+10.09.2018 11:03:39: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:04:30: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:04:49: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:05:01: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:05:32: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:05:48: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:06:01: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:06:11: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'inn' cannot be null
+10.09.2018 11:11:06: Classes\Models\Users\User::logout
+10.09.2018 11:16:37: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+10.09.2018 11:50:57: Classes\Models\Users\User::logout
+10.09.2018 12:06:56: Classes\Models\Users\User::logout
+10.09.2018 12:16:00: Classes\Models\Users\User::logout
+10.09.2018 12:16:36: Classes\Models\Users\User::logout
+10.09.2018 12:17:12: Classes\Models\Users\User::logout
+10.09.2018 12:31:11: Classes\Models\Users\User::logout
+10.09.2018 12:32:10: Classes\Models\Users\User::logout
+10.09.2018 12:36:15: Classes\Models\Users\User::logout
+10.09.2018 12:37:31: Classes\Models\Users\User::logout
+10.09.2018 12:55:24: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'hand_handled' at row 1
+10.09.2018 12:56:34: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'hand_handled' at row 1
+10.09.2018 12:57:42: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'hand_handled' at row 1
+10.09.2018 12:58:06: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'hand_handled' at row 1
+10.09.2018 12:58:19: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'hand_handled' at row 1
+10.09.2018 14:57:59: Classes\Models\Users\User::logout
+10.09.2018 14:58:18: Classes\Models\Users\User::logout
+11.09.2018 07:58:40: Classes\Models\Users\User::logout
+11.09.2018 08:11:47: Classes\Models\Users\User::logout
+11.09.2018 08:12:33: Classes\Models\Users\User::logout
+11.09.2018 08:13:59: Classes\Models\Users\User::logout
+11.09.2018 08:18:28: Classes\Models\Users\User::logout
+11.09.2018 08:36:51: Classes\Models\Users\User::logout
+11.09.2018 16:38:58: Classes\Models\Users\User::logout
+12.09.2018 07:20:22: Classes\Models\Users\User::logout
+12.09.2018 07:40:48: Classes\Models\Users\User::logout

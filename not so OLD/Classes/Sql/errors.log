@@ -1,0 +1,5 @@
+31.08.2018 10:22:39: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Could not find stored procedure 'SHOW'.
+31.08.2018 10:39:11: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Incorrect syntax near 'AUTO_INCREMENT'.
+31.08.2018 10:48:06: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Incorrect syntax near 'AUTO_INCREMENT'.
+31.08.2018 10:51:03: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column, parameter, or variable #4: Cannot find data type BOOL.
+31.08.2018 10:51:25: SQLSTATE[42000]: [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Column, parameter, or variable #4: Cannot find data type BOOLEAN.

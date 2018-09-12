@@ -4,7 +4,7 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
     use Classes\Models\Users\User;
-    // Safety::declareProtectedZone();    
+    // Safety::declareSetUpUsersAccessZone();       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,17 +18,17 @@
     <link rel="stylesheet" href="/css/user-control-panel.css">
     
     <link rel="stylesheet" href="/css/employees.css">
+    <link rel="stylesheet" href="/css/folders.css">
+    <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet" href="/css/adaptive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <script src="/js/drop-down-menu.js"></script>
     <script src="/js/menu-user-control-panel.js"></script>
-
-    <script src="/js/retarcore.js"></script>
-    <script src="/js/api.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/js/vue.js"></script>
+    <script src="/js/axios.js"></script>
     <script src="index.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
     <title>My employees</title>
 </head>
 <body>
@@ -42,6 +42,27 @@
             </section>
         </main>
         <?php include $_SERVER['DOCUMENT_ROOT']."/modules/footer.php";?>
-    </div>    
+    </div>
+    
+    <script type="text/x-template" id="tree-menu">
+        <div class="tree-menu">
+            <div class="label-wrapper" @click="toggleChildren">
+                <div :style="indent" :class="labelClasses">
+                    <i v-if="nodes" class="fa" :class="iconClasses"></i>
+                    {{ label }}
+                </div>
+            </div>
+            <tree-menu 
+                v-if="showChildren"
+                v-for="node in nodes" 
+                :nodes="node.nodes" 
+                :label="node.label"
+                :depth="depth + 1"   
+            >
+            </tree-menu>
+        </div>
+    </script>
+    
+    <script src="/js/folders.js"></script>
 </body>
 </html>

@@ -2,16 +2,8 @@
 
 namespace Classes\Traits;
 
-use Classes\Utils\Sql;
-use Classes\Utils\Log;
-use Classes\Utils\DateUtil;
-use Classes\Utils\Common;
-use Classes\Exceptions\DesktopRentException;
-use Classes\Exceptions\WrongIdException;
-use Classes\Exceptions\NonExistingItemException;
-use Classes\Exceptions\UnAvailablePropertyException;
-use Classes\Exceptions\UndefinedMethodException;
-use Classes\Exceptions\SqlErrorException;
+use Classes\Exceptions\TraitException;
+use Classes\Sql\Sql;
 
 trait Entity {
     
@@ -23,32 +15,119 @@ trait Entity {
             'uid' => ['type' => 'int', 'get'],
             'payment_way' => ['alias' => 'payment', 'type' => 'int', 'get', 'set']
         ]
+    # 3) Method getValidatedData(array $data) : array to prevalidate result of converting object in array
     */
     
-    public function __construct(int $id){
+    public static function getSqlInstance(){
+        return Sql::getInstance();
+    }
+    
+    private $columnsToSelect = [];
+    
+    public static function getInfo(): array{
+        return self::PROPS_COLUMNS_INFO;
+    }
+    
+    public function __construct(int $id, $setProps = true){
         if( $id <= 0 ){
-            throw new WrongIdException(__METHOD__ . ": Wrong id $id, it must be positive");
+            throw new TraitException(__METHOD__ . ": Wrong id $id, it must be positive");
         }
         
         $this->id = $id;
+        
+        if($setProps){
+            $this->setPropsFromDB();
+        }
+    }
+    
+    public function getId(): int{
+        return $this->id;
+    }
+    
+    public function update(): self{
+        $subqs = [];
+        $values = [];
+        
+        foreach(self::PROPS_COLUMNS_INFO as $column => $propInfo){            
+            $prop = isset($propInfo['alias']) ? $propInfo['alias'] : $column;
+            
+            if( !($this->hasSetter($prop, 'set')) ){
+                continue;
+            }
+            
+            $value = $this->$prop;
+            $data[$column] = $value;
+        }
+        
+        if( empty($data) ){
+            return $this;
+        }
+        
+        $sql = self::getSqlInstance();
+        $where = ['id' => $this->id];
+        $sql->update(self::TABLE_NAME, $data, $where);
+        return $this;
+    }
+    
+    public function toArray(): array{
+        $arr = [];
+        foreach($this as $prop => $value){
+            if( $prop != 'sql' && $prop != 'columnsToSelect' ){
+                $arr [$prop] = $value;
+            }
+        }
+        
+        $method = "getValidatedData";
+        if( method_exists($this, $method) ){
+            $arr = $this->$method($arr);
+        }
+        
+        return $arr;
+    }
+    
+    public static function toInstance(array $data){
+        $id = intval($data['id']);
+        unset($data['id']);
+        $class = self::class;
+        $object = new $class($id, 0);
+        
+        if( !empty($data) ){
+            $object->setProps($data);
+        }
+        
+        return $object;
+    }
+    
+    public static function toInstances(array $data): array{
+        return array_map(function($e){
+            return self::toInstance($e);
+        }, $data);
+    }
+    
+    public function select(array $columns): self{
+        $this->columnsToSelect = $columns;
+        return $this;
     }
     
     public function setPropsFromDB(): self{
-        $columns = array_keys(self::PROPS_COLUMNS_INFO);
+        if( empty($this->columnsToSelect) ){
+            $columns = array_keys(self::PROPS_COLUMNS_INFO);
+        }else{
+            $columns = $this->columnsToSelect;
+            $this->columnsToSelect = [];
+        }
+        
         $columns = implode(', ', $columns);
+        
+        $sql = self::getSqlInstance();
         
         $q = "SELECT $columns FROM "
             . self::TABLE_NAME . " WHERE id = {$this->id}";
         
-        $sql = $sql = Sql::getInstance();
-        $data = $sql->getAssocArray($q);
-        
-        if( $e = $sql->getLastError() ){
-            throw new SqlErrorException(__METHOD__ . ": $e");
-        }
+        $data = $sql->getAssoc($q);
         
         if( empty($data) ){
-            throw new NonExistingItemException(__METHOD__ . ": There is no such item {$this->id} in DB");
+            throw new TraitException(__METHOD__ . ": There is no such item {$this->id} in DB");
         }
         
         $this->setProps($data[0]);
@@ -67,53 +146,6 @@ trait Entity {
             }
             
         }
-        return $this;
-    }
-    
-    public static function toInstance(array $data): Object{
-        $id = intval($data['id']);
-        unset($data['id']);
-        $class = self::class;
-        $object = new $class($id);
-        
-        if( !empty($data) ){
-            $object->setProps($data);
-        }
-        
-        return $object;
-    }
-    
-    public function update(): self{
-        $subqs = [];
-        $values = [];
-        
-        foreach(self::PROPS_COLUMNS_INFO as $column => $propInfo){            
-            $prop = isset($propInfo['alias']) ? $propInfo['alias'] : $column;
-            
-            if( !($this->hasSetter($prop, 'set')) ){
-                continue;
-            }
-            
-            $subqs [] = "$column = '?'";
-            $values [] = $this->$prop;
-        }
-        
-        if( empty($subqs) && empty($values) ){
-            return $this;
-        }
-        
-        $sql = Sql::getInstance();
-        $q = "UPDATE " . self::TABLE_NAME . "
-            SET " . implode(', ', $subqs) . " WHERE id = ?";
-        
-        $values [] = $this->id;
-        
-        $sql->execPrepared($q , $values);
-        
-        if( $e = $sql->getLastError() ){
-            throw new SqlErrorException(__METHOD__ . ": $e");
-        }
-        
         return $this;
     }
     
@@ -154,69 +186,36 @@ trait Entity {
             return $this->$prop;
         }
         
-        throw new UnAvailablePropertyException(__METHOD__ . ": Trying to get value of unavailable property $prop");
+        throw new TraitException(__METHOD__ . ": Trying to get value of unavailable property $prop");
     }
     
     public function __set(string $prop, $value){
         if( $this->hasSetter($prop) ){
             $this->$prop = $value;
         }else{
-            throw new UnAvailablePropertyException(__METHOD__ . ": Trying to set value $value of unavailable property $prop");
+            throw new TraitException(__METHOD__ . ": Trying to set value $value of unavailable property $prop");
         }
-    }
-    
-    public function toArray(): array{
-        $arr = [];
-        foreach($this as $prop => $value){
-            if( $prop != 'sql' ){
-                $arr [$prop] = $value;
-            }
-        }
-        
-        $method = "getValidatedData";
-        if( method_exists($this, $method) ){
-            $arr = $this->$method($arr);
-        }
-        
-        return $arr;
-    }
-    
-    public function getId(): int{
-        return $this->id;
     }
     
     public function __call(string $method, array $args){
-        if( strpos($method, 'set') !== false ){
-            
-            $prop = strtolower(substr($method, strlen('set'), 1)) 
-                . substr($method, strlen('set') + 1);
+        if( strpos($method, 'set') === 0 ){
+            $prop = lcfirst(substr($method, strlen('set')));
             $this->$prop = $args[0];
             
-        }elseif( strpos($method, 'get') !== false ){
+        }elseif( strpos($method, 'get') === 0 ){
             
-            $prop = strtolower(substr($method, strlen('set'), 1)) 
-                . substr($method, strlen('set') + 1);
+            $prop = lcfirst(substr($method, strlen('set')));
             return $this->$prop;
             
         }else{
-            throw new UndefinedMethodException(__METHOD__ . ": Undefined method $method");
+            throw new TraitException(__METHOD__ . ": Undefined method $method");
         }
     }
     
-    public static function toInstances(array $data): array{
-        return array_map(function($e){
-            return self::toInstance($e);
-        }, $data);
-    }
-    
     public function __toString(): string{
-        return array_reduce($this, function($carry, $curr){
+        return array_reduce($this->toArray(), function($carry, $curr){
             $carry .= serialize($curr);
         }, '');
-    }
-    
-    public static function getInfo(): array{
-        return self::PROPS_COLUMNS_INFO;
     }
     
 }

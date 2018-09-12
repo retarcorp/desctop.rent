@@ -4,15 +4,16 @@ namespace Classes\Traits;
 
 trait ControllerActions {
     
-    private function serializeObjects(array $objects, bool $fill = false): array{
-        $serialized = [];
+    private function toPrimitive(array $objects): array{
+        $primitive = [];
         foreach($objects as $object){
-            if( $fill ){
-                $object->setPropsFromDB();
-            }
-            $serialized [] = $object->toArray();
+            $primitive [] = $object->toArray();
         }
-        return $serialized;
+        return $primitive;
+    }
+    
+    private function getObjectById(string $class, int $id){
+        return (new $class($id))->toArray();
     }
     
 }

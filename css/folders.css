@@ -1,0 +1,422 @@
+.folders__tab{
+    margin-top: 2rem;    
+}
+
+.foldes__header{
+    padding: 0 2.5rem;
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    background-color: #26BEB8;
+}
+
+.header__col{
+    font-size: 1.4rem;
+    color: #fff;
+    line-height: 4rem;
+    width: 12rem;
+}
+
+.header__folders{
+    flex: 3.5;
+}
+.header__button{
+    width: 1.3rem;
+    margin-right: 15px;
+}
+
+.folder,
+.file{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.folder__item{
+    width: 12rem;
+    font-size: 1.2rem;
+    color: #B7B7B7;
+    line-height: 3.9rem;
+}
+.folder__header{
+    display: block;
+    flex-shrink: 2;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex: 3.5;
+}
+
+.button__open-folder{
+    width: .8rem;
+    height: .4rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url(../img/icon-user-control-panel/icon-folder-status.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: .8rem .4rem;
+    transform: rotate(-90deg);
+}
+
+.folder__name{
+    font-size: 1.4rem;
+    height: 100%;
+    color: #2F555E;
+    margin: 0 1rem;
+    padding: 0 3rem;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.img__folder{
+    background-image: url(../img/icon-user-control-panel/icon-folder.png);
+    background-size: 1.8rem 1.5rem;
+}
+.img__file{
+    background-image: url(../img/icon-user-control-panel/icon-file.png);
+    background-size: 1.4rem 1.9rem;
+}
+
+.button__folder-edit,
+.button__folder-remove,
+.button__folder-stop{
+    /*margin-right: 1.5rem;*/
+    width: 1.3rem;
+    height: 1.3rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url(../img/icon-user-control-panel/icon-pencil.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.3rem 1.3rem;
+}
+
+.button__folder-remove{
+    background-image: url(../img/icon-user-control-panel/remove-teble.png);
+    margin-left: 2rem;
+}
+
+.button__folder-stop{
+    background-image: url(../img/icon-user-control-panel/stopping.png);
+    margin-left: 2rem;
+}
+
+.folder__subfolders{
+    width: 100%;
+    transition: all .3s;
+    height: 0;
+    overflow: hidden;
+}
+
+.folder__subfolders .folder{
+    width: calc(100% - 1.2rem);
+    margin: 0 0 0 auto;
+}
+.folder__subfolders .file{
+    width: calc(100% - 2rem);
+    margin: 0 0 0 auto;
+}
+
+
+
+.folder.active > .folder__item .button__open-folder{
+    transform: rotate(0deg);
+}
+
+.folder__rights,
+.folder__create{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*.folder.active > .folder__subfolders{*/
+/*    display: block;*/
+/*}*/
+
+.file .folder__name{
+    margin: 0 1.2rem;
+    padding: 0 2.8rem;
+}
+.folders__container > .file .folder__header{
+    padding-left: 2.3rem;
+}
+
+
+/* POPUP  FOR   FOLDERS*/
+
+.new-folder{
+    max-width: 866px;
+    width: 100%;
+}
+.access__search{
+    width: 100%;
+    height: 3.9rem;
+    background-color: #EDEDED;
+    border: none;
+    font-size: 1.2rem;
+    padding: 1.1rem 1.2rem;
+}
+
+.users-list__header{
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+    color: #3c3c3c;
+}
+
+.user-list__item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.user-item__info{
+    margin-left: .5rem;
+}
+.user-item__avatar{
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+}
+
+.user-item__fullname{
+    font-size: 1.4rem;
+}
+
+.user-item__email{
+    font-size: 1.2rem;
+    color: #8A9CA0;
+}
+
+.user-list{
+    height: 25.6rem;
+    overflow-y: scroll;
+}
+
+.user-list__item .style-ratio{
+    margin: 0 2rem 0 auto;
+}
+
+.access__content{
+    display: flex;
+}
+
+.all__users-list,
+.selected__users-list{
+    flex: 1;
+}
+.selected__users-list{
+    margin-left: 2rem;
+}
+
+.popup__tabs{
+    margin-top: .8rem;
+}
+
+.btn__save-newfolder{
+    width: 21.6rem;
+    height: 5.2rem;
+    color: #fff;
+    margin-top: 3.5rem;
+    font-size: 1.6rem;
+    padding: 0;
+}
+
+.right-list{
+    position: relative;
+    margin-bottom: 1.5rem;
+    margin-top: 1.2rem;
+    /*max-width: 18.1rem;*/
+    /*width: 100%;*/
+    /*height: 2.8rem;*/
+    padding: .8rem 1rem;
+    font-size: 1.5rem;
+    /*border: 1px solid #8A9CA0;*/
+    -webkit-appearance: none;
+    /* for FF */
+    -moz-appearance: none;
+    text-indent: 0.01px; 
+    text-overflow: '';
+    /* for IE */
+    -ms-appearance: none;
+    appearance: none!important;
+    background-image: url('../img/selectDrop.png');
+    background-position: 95% center;
+    background-repeat: no-repeat;
+    background-size: 1.5rem .9rem;
+}
+
+.input__newFolder{
+    /*margin-top: 12px;*/
+    display: block;
+    max-width: 39.2rem;
+    width: 100%;
+    height: 5rem;
+    border:none;
+    background-color: #EDEDED;
+}
+.properties__field{
+    font-size: 1.5rem;
+}
+
+.new-folder__access{
+    margin-top: 1.5rem;
+}
+.new-folder__properties{
+    margin-top: 2rem;
+}
+
+#popup.active {
+    visibility: visible;
+}
+
+#popup {
+    visibility: hidden;
+}
+
+
+/*  NEW LAYOUT  */
+
+.selection__list{
+    margin-bottom: 2rem;
+}
+
+.folders__folder:nth-child(2n-1){
+    background-color: #F1F1F1;
+}
+
+.folders__folder{
+    padding: 1.4rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.folder__title,
+.config__value,
+.base__name{
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+}
+
+.folder__tab-btn{
+    margin-bottom: 3rem;
+}
+
+.folders__tab,
+.access__tab,
+.scaners__tab{
+    display: none;
+}
+
+.folders__tab.active,
+.access__tab.active,
+.scaners__tab.active{
+    display: block;
+}
+
+#popupFolder,
+#popupScaner{
+    display: none;
+}
+
+#popupFolder.active,
+#popupScaner.active{
+    display: flex;
+}
+
+.header__hold{
+    width: 2.2rem;
+    background-image: url(../img/icon-user-control-panel/hold.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header__base,
+.base__name{
+    flex: .5;
+}
+
+.header__config,
+.config__value{
+    max-width: 100%;
+    flex: 1;
+}
+
+.baseC .button__folder-remove{
+    margin-left: 1rem;
+}
+
+.baseC .header__button{
+    width: 1.3rem;
+    margin-right: 0;
+    margin-left: 2rem;
+}
+
+.command__name{
+    font-size: 1.7rem;
+    line-height: 2.3rem;
+    margin-bottom: 3rem;
+}
+
+.employee__name,
+.employee__surname,
+.employee__patronymic,
+.employee__phone,
+.employee__rights{
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+}
+
+.employee__rights .right-list{
+    width: 13.1rem;
+    height: 2.7rem;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    padding: .5rem 1rem;
+    background-size: .92rem .55rem;
+    margin: 0;
+}
+
+
+.employeer__tab .employee__name,
+.employeer__tab .employee__surname,
+.employeer__tab .employee__patronymic,
+.employeer__tab .employee__phone,
+.employeer__tab .employee__rights,
+.employeer__tab .header__name,
+.employeer__tab .header__surname,
+.employeer__tab .header__patronymic,
+.employeer__tab .header__phone,
+.employeer__tab .header__rights{
+    flex: 1;
+}
+
+.employeer__tab .header__button,
+.employeer__tab .folder__btn{
+    width: 8.4rem;
+}
+.employeer__tab .header__button{
+    margin: 0;
+}
+
+.employeer__tab .row__current-user{
+    background-color: #fff;
+    border-bottom: 1px solid #A5ACBF;
+    margin-bottom: .5rem;
+}
+
+
+
+
+
+
+
+
+
+
+

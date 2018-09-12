@@ -4,13 +4,13 @@
 
 .table__employees,
 .table__folders{
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
     width: 100%;
 }
 
 .table_margin{
-    margin-top: 56px;
+    margin-top: 5.4rem;
 }
 
 .table__row{
@@ -26,14 +26,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 14px 0 13px;
+    padding: 1.4rem 0 1.3rem;
     text-align: center;
-    height: 66px;
+    height: 6.6rem;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 .col__edit{
-    flex-basis: 64px;
+    flex-basis: 6.4rem;
     flex-grow: 0;
 }
 .col__edit{
@@ -44,41 +44,41 @@
     outline: none;
     cursor: pointer;
     background: none;
-    width: 64px;
+    width: 6.4rem;
     height: 100%;
     background-image: url(../img/icon-user-control-panel/pencil.png);
     background-repeat: no-repeat;
-    background-size: 13px;
+    background-size: 1.3rem;
     background-position: center;
 }
 
 .table__button-edit:hover{
-    border: 1px solid #000;
+    border: .1rem solid #000;
     background: none;
     background-image: url(../img/icon-user-control-panel/pencil.png);
     background-repeat: no-repeat;
-    background-size: 13px;
+    background-size: 1.3rem;
     background-position: center;
 }
 
 .table__page{
     display: flex;
     justify-content: center;
-    margin-top: 42px;
+    margin-top: 4.2rem;
 }
 
 .page__list{
     list-style: none;
     display: flex;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 400;
 }
 .page__item{
     cursor: pointer;
-    width: 44px;
-    height: 44px;
+    width: 4.4rem;
+    height: 4.4rem;
     text-align: center;
-    line-height: 44px;
+    line-height: 4.4rem;
 }
 
 .page__item.disabled:hover{
@@ -94,8 +94,8 @@
 
 .page__btn-prev,
 .page__btn-next{
-    width: 44px;
-    height: 44px;
+    width: 4.4rem;
+    height: 4.4rem;
     border: none;
     outline: none;
     cursor: pointer;
@@ -103,7 +103,7 @@
     padding: 0;
     background-repeat: no-repeat;
     background-image: url(../img/icon-user-control-panel/prev.png);
-    background-size: 5px 8px;
+    background-size: .5rem .8rem;
     background-position: center;
 
 }
@@ -130,9 +130,9 @@
 .form__new-employees{
     margin: auto;
     position: relative;
-    padding: 30px;
+    padding: 3rem;
     background-color: #fff;
-    max-width: 880px;
+    max-width: 88rem;
     width: 100%;
 }
 
@@ -148,11 +148,11 @@
 .form__drop-down:before{
     content: "";
     position: absolute;
-    bottom: 36px;
-    right: 24px;
+    bottom: 3.6rem;
+    right: 2.4rem;
     display: block;
-    width: 15px;
-    height: 9px;
+    width: 1.5rem;
+    height: .9rem;
     cursor: pointer;
     background: none;
     background-repeat: no-repeat;
@@ -162,15 +162,15 @@
 }
 
 .form__header{
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
-    margin-bottom: 25px;
-    margin-top: 3px;
+    margin-bottom: 2.5rem;
+    margin-top: .3rem;
 }
 
 #addEmployees,
 #saveEmployees{
-    width: 270px;
+    width: 27rem;
 }
 
 .form__close{
@@ -178,11 +178,11 @@
     outline: none;
     border: none;
     position: absolute;
-    top: 33px;
-    right: 30px;
+    top: 3.3rem;
+    right: 3rem;
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 2.2rem;
+    height: 2.2rem;
     cursor: pointer;
     background: none;
     background-repeat: no-repeat;
@@ -207,14 +207,14 @@
     outline: none;
     border: none;
     display: block;
-    width: 17px;
-    height: 21px;
+    width: 1.7rem;
+    height: 2.1rem;
     background: none;
     background-repeat: no-repeat;
     background-image: url(../img/icon-user-control-panel/trush.png);
     background-size: 100%;
     background-position: center;
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .remove__agreement button{
@@ -222,8 +222,8 @@
     background: none;
     cursor: pointer;
     outline: none;
-    padding: 8px 10px;
-    font-size: 15px;
+    padding: .8rem 1rem;
+    font-size: 1.5rem;
 }
 
 .remove__agreement button:hover{
@@ -232,8 +232,8 @@
 }
 
 .remove__agreement span{
-    font-size: 14px;
-    margin-right: 10px;
+    font-size: 1.4rem;
+    margin-right: 1rem;
 }
 
 .new__employees,
@@ -246,8 +246,8 @@
 /* BILLS BLOCKS WITH INFO-BILL */
 
 .bills{
-    font-size: 16px;
-    margin-top: 30px;
+    font-size: 1.6rem;
+    margin-top: 3rem;
 }
 
 .bills__header{
@@ -255,27 +255,111 @@
 }
 .bills__who{
     margin: 20px 0;
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 .payment__lock{
-    margin-top: 10px;
+    margin-top: 1rem;
     color: #E83E3E;
     cursor: pointer;
 }
 
 .bills__payment{
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
 }
 .payment__count{
-    margin-right: 15px;
+    margin-right: 1.5rem;
 }
 
 
 
+/* NEW EMPLOYEES*/
 
+.employees__tab{
+    margin-top: 3.5rem;
+}
 
+.employees__item{
+    display: inline-block;
+    position: relative;
+    width: 29.8rem;
+    padding: 2rem;
+}
 
+.employees__avatar{
+    width: 5.6rem;
+    height: 5.6rem;
+    margin: 0 auto 1rem;
+}
 
+.employees__avatar img{
+    width: 100%;
+    border-radius: 50%;
+}
 
+.employees__info{
+    text-align: center;
+}
+
+.employees__name{
+    font-size: 1.5rem;
+    margin-bottom: .4rem;
+}
+.employees__right,
+.employees__email,
+.employees__phone{
+    font-size: 1.4rem;
+}
+.employees__right{
+    margin-bottom: .8rem;
+}
+.employees__email{
+    margin-bottom: .6rem;
+}
+.employees__email,
+.employees__phone{
+    color: #8A9CA0;
+}
+
+.button__editing{
+    position: absolute;
+    display: none;
+    top: 2rem;
+    right: 2rem;
+    width: 3.1rem;
+    height: 3.1rem;
+    padding: 0;
+    background-image: url(../img/icon-user-control-panel/pencil-white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.4rem;
+}
+
+.employees__item:hover{
+    background-color: #F5F5F5;
+}
+.employees__item:hover .button__editing{
+    display: block;
+}
+
+.employees__search{
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 2.5rem;
+}
+.input__search{
+    border: none;
+    padding: 0 2rem;
+    height: 50px;
+    background: #EDEDED;
+    width: calc(100% - 5rem);
+}
+.button__search{
+    padding: 0;
+    width: 5rem;
+    background-image: url(../img/icon-user-control-panel/search.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.6rem 1.7rem;
+}
 

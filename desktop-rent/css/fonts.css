@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'NimbusSanNov-Bol'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNov-Bol.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNov-Med'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNov-Med.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNov-Reg'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNov-Reg.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNov-RegIta'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNov-RegIta.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNov-SemBol'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNov-SemBol.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNovCon-Bol'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNovCon-Bol.otf');
+}
+
+@font-face {
+    font-family: 'NimbusSanNovCon-Reg'; 
+    src: url('/desktop-rent/fonts/Nimbus/NimbusSanNovCon-Reg.otf');
+}

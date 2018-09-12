@@ -4,7 +4,7 @@
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
     use Classes\Utils\Safety;
     use Classes\Models\Users\User;
-    Safety::declareSetUpUsersAccessZone();       
+    // Safety::declareSetUpUsersAccessZone();       
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/drop-down-menu.css">
     <link rel="stylesheet" href="/css/control-panel.css">
     <link rel="stylesheet" href="/css/user-control-panel.css">
+    <link rel="stylesheet" href="/css/services.css">
     
     <link rel="stylesheet" href="/css/adaptive.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -5,7 +5,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
 
-use Classes\Models\Users\UsersFactory;
+use Classes\Models\Users\UsersActions;
 
-$uf = new UsersFactory();
-$uf->logout();
+(new UsersActions())->getCurrentUser()->logout();

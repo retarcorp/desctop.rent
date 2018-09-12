@@ -1,206 +1,224 @@
-<section class="right-tab__tab-data tab-data active">
+<section id="fileManager" class="right-tab__tab-data tab-data active">
     <header class="tab__header">
-        <h1 class="header__text text_size_header">Мои 
-        сотрудники</h1>
-        <ul class="header__nav-path text_color_grey">Вы здесь:
+        <ul class="header__nav-path text_color_grey">
+            <li class="header__list-item"><a href="#" class="text_color_blue">Главная</a></li>
             <li class="header__list-item"><a href="#" class="text_color_blue">Мои сотрудники</a></li>
         </ul>
+        <h1 class="header__text text_size_header">Мои сотрудники</h1>
     </header>
     <div class="tab-data__content tab-data__content_margin_top">
-        <button class="button button_theme_sky-dark save__button_size loader_relative" id="associateSend">
-            <span class="button_text button__text_color button__text_size_small font-regular">Добавить сотрудника</span>
-        </button>
+        <!--<ul class="selection__list">-->
+        <!--    <li class="font-regular button__associate tab__folders active">Управление папками</li>-->
+        <!--    <li class="font-regular button__associate tab__access">Удаленный доступ</li>-->
+        <!--    <li class="font-regular button__associate tab__scaners">Сканеры</li>-->
+        <!--</ul>-->
+        <!--<section class="right-tab__tab-data tab-data active content" id="content">-->
+            
+    <!--</header>-->
+    
         
-        <table class="table__employees table_margin">
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-            <tr class="table__row">
-                <td class="table__col col__name">Лужкова Марфа Евгеньевна</td>
-                <td class="table__col col__phone">+74996812253</td>
-                <td class="table__col col__email">sample@gmail.com</td>
-                <td class="table__col col__right">Администратор</td>
-                <td class="table__col col__folders">папка1, папка2</td>
-                <td class="table__col col__edit">
-                    <button class="table__button-edit"></button>
-                </td>
-            </tr>
-        </table>
+    
+
         
-        <div class="table__page">
-            <button class="page__btn-prev"></button>
-            <ul class="page__list">
-                <li class="page__item">1</li>
-                <li class="page__item">2</li>
-                <li class="page__item">3</li>
-                <li class="page__item">4</li>
-                <li class="page__item disabled">...</li>
-                <li class="page__item">25</li>
-            </ul>
-            <button class="page__btn-next"></button>
-        </div>
-    </div>
-</section>
-
-<section class="new__employees">
-    <form class="form__new-employees">
-        <h1 class="form__header font-regular">Добавление нового сотрудника</h1>
-        <button class="form__close"></button>
-        <div class="form__container">
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="fio" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Фамилия имя отвечство</span>
-                </label>
-                <input id="fio" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
-            </div>
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="phone" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Мобильный телефон</span>
-                </label>
-                <input id="phone" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
-            </div>
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="email" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Email</span>
-                </label>
-                <input id="email" type="text" class="field__input input input_height text_size_small text_color_dark font-regular">
-            </div>
-            <div class="tab-data__field field field_margin_bottom form__drop-down">
-                <label for="rights" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Права доступа</span>
-                </label>
-                <input id="rights" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" disabled>
-            </div>
-            <div class="tab-data__field field field_margin_bottom form__drop-down">
-                <label for="folders" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Доступные папки</span>
-                </label>
-                <input id="folders" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" disabled>
-            </div>
-        </div>
-        <button class="button button_theme_sky-dark save__button_size loader_relative" id="addEmployees">
-            <span class="button_text button__text_color button__text_size_small font-regular ">Добавить</span>
-        </button>
-    </form>
-</section>
-
-<section class="edit__employees">
-    <form class="form__new-employees">
-        <h1 class="form__header font-regular">Лужкова Марфа Евгеньевна</h1>
-        <button class="form__close"></button>
-        <div class="form__container">
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="fioEdit" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Фамилия имя отвечство</span>
-                </label>
-                <input id="fioEdit" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" value="Лужкова Марфа Евгеньевна">
-            </div>
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="phoneEdit" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Мобильный телефон</span>
-                </label>
-                <input id="phoneEdit" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" value="+74996812253">
-            </div>
-            <div class="tab-data__field field field_margin_bottom">
-                <label for="emailEdit" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Email</span>
-                </label>
-                <input id="emailEdit" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" value="sample@gmail.com">
-            </div>
-            <div class="tab-data__field field field_margin_bottom form__drop-down">
-                <label for="rightsEdit" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Права доступа</span>
-                </label>
-                <input id="rightsEdit" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" value="Администратор" disabled>
-            </div>
-            <div class="tab-data__field field field_margin_bottom form__drop-down">
-                <label for="foldersEdit" class="field__label">
-                    <span class="text_size_small text_color_dark font-regular">Доступные папки</span>
-                </label>
-                <input id="foldersEdit" type="text" class="field__input input input_height text_size_small text_color_dark font-regular" value="папка1, папка2, папка3, папка4" disabled>
-            </div>
-        </div>
-        <div class="form__buttons">
-            <button class="button button_theme_sky-dark save__button_size loader_relative" id="saveEmployees">
-                <span class="button_text button__text_color button__text_size_small font-regular ">Сохранить</span>
-            </button>
-            <div class="form__remove">
-                <div class="remove__agreement">
-                    <span>Удалить?</span>
-                    <button class="agreement__true">Да</button>
-                    <button class="agreement__false" button>Отмена</button>
+        <div class="folders__tab active employeer__tab">
+            <p class="command__name font-regular">Команда: <span class="font-regular">“ОАО Корпарэйшн”</span> </p>
+            <header class="foldes__header">
+                <div class="header__col header__name font-regular">Имя</div>
+                <div class="header__col header__surname font-regular">Фамилия</div>
+                <div class="header__col header__patronymic font-regular">Отчество</div>
+                <div class="header__col header__phone font-regular">Телефон</div>
+                <div class="header__col header__rights font-regular">Права доступа</div>
+                <div class="header__col header__button"></div>
+                
+            </header>
+            <div class="folders__folder row__current-user">
+                <p class="employee__name font-regular">Дмитрий</p>
+                <p class="employee__surname font-regular">Марченко</p>
+                <p class="employee__patronymic font-regular">Игоревич</p>
+                <p class="employee__phone font-regular">+7 (926) 163-75-07</p>
+                <p class="employee__rights font-regular">Мастер</p>
+                <div class="folder__btn">
+                    <!--<button class="folder__item button__folder-edit"></button>-->
+                    <!--<button class="folder__item button__folder-remove"></button>-->
+                    <!--<button class="folder__item button__folder-stop"></button>-->
                 </div>
-                <button class="button__remove"></button>
             </div>
+            <div class="folders__container " @click.stop="toggleFolderContent">
+                
+                <div class="folders__folder">
+                    <p class="employee__name font-regular">Дмитрий</p>
+                    <p class="employee__surname font-regular">Марченко</p>
+                    <p class="employee__patronymic font-regular">Игоревич</p>
+                    <p class="employee__phone font-regular">+7 (926) 163-75-07</p>
+                    <p class="employee__rights font-regular">
+                        <select class="right-list font-regular">
+                            <option>Мастер</option>
+                            <option>Сотрудник</option>
+                            <option>Другое лицо</option>
+                        </select>
+                    </p>
+                    <div class="folder__btn">
+                        <button class="folder__item button__folder-edit"></button>
+                        <button class="folder__item button__folder-remove"></button>
+                        <button class="folder__item button__folder-stop"></button>
+                    </div>
+                </div>
+                <div class="folders__folder">
+                    <p class="employee__name font-regular">Дмитрий</p>
+                    <p class="employee__surname font-regular">Марченко</p>
+                    <p class="employee__patronymic font-regular">Игоревич</p>
+                    <p class="employee__phone font-regular">+7 (926) 163-75-07</p>
+                    <p class="employee__rights font-regular">
+                        <select class="right-list font-regular">
+                            <option>Мастер</option>
+                            <option>Сотрудник</option>
+                            <option>Другое лицо</option>
+                        </select>
+                    </p>
+                    <div class="folder__btn">
+                        <button class="folder__item button__folder-edit"></button>
+                        <button class="folder__item button__folder-remove"></button>
+                        <button class="folder__item button__folder-stop"></button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="table__page">
+                <button class="page__btn-prev"></button>
+                <ul class="page__list">
+                    <li class="page__item">1</li>
+                    <li class="page__item">2</li>
+                    <li class="page__item">3</li>
+                    <li class="page__item">4</li>
+                    <li class="page__item disabled">...</li>
+                    <li class="page__item">25</li>
+                </ul>
+                <button class="page__btn-next"></button>
+            </div>
+            
+            
+            
         </div>
-    </form>
-</section>
+        
+        
+        <section :class="{'active': isPopUpVisible}" id="popup">
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+            <p>Я попап, я попап, я попап</p>
+        </section>
+    
+    </section>
+    
+    <section class="new-folder__background" style="display:none;">
+        <div class="popup new-folder">
+            <h1 class="popup__header font-regular">Добавление новой папки</h1>
+            <button class="popup__btn-close"></button>
+            <ul class="popup__tabs">
+                <li class="popup__tabs-item font-regular">Свойства</li>
+                <li class="popup__tabs-item font-regular">Доступ</li>
+            </ul>
+            <div class="new-folder__access">
+                <input type="text" class="access__search font-regular" placeholder="Введите имя, или email сотрудника">
+                <div class="access__content">
+                    <div class=" all__users-list">
+                        <div class="users-list__header font-regular">Все пользователи</div>
+                        <div class="user-list ScrollBar">
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selected__users-list">
+                        <div class="users-list__header font-regular">Выбранные</div>
+                        <div class="user-list ScrollBar">
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                    <select class="right-list font-regular">
+                                        <option>Только просмотр</option>
+                                        <option>Просмотр и редактирование</option>
+                                        <option>Полный доступ</option>
+                                    </select>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                            <div class="user-list__item">
+                                <img src="/img/icon-user.png" class="user-item__avatar">
+                                <div class="user-item__info">
+                                    <p class="user-item__fullname font-regular">Кобелев Эдуард Родионович</p>
+                                    <p class="user-item__email font-regular">sampleemail@gmail.com</p>
+                                    <select class="right-list font-regular">
+                                        <option>Только просмотр</option>
+                                        <option>Просмотр и редактирование</option>
+                                        <option>Полный доступ</option>
+                                    </select>
+                                </div>
+                                <input class="style-ratio" type="checkbox" name="font_print">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="new-folder__properties">
+                <label class="properties__field font-regular">
+                    Название папки
+                    <input type="text" class="input input__newFolder">
+                </label>
+            </div>
+            <button class="button btn__save-newfolder">Сохранить</button>
+        </div>
+    </section>
 
-
-
-
-
-
-
-
-
-
-
-
+    

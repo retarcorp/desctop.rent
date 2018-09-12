@@ -1,0 +1,16 @@
+<?php
+
+namespace Classes\Utils;
+
+class JSONResponse{
+
+    public static function ok($data){
+        header("Content-Type: application/json");
+        die(json_encode(["status"=>"OK","data"=>$data], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_LINE_TERMINATORS ));
+    }
+
+    public static function error($error){
+        header("Content-Type: application/json");
+        die(json_encode(["status"=>"ERROR","message"=>$error], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_LINE_TERMINATORS));
+    }
+}

@@ -2,19 +2,20 @@
     
     #$_SERVER['DOCUMENT_ROOT'] = 'C:\inetpub\wwwroot\desktop.rent';
     require_once $_SERVER['DOCUMENT_ROOT']."/Classes/autoload.php";
-    use Classes\Utils\Safety;
-    Safety::declareProtectedZone();
+    // use Classes\Utils\Safety;
+    // Safety::declareProtectedZone();
 
-    use Classes\Models\Users\UsersFactory;
-    use Classes\Models\Users\User;
+    // use Classes\Models\Users\UsersFactory;
+    // use Classes\Models\Users\User;
     
-    use Classes\Models\PasswordRequest\PasswordRequest;
-    use Classes\Models\PasswordRequest\PasswordRequestFactory;
+    // use Classes\Models\PasswordRequest\PasswordRequest;
+    // use Classes\Models\PasswordRequest\PasswordRequestFactory;
     
-    $factory = new UsersFactory();
-    $user = $factory->getCurrentUser();
+    // $factory = new UsersFactory();
+    // $user = $factory->getCurrentUser();
     
-    $prf = new PasswordRequestFactory();
+    // $prf = new PasswordRequestFactory();
+    
 ?>
 
 <!DOCTYPE html>
@@ -51,43 +52,69 @@
             <section class="btn-menu main__btn-menu btn-menu_margin">
                 
                 <?php 
-                    if( $user->status == User::STATUS_JUST_CREATED ) { 
-                        echo "<p style='margin-bottom: 20px;'>Для начала работы с порталом Вам необходимо ввести реквизиты Вашей компании.</p>
-                        <a href='/profile/'>
-                            <button class='btn-menu__entrance button btn-menu__button_size'>
-                                <span class='button_text text_size_button font-regular'>Заполнить данные профиля</span>  
-                            </button>
-                        </a>";
-                    } 
+                    // if( $user->status == User::STATUS_JUST_CREATED ) { 
+                    //     echo "
+                    //         <p style='margin-bottom: 20px;'>Для начала работы с порталом Вам необходимо ввести реквизиты Вашей компании.</p>
+                    //         <a href='/profile/'>
+                    //             <button class='btn-menu__entrance button btn-menu__button_size'>
+                    //                 <span class='button_text text_size_button font-regular'>Заполнить данные профиля</span>  
+                    //             </button>
+                    //         </a>
+                    //         <a href='/profile/'>
+                    //             <button class='btn-menu__dashboard button btn-menu__button_size'>
+                    //                 <span class='button_text text_size_button font-regular'>Войти в рабочий стол</span>  
+                    //                 <div class='help-info font-regular'>
+                    //                     Вам необходимо <a href='/profile/' class='link-help'> заполнить данные профиля </a>
+                    //                 </div>
+                    //             </button>
+                    //         </a>";
+                    // } 
                 ?>
                 
                 <?php 
-                    if( $user->status == User::STATUS_FILLED_PROFILE_DATA ) { 
-                        echo "<p style='margin-bottom: 20px;'>Извините, пока еще нет доступных лицензий. Подождите, пока администратор выдаст Вам ее.</p>";
-                    } 
+                    // if( $user->status == User::STATUS_FILLED_PROFILE_DATA ) { 
+                    //     echo "
+                    //         <p style='margin-bottom: 20px;'>Извините, пока еще нет доступных лицензий. Подождите, пока администратор выдаст Вам ее.</p>
+                    //         <a href='/'>
+                    //             <button class='btn-menu__dashboard button btn-menu__button_size'>
+                    //                 <span class='button_text text_size_button font-regular'>Войти в рабочий стол</span>  
+                    //                 <div class='help-info font-regular'>
+                    //                     Подождите, пока администратор выдаст Вам лицензию
+                    //                 </div>
+                    //             </button>
+                    //         </a>";
+                    // } 
                 ?>
                 
                 <?php 
-                    if( $user->status == User::STATUS_ASSIGNED_LICENSE ) {
-                        echo "
-                            <p style='margin: 1rem 0;'>Для безопасной работы с рабочим столом основные возможности будут отключены, пока Вы не получите пароль доступа к рабочему столу.</p>
-                            <a href=''>
-                                <button @click.prevent='showModal = true' class='btn-menu__set-password button button_theme_sky-dark btn-menu__button_size'>
-                                    <span class='button_text text_size_button button__text_color font-regular'>Установить пароль для первого входа</span>    
-                                </button>    
-                            </a>";
-                    } 
+                    // if( $user->status == User::STATUS_ASSIGNED_LICENSE ) {
+                    //     echo "
+                    //         <p style='margin: 1rem 0;'>Для безопасной работы с рабочим столом основные возможности будут отключены, пока Вы не получите пароль доступа к рабочему столу.</p>
+                    //         <a href=''>
+                    //             <button @click.prevent='showModal = true' class='btn-menu__set-password button button_theme_sky-dark btn-menu__button_size'>
+                    //                 <span class='button_text text_size_button button__text_color font-regular'>Установить пароль для первого входа</span>    
+                    //             </button>    
+                    //         </a>
+                    //         <a href='/'>
+                    //             <button class='btn-menu__dashboard button btn-menu__button_size' @click.prevent='showModal = true'>
+                    //                 <span class='button_text text_size_button font-regular'>Войти в рабочий стол</span>  
+                    //                 <div class='help-info font-regular'>
+                    //                     Вам необходимо установить пароль для первого входа
+                    //                 </div>
+                    //             </button>
+                    //         </a>";
+                    // } 
                 ?>
                 
                 <?php 
-                    if( $user->status == User::STATUS_SET_UP ) {
-                        echo "
-                            <a href='/connection/rdp/'>
-                                <button class='btn-menu__entrance button button_theme_sky-light btn-menu__button_size'>
-                                    <span class='button_text text_size_button button__text_color font-regular'>Войти в рабочий стол</span>  
-                                </button>
-                            </a>";
-                    } 
+                    // if( $user->status == User::STATUS_SET_UP ) {
+                    //     echo "
+                    //         <a href='/connection/rdp/'>
+                    //             <button class='btn-menu__entrance button button_theme_sky-light btn-menu__button_size'>
+                    //                 <span class='button_text text_size_button button__text_color font-regular'>Войти в рабочий стол</span>  
+                    //             </button>
+                    //         </a>";
+                    // } 
                 ?>
                 
                 <!-- Setup Password Modal -->

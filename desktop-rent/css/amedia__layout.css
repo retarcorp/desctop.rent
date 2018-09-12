@@ -1,0 +1,190 @@
+@media screen and (max-width: 968px){
+    html, body {
+        font-size: 50%;
+    }
+}
+
+@media screen and (max-width: 768px){
+
+    html, body{
+        font-size: 43%;
+    }
+    .notification {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .cta {
+        margin: 35% auto;
+        padding: 3rem 11rem;
+    }
+    
+    .info__content {
+        padding: 4rem 8rem;
+    }
+    .container{
+        padding: 0 .5rem;
+    }
+
+    .product__left-panel{
+        margin-right: 4rem;
+    }
+
+    .information__item{
+        margin-top: 1rem;
+    }
+    /*.information__item,*/
+    /*.information__item:not(:first-child){*/
+    /*    flex: 1;*/
+    /*}*/
+
+    .goWork__text{
+        font-size: 2rem;
+    }
+
+}
+
+@media screen and (max-width: 700px){
+    
+    .slider__box {
+        padding: 5rem 9rem;
+    }
+    .product__text {
+        text-align: center;
+    }
+    .page__header{
+        display: none;
+    }
+    .page__header.mobile__version{
+        display: block;
+    }
+
+    #wrapper{
+        margin-top: 63px;
+    }
+
+    .product .product__content{
+        flex-direction: column;
+    }
+
+    .product__left-panel{
+        height: 45rem;
+    }
+
+    .advantages__content{
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    .price .container__content{
+        padding: 15rem 0;
+        background-size: contain;
+    }
+
+    .price__container{
+        right: 12%;
+    }
+
+    .advantages__item{
+        max-width: 80%;
+    }
+
+    .product__left-panel{
+        margin: 0;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    
+    .cta {
+        margin: 50% auto;
+        font-size: 2.5rem;
+        padding: 3rem 4rem;
+    }
+    
+    .slider__box {
+        padding: 4rem 5rem;
+    }
+    .partners .container__content {
+        background-size: contain;    
+    }
+    .price .container__content {
+        padding: 5rem 0;
+    }
+    .info__content {
+        padding: 2rem 4rem;
+    }
+    
+    .price .container__content{
+        background: none;
+        padding-bottom: 29rem;
+    }
+
+    .price__container{
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .company__info{
+        padding: 4rem 4rem;
+    }
+
+    .page__footer{
+        padding: 0 4rem;
+    }
+
+    .info__header{
+        font-size: 3.5rem;
+    }
+
+    .info__text{
+        padding: 0 1rem;
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .cta__description {
+        font-size: 2rem;
+    }
+    .cta__item {
+        font-size: 1.3rem;
+    }
+    .goWork__text{
+        font-size: 1.5rem;
+    }
+    .info__content {
+        padding: 2rem 3rem;
+    }
+
+    .price .container__content{
+        padding-top: 2rem;
+    }
+
+    .start__guide{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .start .container__large{
+        height: 50rem;
+    }
+
+    .guide__item::after{
+        left: 5.5rem;
+        bottom: auto;
+        top: 5px;
+    }
+
+    .guide__item::before{
+        left: -10rem;
+        top: -0.7rem;
+    }
+
+    .step:not(:last-child){
+        margin-right: 0;
+        margin-bottom: 0.3rem;
+    }
+}

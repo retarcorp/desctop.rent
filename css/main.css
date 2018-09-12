@@ -257,14 +257,22 @@ body *{
     padding: 0 7.5rem;
 }
 .header__nav-path{
-    margin-top: .8rem;
+    margin-bottom: .6rem;
     display: flex;
     list-style: none;
     font-size: 1.6rem;
 }
 
 .header__list-item {
-    margin-left: .5rem; 
+    /*margin-left: .5rem; */
+}
+.header__list-item:not(:last-child):after{
+    content: "/";
+    margin: 0 .5rem;
+    color: #2F555E;
+}
+.header__list-item:last-child a{
+    color: #959595;
 }
 
 .tools__header_margin_bottom{
@@ -319,3 +327,74 @@ body *{
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+
+
+
+
+
+
+/* CHECKBOX*/
+
+
+.style-ratio{
+    position: relative;
+    background: transparent;
+    margin-right: 5px;
+    width: 14px;
+}
+.style-ratio:after{
+    content: '';
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    background: #C4C4C4;
+    position: absolute;
+    left: 0px;
+    top: 0;
+}
+.style-ratio:checked:after{
+    background-color: #26BEB8;
+    background-image: url(../img/checkmark.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+
+/* SCROLL BAR*/
+
+.ScrollBar::-webkit-scrollbar{
+    width: 1.6rem;
+    background-color: #F0F0F0;
+}
+
+.ScrollBar::-webkit-scrollbar-thumb{
+    background-color: #C4C4C4;
+}
+.ScrollBar::-webkit-scrollbar{
+    width: 1.6rem;
+    background-color: #F0F0F0;
+}
+
+.ScrollBar::-webkit-scrollbar-thumb{
+    background-color: #C4C4C4;
+}
+.ScrollBar::-webkit-scrollbar{
+    width: 1.6rem;
+    background-color: #F0F0F0;
+}
+
+.ScrollBar::-webkit-scrollbar-thumb{
+    background-color: #C4C4C4;
+}
+
+
+
+
+
+
+
+
